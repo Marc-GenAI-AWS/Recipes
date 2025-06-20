@@ -1171,7 +1171,7 @@ with usecase_tab:
         with st.expander("Advanced Options"):
             instructions_file = st.text_input(
                 "Instructions File", 
-                value="instructions_for_usecase_data_creation.md",
+                value="data_generator_utils/instructions_for_usecase_data_creation.md",
                 help="Path to markdown file with detailed instructions")
             
             output_dir = st.text_input(
@@ -1236,7 +1236,7 @@ with usecase_tab:
                         progress_bar.progress(10)
                         
                         # Prepare the command to run the script
-                        cmd = [sys.executable, "perplexity_generates_data_config.py", 
+                        cmd = [sys.executable, "data_generator_utils/perplexity_generates_data_config.py", 
                                "--domain", domain_name, 
                                "--output-dir", output_dir, 
                                "--instructions", instructions_file]

@@ -1,6 +1,7 @@
 aws_access_key_id: null
 aws_region: us-west-2
 aws_secret_access_key: null
+perplexity_api_key: null
 batch_size: 2
 chat_dataset: true
 chat_template: Llama3.1

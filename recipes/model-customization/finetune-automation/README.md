@@ -24,6 +24,32 @@ This project provides an end-to-end solution for automating the fine-tuning of L
 5. **Deploy Model**: Create a SageMaker endpoint for inference
 6. **Test Inference**: Validate the deployed model with sample prompts
 
+## 🔑 Prerequisites & Environment Variables
+
+Before getting started, ensure you have the following prerequisites and environment variables set up:
+
+### Required Tools
+- **AWS CLI**: Install and configure with admin access or with specific IAM roles for SageMaker and S3 full access
+- **Python 3.8+**: Required to run the scripts and dashboard
+
+### API Keys
+- **Hugging Face API Key**: Required for accessing model repositories and downloads
+- **Perplexity API Key**: Used for generating synthetic data through the Perplexity service
+
+### Environment Setup
+```bash
+# AWS Configuration
+export AWS_ACCESS_KEY_ID=your_access_key
+export AWS_SECRET_ACCESS_KEY=your_secret_key
+export AWS_REGION=us-west-2  # or your preferred region
+
+# API Keys
+export HUGGINGFACE_TOKEN=your_huggingface_token
+export PERPLEXITY_API_KEY=your_perplexity_api_key
+```
+
+Alternatively, you can configure these in the `config.yaml` file.
+
 ## 🔧 Installation
 
 ```bash
@@ -53,7 +79,7 @@ Update the `config.yaml` file with your specific settings:
 Launch the dashboard:
 
 ```bash
-streamlit run workflow_dashboard.py
+streamlit run synthwave_dashboard.py
 ```
 
 Navigate through the tabs to:

@@ -15,6 +15,7 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 from dotenv import load_dotenv
+import ruamel.yaml
 
 # Handle emoji in all environments safely
 def safe_print(text):
@@ -52,10 +53,33 @@ def safe_print(text):
 
 load_dotenv()
 
+# Load configuration from config.yaml
+def load_config():
+    """Load the config.yaml file."""
+    yaml_handler = ruamel.yaml.YAML()
+    yaml_handler.preserve_quotes = True
+    
+    try:
+        # Get path to config.yaml in parent directory since we're now in data_generator_utils
+        config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config.yaml")
+        with open(config_path, "r") as f:
+            return yaml_handler.load(f)
+    except Exception as e:
+        print(f"Error loading config.yaml: {e}")
+        return {}
+
 class EnhancedUseCaseGenerator:
     def __init__(self):
         self.api_url = "https://api.perplexity.ai/chat/completions"
-        self.api_key = os.getenv("PERPLEXITY_API_KEY", "<set perplexity api key>")
+        
+        # Get API key from config.yaml, fallback to environment variable if not in config
+        config = load_config()
+        self.api_key = config.get("perplexity_api_key") or os.getenv("PERPLEXITY_API_KEY", "")
+        
+        if not self.api_key or self.api_key == "null":
+            safe_print("❌ Perplexity API key not found in config.yaml or environment variables!")
+            safe_print("Please add your API key to config.yaml or set the PERPLEXITY_API_KEY environment variable.")
+            safe_print("Continuing with empty API key, but API calls will fail.")
         
     def load_instructions(self, instructions_file: str) -> str:
         """Load enhanced instructions from file."""
@@ -191,7 +215,10 @@ OUTPUT ONLY THE YAML CONFIGURATION - NO OTHER TEXT OR EXPLANATIONS.
         except requests.exceptions.RequestException as e:
             raise Exception(f"Error calling Perplexity API: {str(e)}")
         except KeyError as e:
-            raise Exception(f"Error parsing API response: {str(e)}")
+            if "401 Unauthorized" in response.text and not self.api_key:
+                raise Exception("Perplexity API call failed: 401 Unauthorized. Please provide a valid API key in config.yaml.")
+            else:
+                raise Exception(f"Perplexity API call failed: {response.status_code} - {response.text}")
     
     def extract_yaml_content(self, content: str) -> str:
         """Enhanced YAML extraction with multiple format support."""
@@ -448,7 +475,7 @@ def main():
     
     parser = argparse.ArgumentParser(description="Enhanced YAML Configuration Generator")
     parser.add_argument("--domain", required=True, help="Domain for use case generation")
-    parser.add_argument("--instructions", default="instructions_for_usecase_data_creation.md", 
+    parser.add_argument("--instructions", default="data_generator_utils/instructions_for_usecase_data_creation.md", 
                        help="Instructions file path")
     parser.add_argument("--output-dir", default="data_generation/usecase_config_files", help="Output directory")
     
