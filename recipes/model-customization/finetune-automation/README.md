@@ -44,8 +44,8 @@ export AWS_SECRET_ACCESS_KEY=your_secret_key
 export AWS_REGION=us-west-2  # or your preferred region
 
 # API Keys
-export HUGGINGFACE_TOKEN=your_huggingface_token
-export PERPLEXITY_API_KEY=your_perplexity_api_key
+export HUGGINGFACE_TOKEN=your_huggingface_token 
+export PERPLEXITY_API_KEY=your_perplexity_api_key #For creating use case data config files. Not necessary for exploring the application because there are several pre-generated use case data config files available in the usecase_data folder.
 ```
 
 Alternatively, you can configure these in the `config.yaml` file.
@@ -129,3 +129,9 @@ The dashboard is built with Streamlit and features a retro wave theme with:
 ---
 
 *Built with ❤️ for simplifying LLM fine-tuning workflows*
+
+## 📸 Dashboard Preview
+
+![Synthwave Dashboard Preview](./vibe_themes/dashboard_image.jpg)
+
+*The Synthwave-themed dashboard interface for managing your LLM fine-tuning workflow*
