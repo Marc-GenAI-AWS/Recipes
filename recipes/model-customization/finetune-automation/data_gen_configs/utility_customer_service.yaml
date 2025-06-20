@@ -1,0 +1,142 @@
+domain_name: utility_customer_service
+description: Customer service call analysis and resolution tracking for a utility company
+
+entities:
+  - name: CustomerCall
+    description: A phone call received from a customer regarding utility service
+    attributes:
+      - name: call_id
+        type: id
+        description: Unique identifier for the call
+      - name: customer_name
+        type: text
+        max_length: 100
+        description: Full name of the customer
+      - name: contact_number
+        type: text
+        max_length: 20
+        description: Customer's phone number
+      - name: address
+        type: text
+        max_length: 200
+        description: Service address associated with the issue
+      - name: call_datetime
+        type: datetime
+        description: Date and time the call was received
+      - name: issue_type
+        type: categorical
+        categories:
+          - Outage
+          - Billing
+          - Disconnection/Reconnection
+          - New Connection
+          - Service Quality
+          - Emergency (e.g., gas leak)
+          - Meter Issue
+          - General Inquiry
+          - Complaint
+        description: Main reason for the call[2][3][6]
+      - name: issue_description
+        type: text
+        max_length: 500
+        description: Detailed description of the customer's issue
+      - name: urgency_level
+        type: categorical
+        categories:
+          - Low
+          - Medium
+          - High
+          - Critical
+        description: Urgency of the issue based on customer input and agent assessment
+      - name: preferred_resolution
+        type: text
+        max_length: 200
+        description: Customer's stated preferred resolution (e.g., ETA for restoration, billing adjustment)
+      - name: is_repeat_caller
+        type: boolean
+        description: Whether the customer has called about this issue before
+
+  - name: ServiceCase
+    description: Internal tracking of the service issue and actions taken
+    attributes:
+      - name: case_id
+        type: id
+        description: Unique identifier for the service case
+      - name: assigned_department
+        type: categorical
+        categories:
+          - Field Service
+          - Billing
+          - Customer Support
+          - Technical Support
+          - Emergency Response
+        description: Department assigned to handle the case
+      - name: status
+        type: categorical
+        categories:
+          - Open
+          - In Progress
+          - Resolved
+          - Escalated
+          - Closed
+        description: Current status of the case
+      - name: resolution_summary
+        type: text
+        max_length: 300
+        description: Summary of actions taken and outcome
+      - name: resolution_time
+        type: float
+        min: 0.0
+        max: 168.0
+        description: Time taken to resolve the issue (in hours)
+      - name: follow_up_required
+        type: boolean
+        description: Whether a follow-up with the customer is needed
+
+  - name: CustomerFeedback
+    description: Feedback from the customer after case resolution
+    attributes:
+      - name: feedback_id
+        type: id
+        description: Unique identifier for the feedback entry
+      - name: satisfaction_rating
+        type: categorical
+        categories:
+          - Very Satisfied
+          - Satisfied
+          - Neutral
+          - Dissatisfied
+          - Very Dissatisfied
+        description: Customer's satisfaction with the resolution
+      - name: feedback_comments
+        type: text
+        max_length: 300
+        description: Additional comments from the customer
+      - name: would_recommend
+        type: boolean
+        description: Whether the customer would recommend the utility company
+
+relationships:
+  - from: CustomerCall
+    to: ServiceCase
+    type: one_to_one
+    description: Each customer call results in a service case for tracking
+
+  - from: ServiceCase
+    to: CustomerFeedback
+    type: one_to_one
+    description: Each resolved service case may result in a feedback entry
+
+fine_tuning_task:
+  task_type: text_generation
+  system_prompt: "You are a customer service agent for a utility company. Analyze the customer's call details, identify the main issue, and provide a clear, empathetic response with next steps and estimated resolution time. If the issue is urgent, escalate appropriately."
+  user_template: "Customer {customer_name} called from {address} regarding {issue_type}. Issue details: {issue_description}. Urgency: {urgency_level}. Preferred resolution: {preferred_resolution}."
+  primary_entity: CustomerCall
+  output_format: llama_chat
+  metadata_fields:
+    - call_id
+    - case_id
+
+output:
+  format: jsonl
+  directory: usecase_data/utility_customer_service
