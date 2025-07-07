@@ -18,6 +18,7 @@ SAGEMAKER_ARN_ROLE = config['sagemaker_role']
 raw_model_path = config['model_files_s3_bucket']
 use_case = config['use_case']
 model_tar_s3_file_path = config['model_tar_s3_file_path']
+inference_instance_type = config['inference_instance_type']
 
 print(f"Setting up SageMaker session in region: {AWS_REGION}")
 boto_session = boto3.Session(region_name=AWS_REGION)
@@ -54,7 +55,7 @@ huggingface_model = HuggingFaceModel(
 print(f"Deploying model to SageMaker endpoint: {endpoint_name} (this may take several minutes)...")
 predictor = huggingface_model.deploy(
     initial_instance_count=1,
-    instance_type="ml.g5.2xlarge",
+    instance_type=inference_instance_type,
     endpoint_name=endpoint_name,
 )
 print(f"Deployment complete! Endpoint '{endpoint_name}' is now live.")

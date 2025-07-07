@@ -1,38 +1,45 @@
-aws_access_key_id: null
+aws_access_key_id:
 aws_region: us-west-2
-aws_secret_access_key: null
-perplexity_api_key: null
-batch_size: 2
+aws_secret_access_key:
+batch_size: 8
 chat_dataset: true
 chat_template: Llama3.1
 count_synthetic_data: 1000
-data_config_file: ''
-data_location: C:\Users\marclobr\Documents\Partner Demos\Misc Dev\llama-automate\usecase_data\fsi-loan
-endpoint_name: ''
+data_config_file: 'C:\Users\marclobr\Documents\Partner Demos\Misc Dev\SageMaker-finetune-automation\data_gen_configs\patient_care_plan.yaml'
+data_location: C:\Users\marclobr\Documents\Partner Demos\Misc Dev\SageMaker-finetune-automation\usecase_data\patient_care_plan
+domain_name: auto maintenance
+endpoint_name: 'patient-care-plan-endpoint-6105'
 epochs: 1
 generate_synthetic_data: true
 huggingface_model_flag: true
 huggingface_token: <YOUR_HUGGINGFACE_TOKEN>
 input_data_s3_bucket: amazon-sagemaker-<AWS_ACCOUNT_ID>-us-west-2-798b8de84f6d
-input_data_s3_file_path: ''
+input_data_s3_file_path: usecase_data/patient_care_plan/patient_care_plan.jsonl
 input_data_s3_prefix: usecase_data
-instance_type: ml.g5.12xlarge
+instance_type: ml.g5.2xlarge
+inference_instance_type: ml.g4dn.xlarge
 jumpstart_model_id: meta-textgeneration-llama-3-2-1b
-learning_rate: 2e-5
-local_input_data_path: usecase_data/patient_care_plan/patient_care_plan_dialog_0619_1415.jsonl
+learning_rate: '0.0001'
+local_input_data_path: usecase_data/patient_care_plan\patient_care_plan_dialog_0619_1415.jsonl
 local_model_flag: false
-local_model_path: null
+local_model_path:
 lora_alpha: 64
 lora_r: 16
 max_input_length: 2048
-model_files_s3_bucket: ''
-model_name: ''
-model_tar_s3_file_path: ''
+model_files_s3_bucket: 
+  s3://amazon-sagemaker-<AWS_ACCOUNT_ID>-us-west-2-798b8de84f6d/finetuned-models/patient-care-plan/patient-care-plan-finetune-7722/patient-care-plan-finetune-7722/output/model
+model_name: patient-care-plan-model-6105
+model_tar_s3_file_path: 
+  amazon-sagemaker-<AWS_ACCOUNT_ID>-us-west-2-798b8de84f6d/finetuned-models/patient_care_plan/model_tar/model.tar.gz
 model_type: chat
-output_model_files_s3_bucket: ''
-s3_jsonl_file: usecase_data/patient-care-plan/patient-care-plan.jsonl
-sagemaker_role: arn:aws:iam::<AWS_ACCOUNT_ID>:role/service-role/<SAGEMAKER_EXECUTION_ROLE>
-uri_for_uploaded_s3_input_data: ''
-use_case: fsi-loan
+output_model_files_s3_bucket: 
+  s3://amazon-sagemaker-<AWS_ACCOUNT_ID>-us-west-2-798b8de84f6d/finetuned-models/patient-care-plan/patient-care-plan-finetune-7722/patient-care-plan-finetune-7722/output/model
+perplexity_api_key: <YOUR_PERPLEXITY_API_KEY>
+s3_jsonl_file: usecase_data/patient_care_plan/patient_care_plan.jsonl
+sagemaker_role: 
+  arn:aws:iam::<AWS_ACCOUNT_ID>:role/service-role/<SAGEMAKER_EXECUTION_ROLE>
+uri_for_uploaded_s3_input_data: 's3://amazon-sagemaker-<AWS_ACCOUNT_ID>-us-west-2-798b8de84f6d/usecase_data/patient_care_plan/patient_care_plan.jsonl'
+use_case: 'patient_care_plan'
 using_existing_data: true
 validation_split: 0.25
+fine_tuning_model: meta-llama/Llama-2-7b

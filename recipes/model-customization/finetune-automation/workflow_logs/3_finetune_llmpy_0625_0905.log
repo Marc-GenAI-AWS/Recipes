@@ -1,0 +1,467 @@
+sagemaker.config INFO - Not applying SDK defaults from location: C:\ProgramData\sagemaker\sagemaker\config.yaml
+sagemaker.config INFO - Not applying SDK defaults from location: C:\Users\marclobr\AppData\Local\sagemaker\sagemaker\config.yaml
+Using model 'meta-textgeneration-llama-3-2-1b' with wildcard version identifier '*'. You can pin to version '1.2.6' for more stable results. Note that models may have different input/output signatures after a major version upgrade.
+INFO:sagemaker:Creating training-job with name: patient-care-plan-finetune-7531
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+Training data URI: s3://amazon-sagemaker-<AWS_ACCOUNT_ID>-us-west-2-798b8de84f6d/usecase_data/patient_care_plan/patient_care_plan.jsonl
+Output path: s3://amazon-sagemaker-<AWS_ACCOUNT_ID>-us-west-2-798b8de84f6d/patient-care-plan-finetune-7531/
+2025-06-25 16:05:34 Starting - Starting the training job
+2025-06-25 16:05:34 Pending - Training job waiting for capacity.........
+2025-06-25 16:07:12 Pending - Preparing the instances for training...
+2025-06-25 16:07:40 Downloading - Downloading input data............
+2025-06-25 16:09:41 Downloading - Downloading the training image...............
+2025-06-25 16:11:58 Training - Training image download completed. Training in progress..bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+2025-06-25 16:12:20,481 sagemaker-training-toolkit INFO     Imported framework sagemaker_pytorch_container.training
+2025-06-25 16:12:20,499 sagemaker-training-toolkit INFO     No Neurons detected (normal if no neurons installed)
+2025-06-25 16:12:20,508 sagemaker_pytorch_container.training INFO     Block until all host DNS lookups succeed.
+2025-06-25 16:12:20,511 sagemaker_pytorch_container.training INFO     Invoking user training script.
+2025-06-25 16:12:29,444 sagemaker-training-toolkit INFO     Installing dependencies from requirements.txt:
+/opt/conda/bin/python3.10 -m pip install -r requirements.txt
+Processing ./lib/accelerate/accelerate-0.33.0-py3-none-any.whl (from -r requirements.txt (line 1))
+Processing ./lib/bitsandbytes/bitsandbytes-0.39.1-py3-none-any.whl (from -r requirements.txt (line 2))
+Processing ./lib/black/black-23.7.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 3))
+Processing ./lib/brotli/Brotli-1.0.9-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (from -r requirements.txt (line 4))
+Processing ./lib/datasets/datasets-2.14.1-py3-none-any.whl (from -r requirements.txt (line 5))
+Processing ./lib/docstring-parser/docstring_parser-0.16-py3-none-any.whl (from -r requirements.txt (line 6))
+Processing ./lib/fire/fire-0.5.0.tar.gz
+Preparing metadata (setup.py): started
+Preparing metadata (setup.py): finished with status 'done'
+Processing ./lib/huggingface-hub/huggingface_hub-0.24.2-py3-none-any.whl (from -r requirements.txt (line 8))
+Processing ./lib/inflate64/inflate64-0.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 9))
+Processing ./lib/loralib/loralib-0.1.1-py3-none-any.whl (from -r requirements.txt (line 10))
+Processing ./lib/multivolumefile/multivolumefile-0.2.3-py3-none-any.whl (from -r requirements.txt (line 11))
+Processing ./lib/mypy-extensions/mypy_extensions-1.0.0-py3-none-any.whl (from -r requirements.txt (line 12))
+Processing ./lib/nvidia-cublas-cu12/nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 13))
+Processing ./lib/nvidia-cuda-cupti-cu12/nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 14))
+Processing ./lib/nvidia-cuda-nvrtc-cu12/nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 15))
+Processing ./lib/nvidia-cuda-runtime-cu12/nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 16))
+Processing ./lib/nvidia-cudnn-cu12/nvidia_cudnn_cu12-8.9.2.26-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 17))
+Processing ./lib/nvidia-cufft-cu12/nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 18))
+Processing ./lib/nvidia-curand-cu12/nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 19))
+Processing ./lib/nvidia-cusolver-cu12/nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 20))
+Processing ./lib/nvidia-cusparse-cu12/nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 21))
+Processing ./lib/nvidia-nccl-cu12/nvidia_nccl_cu12-2.19.3-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 22))
+Processing ./lib/nvidia-nvjitlink-cu12/nvidia_nvjitlink_cu12-12.3.101-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 23))
+Processing ./lib/nvidia-nvtx-cu12/nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (from -r requirements.txt (line 24))
+Processing ./lib/pathspec/pathspec-0.11.1-py3-none-any.whl (from -r requirements.txt (line 25))
+Processing ./lib/peft/peft-0.4.0-py3-none-any.whl (from -r requirements.txt (line 26))
+Processing ./lib/py7zr/py7zr-0.20.5-py3-none-any.whl (from -r requirements.txt (line 27))
+Processing ./lib/pybcj/pybcj-1.0.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 28))
+Processing ./lib/pycryptodomex/pycryptodomex-3.18.0-cp35-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 29))
+Processing ./lib/pyppmd/pyppmd-1.0.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 30))
+Processing ./lib/pyzstd/pyzstd-0.15.9-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 31))
+Processing ./lib/safetensors/safetensors-0.4.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 32))
+Processing ./lib/scipy/scipy-1.11.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 33))
+Processing ./lib/shtab/shtab-1.7.1-py3-none-any.whl (from -r requirements.txt (line 34))
+Processing ./lib/termcolor/termcolor-2.3.0-py3-none-any.whl (from -r requirements.txt (line 35))
+Processing ./lib/texttable/texttable-1.6.7-py2.py3-none-any.whl (from -r requirements.txt (line 36))
+Processing ./lib/tokenize-rt/tokenize_rt-5.1.0-py2.py3-none-any.whl (from -r requirements.txt (line 37))
+Processing ./lib/tokenizers/tokenizers-0.19.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 38))
+Processing ./lib/torch/torch-2.2.0-cp310-cp310-manylinux1_x86_64.whl (from -r requirements.txt (line 39))
+Processing ./lib/transformers/transformers-4.43.1-py3-none-any.whl (from -r requirements.txt (line 40))
+Processing ./lib/triton/triton-2.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 41))
+Processing ./lib/trl/trl-0.8.1-py3-none-any.whl (from -r requirements.txt (line 42))
+Processing ./lib/typing-extensions/typing_extensions-4.8.0-py3-none-any.whl (from -r requirements.txt (line 43))
+Processing ./lib/tyro/tyro-0.7.3-py3-none-any.whl (from -r requirements.txt (line 44))
+Processing ./lib/sagemaker_jumpstart_script_utilities/sagemaker_jumpstart_script_utilities-1.1.9-py2.py3-none-any.whl (from -r requirements.txt (line 45))
+Processing ./lib/sagemaker_jumpstart_huggingface_script_utilities/sagemaker_jumpstart_huggingface_script_utilities-1.2.7-py2.py3-none-any.whl (from -r requirements.txt (line 46))
+Requirement already satisfied: numpy<2.0.0,>=1.17 in /opt/conda/lib/python3.10/site-packages (from accelerate==0.33.0->-r requirements.txt (line 1)) (1.24.4)
+Requirement already satisfied: packaging>=20.0 in /opt/conda/lib/python3.10/site-packages (from accelerate==0.33.0->-r requirements.txt (line 1)) (23.1)
+Requirement already satisfied: psutil in /opt/conda/lib/python3.10/site-packages (from accelerate==0.33.0->-r requirements.txt (line 1)) (5.9.5)
+Requirement already satisfied: pyyaml in /opt/conda/lib/python3.10/site-packages (from accelerate==0.33.0->-r requirements.txt (line 1)) (6.0)
+Requirement already satisfied: click>=8.0.0 in /opt/conda/lib/python3.10/site-packages (from black==23.7.0->-r requirements.txt (line 3)) (8.1.4)
+Requirement already satisfied: platformdirs>=2 in /opt/conda/lib/python3.10/site-packages (from black==23.7.0->-r requirements.txt (line 3)) (3.8.1)
+Requirement already satisfied: tomli>=1.1.0 in /opt/conda/lib/python3.10/site-packages (from black==23.7.0->-r requirements.txt (line 3)) (2.0.1)
+Requirement already satisfied: pyarrow>=8.0.0 in /opt/conda/lib/python3.10/site-packages (from datasets==2.14.1->-r requirements.txt (line 5)) (14.0.2)
+Requirement already satisfied: dill<0.3.8,>=0.3.0 in /opt/conda/lib/python3.10/site-packages (from datasets==2.14.1->-r requirements.txt (line 5)) (0.3.6)
+Requirement already satisfied: pandas in /opt/conda/lib/python3.10/site-packages (from datasets==2.14.1->-r requirements.txt (line 5)) (2.0.3)
+Requirement already satisfied: requests>=2.19.0 in /opt/conda/lib/python3.10/site-packages (from datasets==2.14.1->-r requirements.txt (line 5)) (2.31.0)
+Requirement already satisfied: tqdm>=4.62.1 in /opt/conda/lib/python3.10/site-packages (from datasets==2.14.1->-r requirements.txt (line 5)) (4.65.0)
+Requirement already satisfied: xxhash in /opt/conda/lib/python3.10/site-packages (from datasets==2.14.1->-r requirements.txt (line 5)) (3.4.1)
+Requirement already satisfied: multiprocess in /opt/conda/lib/python3.10/site-packages (from datasets==2.14.1->-r requirements.txt (line 5)) (0.70.14)
+Requirement already satisfied: fsspec>=2021.11.1 in /opt/conda/lib/python3.10/site-packages (from fsspec[http]>=2021.11.1->datasets==2.14.1->-r requirements.txt (line 5)) (2023.6.0)
+Requirement already satisfied: aiohttp in /opt/conda/lib/python3.10/site-packages (from datasets==2.14.1->-r requirements.txt (line 5)) (3.9.3)
+Requirement already satisfied: six in /opt/conda/lib/python3.10/site-packages (from fire==0.5.0->-r requirements.txt (line 7)) (1.16.0)
+Requirement already satisfied: filelock in /opt/conda/lib/python3.10/site-packages (from huggingface-hub==0.24.2->-r requirements.txt (line 8)) (3.12.2)
+Requirement already satisfied: sympy in /opt/conda/lib/python3.10/site-packages (from torch==2.2.0->-r requirements.txt (line 39)) (1.12)
+Requirement already satisfied: networkx in /opt/conda/lib/python3.10/site-packages (from torch==2.2.0->-r requirements.txt (line 39)) (3.1)
+Requirement already satisfied: jinja2 in /opt/conda/lib/python3.10/site-packages (from torch==2.2.0->-r requirements.txt (line 39)) (3.1.2)
+Requirement already satisfied: regex!=2019.12.17 in /opt/conda/lib/python3.10/site-packages (from transformers==4.43.1->-r requirements.txt (line 40)) (2023.12.25)
+Requirement already satisfied: rich>=11.1.0 in /opt/conda/lib/python3.10/site-packages (from tyro==0.7.3->-r requirements.txt (line 44)) (13.4.2)
+Requirement already satisfied: aiosignal>=1.1.2 in /opt/conda/lib/python3.10/site-packages (from aiohttp->datasets==2.14.1->-r requirements.txt (line 5)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in /opt/conda/lib/python3.10/site-packages (from aiohttp->datasets==2.14.1->-r requirements.txt (line 5)) (23.1.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /opt/conda/lib/python3.10/site-packages (from aiohttp->datasets==2.14.1->-r requirements.txt (line 5)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in /opt/conda/lib/python3.10/site-packages (from aiohttp->datasets==2.14.1->-r requirements.txt (line 5)) (6.0.5)
+Requirement already satisfied: yarl<2.0,>=1.0 in /opt/conda/lib/python3.10/site-packages (from aiohttp->datasets==2.14.1->-r requirements.txt (line 5)) (1.9.4)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in /opt/conda/lib/python3.10/site-packages (from aiohttp->datasets==2.14.1->-r requirements.txt (line 5)) (4.0.3)
+Requirement already satisfied: charset-normalizer<4,>=2 in /opt/conda/lib/python3.10/site-packages (from requests>=2.19.0->datasets==2.14.1->-r requirements.txt (line 5)) (3.1.0)
+Requirement already satisfied: idna<4,>=2.5 in /opt/conda/lib/python3.10/site-packages (from requests>=2.19.0->datasets==2.14.1->-r requirements.txt (line 5)) (3.4)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /opt/conda/lib/python3.10/site-packages (from requests>=2.19.0->datasets==2.14.1->-r requirements.txt (line 5)) (1.26.15)
+Requirement already satisfied: certifi>=2017.4.17 in /opt/conda/lib/python3.10/site-packages (from requests>=2.19.0->datasets==2.14.1->-r requirements.txt (line 5)) (2024.2.2)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /opt/conda/lib/python3.10/site-packages (from rich>=11.1.0->tyro==0.7.3->-r requirements.txt (line 44)) (3.0.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /opt/conda/lib/python3.10/site-packages (from rich>=11.1.0->tyro==0.7.3->-r requirements.txt (line 44)) (2.15.1)
+Requirement already satisfied: MarkupSafe>=2.0 in /opt/conda/lib/python3.10/site-packages (from jinja2->torch==2.2.0->-r requirements.txt (line 39)) (2.1.3)
+Requirement already satisfied: python-dateutil>=2.8.2 in /opt/conda/lib/python3.10/site-packages (from pandas->datasets==2.14.1->-r requirements.txt (line 5)) (2.8.2)
+Requirement already satisfied: pytz>=2020.1 in /opt/conda/lib/python3.10/site-packages (from pandas->datasets==2.14.1->-r requirements.txt (line 5)) (2023.3)
+Requirement already satisfied: tzdata>=2022.1 in /opt/conda/lib/python3.10/site-packages (from pandas->datasets==2.14.1->-r requirements.txt (line 5)) (2023.3)
+Requirement already satisfied: mpmath>=0.19 in /opt/conda/lib/python3.10/site-packages (from sympy->torch==2.2.0->-r requirements.txt (line 39)) (1.3.0)
+Requirement already satisfied: mdurl~=0.1 in /opt/conda/lib/python3.10/site-packages (from markdown-it-py>=2.2.0->rich>=11.1.0->tyro==0.7.3->-r requirements.txt (line 44)) (0.1.0)
+scipy is already installed with the same version as the provided wheel. Use --force-reinstall to force an installation of the wheel.
+Building wheels for collected packages: fire
+Building wheel for fire (setup.py): started
+Building wheel for fire (setup.py): finished with status 'done'
+Created wheel for fire: filename=fire-0.5.0-py2.py3-none-any.whl size=116932 sha256=8d78ab1b2ac54041bb6cd56b501da8e902f423aa5e7c3d643a1bcaedcab2fe07
+Stored in directory: /root/.cache/pip/wheels/db/3d/41/7e69dca5f61e37d109a4457082ffc5c6edb55ab633bafded38
+Successfully built fire
+Installing collected packages: texttable, Brotli, bitsandbytes, typing-extensions, triton, tokenize-rt, termcolor, shtab, sagemaker-jumpstart-script-utilities, sagemaker-jumpstart-huggingface-script-utilities, safetensors, pyzstd, pyppmd, pycryptodomex, pybcj, pathspec, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, mypy-extensions, multivolumefile, loralib, inflate64, docstring-parser, py7zr, nvidia-cusparse-cu12, nvidia-cudnn-cu12, huggingface-hub, fire, black, tyro, tokenizers, nvidia-cusolver-cu12, transformers, torch, datasets, accelerate, trl, peft
+Attempting uninstall: typing-extensions
+Found existing installation: typing_extensions 4.7.1
+Uninstalling typing_extensions-4.7.1:
+Successfully uninstalled typing_extensions-4.7.1
+Attempting uninstall: triton
+Found existing installation: triton 2.0.0.dev20221202
+Uninstalling triton-2.0.0.dev20221202:
+Successfully uninstalled triton-2.0.0.dev20221202
+Attempting uninstall: huggingface-hub
+Found existing installation: huggingface-hub 0.20.3
+Uninstalling huggingface-hub-0.20.3:
+Successfully uninstalled huggingface-hub-0.20.3
+Attempting uninstall: tokenizers
+Found existing installation: tokenizers 0.13.3
+Uninstalling tokenizers-0.13.3:
+Successfully uninstalled tokenizers-0.13.3
+Attempting uninstall: transformers
+Found existing installation: transformers 4.28.1
+Uninstalling transformers-4.28.1:
+Successfully uninstalled transformers-4.28.1
+Attempting uninstall: torch
+Found existing installation: torch 2.0.0
+Uninstalling torch-2.0.0:
+Successfully uninstalled torch-2.0.0
+Attempting uninstall: datasets
+Found existing installation: datasets 2.16.1
+Uninstalling datasets-2.16.1:
+Successfully uninstalled datasets-2.16.1
+Attempting uninstall: accelerate
+Found existing installation: accelerate 0.19.0
+Uninstalling accelerate-0.19.0:
+Successfully uninstalled accelerate-0.19.0
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+fastai 2.7.12 requires torch<2.1,>=1.7, but you have torch 2.2.0 which is incompatible.
+Successfully installed Brotli-1.0.9 accelerate-0.33.0 bitsandbytes-0.39.1 black-23.7.0 datasets-2.14.1 docstring-parser-0.16 fire-0.5.0 huggingface-hub-0.24.2 inflate64-0.3.1 loralib-0.1.1 multivolumefile-0.2.3 mypy-extensions-1.0.0 nvidia-cublas-cu12-12.1.3.1 nvidia-cuda-cupti-cu12-12.1.105 nvidia-cuda-nvrtc-cu12-12.1.105 nvidia-cuda-runtime-cu12-12.1.105 nvidia-cudnn-cu12-8.9.2.26 nvidia-cufft-cu12-11.0.2.54 nvidia-curand-cu12-10.3.2.106 nvidia-cusolver-cu12-11.4.5.107 nvidia-cusparse-cu12-12.1.0.106 nvidia-nccl-cu12-2.19.3 nvidia-nvjitlink-cu12-12.3.101 nvidia-nvtx-cu12-12.1.105 pathspec-0.11.1 peft-0.4.0 py7zr-0.20.5 pybcj-1.0.1 pycryptodomex-3.18.0 pyppmd-1.0.0 pyzstd-0.15.9 safetensors-0.4.2 sagemaker-jumpstart-huggingface-script-utilities-1.2.7 sagemaker-jumpstart-script-utilities-1.1.9 shtab-1.7.1 termcolor-2.3.0 texttable-1.6.7 tokenize-rt-5.1.0 tokenizers-0.19.1 torch-2.2.0 transformers-4.43.1 triton-2.2.0 trl-0.8.1 typing-extensions-4.8.0 tyro-0.7.3
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-06-25 16:13:50,456 sagemaker-training-toolkit INFO     Waiting for the process to finish and give a return code.
+2025-06-25 16:13:50,457 sagemaker-training-toolkit INFO     Done waiting for a return code. Received 0 from exiting process.
+2025-06-25 16:13:50,494 sagemaker-training-toolkit INFO     No Neurons detected (normal if no neurons installed)
+2025-06-25 16:13:50,522 sagemaker-training-toolkit INFO     No Neurons detected (normal if no neurons installed)
+2025-06-25 16:13:50,549 sagemaker-training-toolkit INFO     No Neurons detected (normal if no neurons installed)
+2025-06-25 16:13:50,558 sagemaker-training-toolkit INFO     Invoking user script
+Training Env:
+{
+    "additional_framework_parameters": {},
+    "channel_input_dirs": {
+        "code": "/opt/ml/input/data/code",
+        "training": "/opt/ml/input/data/training"
+    },
+    "current_host": "algo-1",
+    "current_instance_group": "homogeneousCluster",
+    "current_instance_group_hosts": [
+        "algo-1"
+    ],
+    "current_instance_type": "ml.g5.2xlarge",
+    "distribution_hosts": [],
+    "distribution_instance_groups": [],
+    "framework_module": "sagemaker_pytorch_container.training:main",
+    "hosts": [
+        "algo-1"
+    ],
+    "hyperparameters": {
+        "add_input_output_demarcation_key": "True",
+        "chat_dataset": "True",
+        "chat_template": "Llama3.1",
+        "enable_fsdp": "False",
+        "epoch": "3",
+        "gradient_accumulation_steps": "4",
+        "instruction_tuned": "False",
+        "int8_quantization": "False",
+        "learning_rate": "1e-5",
+        "lora_alpha": "64",
+        "lora_dropout": "0.05",
+        "lora_r": "16",
+        "max_input_length": "2048",
+        "max_train_samples": "-1",
+        "max_val_samples": "-1",
+        "model_name": "meta-textgeneration-llama-3-2-1b",
+        "num_workers_dataloader": "4",
+        "per_device_eval_batch_size": "1",
+        "per_device_train_batch_size": "2",
+        "preprocessing_num_workers": "4",
+        "seed": "10",
+        "target_modules": "q_proj,k_proj,v_proj,o_proj",
+        "train_data_split_seed": "0",
+        "train_file": "/opt/ml/input/data/training/patient_care_plan.jsonl",
+        "use_default_template": "False",
+        "validation_split_ratio": "0.2"
+    },
+    "input_config_dir": "/opt/ml/input/config",
+    "input_data_config": {
+        "code": {
+            "TrainingInputMode": "File",
+            "S3DistributionType": "FullyReplicated",
+            "RecordWrapperType": "None"
+        },
+        "training": {
+            "TrainingInputMode": "File",
+            "S3DistributionType": "FullyReplicated",
+            "RecordWrapperType": "None"
+        }
+    },
+    "input_dir": "/opt/ml/input",
+    "instance_groups": [
+        "homogeneousCluster"
+    ],
+    "instance_groups_dict": {
+        "homogeneousCluster": {
+            "instance_group_name": "homogeneousCluster",
+            "instance_type": "ml.g5.2xlarge",
+            "hosts": [
+                "algo-1"
+            ]
+        }
+    },
+    "is_hetero": false,
+    "is_master": true,
+    "is_modelparallel_enabled": null,
+    "is_smddpmprun_installed": true,
+    "job_name": "patient-care-plan-finetune-7531",
+    "log_level": 20,
+    "master_hostname": "algo-1",
+    "model_dir": "/opt/ml/model",
+    "module_dir": "/opt/ml/input/data/code/sourcedir.tar.gz",
+    "module_name": "transfer_learning",
+    "network_interface_name": "eth0",
+    "num_cpus": 8,
+    "num_gpus": 1,
+    "num_neurons": 0,
+    "output_data_dir": "/opt/ml/output/data",
+    "output_dir": "/opt/ml/output",
+    "output_intermediate_dir": "/opt/ml/output/intermediate",
+    "resource_config": {
+        "current_host": "algo-1",
+        "current_instance_type": "ml.g5.2xlarge",
+        "current_group_name": "homogeneousCluster",
+        "hosts": [
+            "algo-1"
+        ],
+        "instance_groups": [
+            {
+                "instance_group_name": "homogeneousCluster",
+                "instance_type": "ml.g5.2xlarge",
+                "hosts": [
+                    "algo-1"
+                ]
+            }
+        ],
+        "network_interface_name": "eth0",
+        "topology": null
+    },
+    "user_entry_point": "transfer_learning.py"
+}
+Environment variables:
+SM_HOSTS=["algo-1"]
+SM_NETWORK_INTERFACE_NAME=eth0
+SM_HPS={"add_input_output_demarcation_key":"True","chat_dataset":"True","chat_template":"Llama3.1","enable_fsdp":"False","epoch":"3","gradient_accumulation_steps":"4","instruction_tuned":"False","int8_quantization":"False","learning_rate":"1e-5","lora_alpha":"64","lora_dropout":"0.05","lora_r":"16","max_input_length":"2048","max_train_samples":"-1","max_val_samples":"-1","model_name":"meta-textgeneration-llama-3-2-1b","num_workers_dataloader":"4","per_device_eval_batch_size":"1","per_device_train_batch_size":"2","preprocessing_num_workers":"4","seed":"10","target_modules":"q_proj,k_proj,v_proj,o_proj","train_data_split_seed":"0","train_file":"/opt/ml/input/data/training/patient_care_plan.jsonl","use_default_template":"False","validation_split_ratio":"0.2"}
+SM_USER_ENTRY_POINT=transfer_learning.py
+SM_FRAMEWORK_PARAMS={}
+SM_RESOURCE_CONFIG={"current_group_name":"homogeneousCluster","current_host":"algo-1","current_instance_type":"ml.g5.2xlarge","hosts":["algo-1"],"instance_groups":[{"hosts":["algo-1"],"instance_group_name":"homogeneousCluster","instance_type":"ml.g5.2xlarge"}],"network_interface_name":"eth0","topology":null}
+SM_INPUT_DATA_CONFIG={"code":{"RecordWrapperType":"None","S3DistributionType":"FullyReplicated","TrainingInputMode":"File"},"training":{"RecordWrapperType":"None","S3DistributionType":"FullyReplicated","TrainingInputMode":"File"}}
+SM_OUTPUT_DATA_DIR=/opt/ml/output/data
+SM_CHANNELS=["code","training"]
+SM_CURRENT_HOST=algo-1
+SM_CURRENT_INSTANCE_TYPE=ml.g5.2xlarge
+SM_CURRENT_INSTANCE_GROUP=homogeneousCluster
+SM_CURRENT_INSTANCE_GROUP_HOSTS=["algo-1"]
+SM_INSTANCE_GROUPS=["homogeneousCluster"]
+SM_INSTANCE_GROUPS_DICT={"homogeneousCluster":{"hosts":["algo-1"],"instance_group_name":"homogeneousCluster","instance_type":"ml.g5.2xlarge"}}
+SM_DISTRIBUTION_INSTANCE_GROUPS=[]
+SM_IS_HETERO=false
+SM_MODULE_NAME=transfer_learning
+SM_LOG_LEVEL=20
+SM_FRAMEWORK_MODULE=sagemaker_pytorch_container.training:main
+SM_INPUT_DIR=/opt/ml/input
+SM_INPUT_CONFIG_DIR=/opt/ml/input/config
+SM_OUTPUT_DIR=/opt/ml/output
+SM_NUM_CPUS=8
+SM_NUM_GPUS=1
+SM_NUM_NEURONS=0
+SM_MODEL_DIR=/opt/ml/model
+SM_MODULE_DIR=/opt/ml/input/data/code/sourcedir.tar.gz
+SM_TRAINING_ENV={"additional_framework_parameters":{},"channel_input_dirs":{"code":"/opt/ml/input/data/code","training":"/opt/ml/input/data/training"},"current_host":"algo-1","current_instance_group":"homogeneousCluster","current_instance_group_hosts":["algo-1"],"current_instance_type":"ml.g5.2xlarge","distribution_hosts":[],"distribution_instance_groups":[],"framework_module":"sagemaker_pytorch_container.training:main","hosts":["algo-1"],"hyperparameters":{"add_input_output_demarcation_key":"True","chat_dataset":"True","chat_template":"Llama3.1","enable_fsdp":"False","epoch":"3","gradient_accumulation_steps":"4","instruction_tuned":"False","int8_quantization":"False","learning_rate":"1e-5","lora_alpha":"64","lora_dropout":"0.05","lora_r":"16","max_input_length":"2048","max_train_samples":"-1","max_val_samples":"-1","model_name":"meta-textgeneration-llama-3-2-1b","num_workers_dataloader":"4","per_device_eval_batch_size":"1","per_device_train_batch_size":"2","preprocessing_num_workers":"4","seed":"10","target_modules":"q_proj,k_proj,v_proj,o_proj","train_data_split_seed":"0","train_file":"/opt/ml/input/data/training/patient_care_plan.jsonl","use_default_template":"False","validation_split_ratio":"0.2"},"input_config_dir":"/opt/ml/input/config","input_data_config":{"code":{"RecordWrapperType":"None","S3DistributionType":"FullyReplicated","TrainingInputMode":"File"},"training":{"RecordWrapperType":"None","S3DistributionType":"FullyReplicated","TrainingInputMode":"File"}},"input_dir":"/opt/ml/input","instance_groups":["homogeneousCluster"],"instance_groups_dict":{"homogeneousCluster":{"hosts":["algo-1"],"instance_group_name":"homogeneousCluster","instance_type":"ml.g5.2xlarge"}},"is_hetero":false,"is_master":true,"is_modelparallel_enabled":null,"is_smddpmprun_installed":true,"job_name":"patient-care-plan-finetune-7531","log_level":20,"master_hostname":"algo-1","model_dir":"/opt/ml/model","module_dir":"/opt/ml/input/data/code/sourcedir.tar.gz","module_name":"transfer_learning","network_interface_name":"eth0","num_cpus":8,"num_gpus":1,"num_neurons":0,"output_data_dir":"/opt/ml/output/data","output_dir":"/opt/ml/output","output_intermediate_dir":"/opt/ml/output/intermediate","resource_config":{"current_group_name":"homogeneousCluster","current_host":"algo-1","current_instance_type":"ml.g5.2xlarge","hosts":["algo-1"],"instance_groups":[{"hosts":["algo-1"],"instance_group_name":"homogeneousCluster","instance_type":"ml.g5.2xlarge"}],"network_interface_name":"eth0","topology":null},"user_entry_point":"transfer_learning.py"}
+SM_USER_ARGS=["--add_input_output_demarcation_key","True","--chat_dataset","True","--chat_template","Llama3.1","--enable_fsdp","False","--epoch","3","--gradient_accumulation_steps","4","--instruction_tuned","False","--int8_quantization","False","--learning_rate","1e-5","--lora_alpha","64","--lora_dropout","0.05","--lora_r","16","--max_input_length","2048","--max_train_samples","-1","--max_val_samples","-1","--model_name","meta-textgeneration-llama-3-2-1b","--num_workers_dataloader","4","--per_device_eval_batch_size","1","--per_device_train_batch_size","2","--preprocessing_num_workers","4","--seed","10","--target_modules","q_proj,k_proj,v_proj,o_proj","--train_data_split_seed","0","--train_file","/opt/ml/input/data/training/patient_care_plan.jsonl","--use_default_template","False","--validation_split_ratio","0.2"]
+SM_OUTPUT_INTERMEDIATE_DIR=/opt/ml/output/intermediate
+SM_CHANNEL_CODE=/opt/ml/input/data/code
+SM_CHANNEL_TRAINING=/opt/ml/input/data/training
+SM_HP_ADD_INPUT_OUTPUT_DEMARCATION_KEY=True
+SM_HP_CHAT_DATASET=True
+SM_HP_CHAT_TEMPLATE=Llama3.1
+SM_HP_ENABLE_FSDP=False
+SM_HP_EPOCH=3
+SM_HP_GRADIENT_ACCUMULATION_STEPS=4
+SM_HP_INSTRUCTION_TUNED=False
+SM_HP_INT8_QUANTIZATION=False
+SM_HP_LEARNING_RATE=1e-5
+SM_HP_LORA_ALPHA=64
+SM_HP_LORA_DROPOUT=0.05
+SM_HP_LORA_R=16
+SM_HP_MAX_INPUT_LENGTH=2048
+SM_HP_MAX_TRAIN_SAMPLES=-1
+SM_HP_MAX_VAL_SAMPLES=-1
+SM_HP_MODEL_NAME=meta-textgeneration-llama-3-2-1b
+SM_HP_NUM_WORKERS_DATALOADER=4
+SM_HP_PER_DEVICE_EVAL_BATCH_SIZE=1
+SM_HP_PER_DEVICE_TRAIN_BATCH_SIZE=2
+SM_HP_PREPROCESSING_NUM_WORKERS=4
+SM_HP_SEED=10
+SM_HP_TARGET_MODULES=q_proj,k_proj,v_proj,o_proj
+SM_HP_TRAIN_DATA_SPLIT_SEED=0
+SM_HP_TRAIN_FILE=/opt/ml/input/data/training/patient_care_plan.jsonl
+SM_HP_USE_DEFAULT_TEMPLATE=False
+SM_HP_VALIDATION_SPLIT_RATIO=0.2
+PYTHONPATH=/opt/ml/code:/opt/conda/bin:/opt/conda/lib/python310.zip:/opt/conda/lib/python3.10:/opt/conda/lib/python3.10/lib-dynload:/opt/conda/lib/python3.10/site-packages
+Invoking script with the following command:
+/opt/conda/bin/python3.10 transfer_learning.py --add_input_output_demarcation_key True --chat_dataset True --chat_template Llama3.1 --enable_fsdp False --epoch 3 --gradient_accumulation_steps 4 --instruction_tuned False --int8_quantization False --learning_rate 1e-5 --lora_alpha 64 --lora_dropout 0.05 --lora_r 16 --max_input_length 2048 --max_train_samples -1 --max_val_samples -1 --model_name meta-textgeneration-llama-3-2-1b --num_workers_dataloader 4 --per_device_eval_batch_size 1 --per_device_train_batch_size 2 --preprocessing_num_workers 4 --seed 10 --target_modules q_proj,k_proj,v_proj,o_proj --train_data_split_seed 0 --train_file /opt/ml/input/data/training/patient_care_plan.jsonl --use_default_template False --validation_split_ratio 0.2
+2025-06-25 16:13:50,597 sagemaker-training-toolkit INFO     Exceptions not imported for SageMaker TF as Tensorflow is not installed.
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+python -m bitsandbytes
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda118.so
+/opt/conda/lib/python3.10/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: WARNING: The following directories listed in your path were found to be non-existent: {PosixPath('/usr/local/nvidia/lib'), PosixPath('/usr/local/nvidia/lib64')}
+  warn(msg)
+CUDA SETUP: CUDA runtime path found: /opt/conda/lib/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.6
+CUDA SETUP: Detected CUDA version 118
+CUDA SETUP: Loading binary /opt/conda/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda118.so...
+INFO:root:Using pre-trained artifacts in SAGEMAKER_ADDITIONAL_S3_DATA_PATH=/opt/ml/additonals3data
+INFO:root:Invoking the training command ['python', 'llama_finetuning.py', '--model_name', '/opt/ml/additonals3data', '--num_gpus', '1', '--pure_bf16', '--dist_checkpoint_root_folder', 'model_checkpoints', '--dist_checkpoint_folder', 'fine-tuned', '--batch_size_training', '2', '--micro_batch_size', '2', '--train_file', '/opt/ml/input/data/training', '--lr', '1e-05', '--do_train', '--output_dir', 'saved_peft_model', '--num_epochs', '3', '--use_peft', '--peft_method', 'lora', '--max_train_samples', '-1', '--max_val_samples', '-1', '--seed', '10', '--per_device_eval_batch_size', '1', '--max_input_length', '2048', '--preprocessing_num_workers', '--4', '--validation_split_ratio', '0.2', '--train_data_split_seed', '0', '--num_workers_dataloader', '0', '--weight_decay', '0.1', '--lora_r', '16', '--lora_alpha', '64', '--lora_dropout', '0.05', '--target_modules', 'q_proj,k_proj,v_proj,o_proj', '--chat_template', 'Llama3.1', '--add_input_output_demarcation_key', '--chat_dataset'].
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+python -m bitsandbytes
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda118.so
+/opt/conda/lib/python3.10/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: WARNING: The following directories listed in your path were found to be non-existent: {PosixPath('/usr/local/nvidia/lib'), PosixPath('/usr/local/nvidia/lib64')}
+  warn(msg)
+CUDA SETUP: CUDA runtime path found: /opt/conda/lib/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.6
+CUDA SETUP: Detected CUDA version 118
+CUDA SETUP: Loading binary /opt/conda/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda118.so...
+INFO:root:Loading the tokenizer.
+The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization. 
+The tokenizer class you load from this checkpoint is 'PreTrainedTokenizerFast'. 
+The class this function is called from is 'LlamaTokenizerFast'.
+INFO:root:Loading the data.
+Downloading data files:   0%|          | 0/1 [00:00<?, ?it/s]
+Downloading data files: 100%|██████████| 1/1 [00:00<00:00, 15363.75it/s]
+Extracting data files:   0%|          | 0/1 [00:00<?, ?it/s]
+Extracting data files: 100%|██████████| 1/1 [00:00<00:00, 942.12it/s]
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 1000 examples [00:00, 159261.24 examples/s]
+INFO:root:Applying chat template
+INFO:root:Test data is not identified. Splitting the data into train and test data respectively.
+Map:   0%|          | 0/1000 [00:00<?, ? examples/s]
+Map:  80%|████████  | 800/1000 [00:00<00:00, 7935.44 examples/s]
+Map: 100%|██████████| 1000/1000 [00:00<00:00, 7995.10 examples/s]
+Map:   0%|          | 0/1000 [00:00<?, ? examples/s]
+Map: 100%|██████████| 1000/1000 [00:00<00:00, 8253.19 examples/s]
+Map: 100%|██████████| 1000/1000 [00:00<00:00, 8064.37 examples/s]
+Map:   0%|          | 0/1000 [00:00<?, ? examples/s]
+Map: 100%|██████████| 1000/1000 [00:00<00:00, 5320.32 examples/s]
+Map: 100%|██████████| 1000/1000 [00:00<00:00, 5247.58 examples/s]
+INFO:root:Loading the pre-trained model.
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+--> Model /opt/ml/additonals3data
+--> /opt/ml/additonals3data has 1235.8144 Million params
+trainable params: 3,407,872 || all params: 1,239,222,272 || trainable%: 0.2750008676409586
+INFO:root:--> Training Set Length = 68
+INFO:root:--> Validation Set Length = 18
+/opt/conda/lib/python3.10/site-packages/torch/cuda/memory.py:330: FutureWarning: torch.cuda.reset_max_memory_allocated now calls torch.cuda.reset_peak_memory_stats, which resets /all/ peak memory stats.
+  warnings.warn(
+Training Epoch0:   0%|#033[34m          #033[0m| 0/34 [00:00<?, ?it/s]
+We detected that you are passing `past_key_values` as a tuple and this is deprecated and will be removed in v4.43. Please use an appropriate `Cache` class (https://huggingface.co/docs/transformers/v4.41.3/en/internal/generation_utils#transformers.Cache)
+Training Epoch0:   0%|#033[34m          #033[0m| 0/34 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/opt/ml/code/llama_finetuning.py", line 358, in <module>
+fire.Fire(main)
+  File "/opt/conda/lib/python3.10/site-packages/fire/core.py", line 141, in Fire
+component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/opt/conda/lib/python3.10/site-packages/fire/core.py", line 475, in _Fire
+component, remaining_args = _CallAndUpdateTrace(
+  File "/opt/conda/lib/python3.10/site-packages/fire/core.py", line 691, in _CallAndUpdateTrace
+component = fn(*varargs, **kwargs)
+  File "/opt/ml/code/llama_finetuning.py", line 336, in main
+results = train(
+  File "/opt/ml/code/llama-recipes/utils/train_utils.py", line 92, in train
+loss = model(**batch).loss
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+return forward_call(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/peft/peft_model.py", line 922, in forward
+return self.base_model(
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+return forward_call(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 1172, in forward
+loss = loss_fct(shift_logits, shift_labels)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+return self._call_impl(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+return forward_call(*args, **kwargs)
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/loss.py", line 1179, in forward
+return F.cross_entropy(input, target, weight=self.weight,
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/functional.py", line 3059, in cross_entropy
+return torch._C._nn.cross_entropy_loss(input, target, weight, _Reduction.get_enum(reduction), ignore_index, label_smoothing)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.96 GiB. GPU 0 has a total capacity of 22.18 GiB of which 1.48 GiB is free. Process 10642 has 20.69 GiB memory in use. Of the allocated memory 20.32 GiB is allocated by PyTorch, and 80.98 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+ERROR:root:Subprocess script failed with return code: 1
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/site-packages/sagemaker_jumpstart_script_utilities/subprocess.py", line 9, in run_with_error_handling
+subprocess.run(command, shell=shell, check=True)
+File "/opt/conda/lib/python3.10/subprocess.py", line 526, in run
+raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python', 'llama_finetuning.py', '--model_name', '/opt/ml/additonals3data', '--num_gpus', '1', '--pure_bf16', '--dist_checkpoint_root_folder', 'model_checkpoints', '--dist_checkpoint_folder', 'fine-tuned', '--batch_size_training', '2', '--micro_batch_size', '2', '--train_file', '/opt/ml/input/data/training', '--lr', '1e-05', '--do_train', '--output_dir', 'saved_peft_model', '--num_epochs', '3', '--use_peft', '--peft_method', 'lora', '--max_train_samples', '-1', '--max_val_samples', '-1', '--seed', '10', '--per_device_eval_batch_size', '1', '--max_input_length', '2048', '--preprocessing_num_workers', '--4', '--validation_split_ratio', '0.2', '--train_data_split_seed', '0', '--num_workers_dataloader', '0', '--weight_decay', '0.1', '--lora_r', '16', '--lora_alpha', '64', '--lora_dropout', '0.05', '--target_modules', 'q_proj,k_proj,v_proj,o_proj', '--chat_template', 'Llama3.1', '--add_input_output_demarcation_key', '--chat_dataset']' returned non-zero exit status 1.
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/opt/ml/code/transfer_learning.py", line 175, in <module>
+subprocess.run_with_error_handling(command)
+  File "/opt/conda/lib/python3.10/site-packages/sagemaker_jumpstart_script_utilities/subprocess.py", line 12, in run_with_error_handling
+raise RuntimeError(e)
+RuntimeError: Command '['python', 'llama_finetuning.py', '--model_name', '/opt/ml/additonals3data', '--num_gpus', '1', '--pure_bf16', '--dist_checkpoint_root_folder', 'model_checkpoints', '--dist_checkpoint_folder', 'fine-tuned', '--batch_size_training', '2', '--micro_batch_size', '2', '--train_file', '/opt/ml/input/data/training', '--lr', '1e-05', '--do_train', '--output_dir', 'saved_peft_model', '--num_epochs', '3', '--use_peft', '--peft_method', 'lora', '--max_train_samples', '-1', '--max_val_samples', '-1', '--seed', '10', '--per_device_eval_batch_size', '1', '--max_input_length', '2048', '--preprocessing_num_workers', '--4', '--validation_split_ratio', '0.2', '--train_data_split_seed', '0', '--num_workers_dataloader', '0', '--weight_decay', '0.1', '--lora_r', '16', '--lora_alpha', '64', '--lora_dropout', '0.05', '--target_modules', 'q_proj,k_proj,v_proj,o_proj', '--chat_template', 'Llama3.1', '--add_input_output_demarcation_key', '--chat_dataset']' returned non-zero exit status 1.
+2025-06-25 16:14:08,982 sagemaker-training-toolkit INFO     Waiting for the process to finish and give a return code.
+2025-06-25 16:14:08,982 sagemaker-training-toolkit INFO     Done waiting for a return code. Received 1 from exiting process.
+2025-06-25 16:14:08,983 sagemaker-training-toolkit ERROR    Reporting training FAILURE
+2025-06-25 16:14:08,983 sagemaker-training-toolkit ERROR    ExecuteUserScriptError:
+ExitCode 1
+ErrorMessage "torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.96 GiB. GPU 0 has a total capacity of 22.18 GiB of which 1.48 GiB is free. Process 10642 has 20.69 GiB memory in use. Of the allocated memory 20.32 GiB is allocated by PyTorch, and 80.98 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+ ERROR:root:Subprocess script failed with return code: 1
+ Traceback (most recent call last)
+ File "/opt/conda/lib/python3.10/site-packages/sagemaker_jumpstart_script_utilities/subprocess.py", line 9, in run_with_error_handling
+ subprocess.run(command, shell=shell, check=True)
+ File "/opt/conda/lib/python3.10/subprocess.py", line 526, in run
+ raise CalledProcessError(retcode, process.args,
+ subprocess.CalledProcessError: Command '['python', 'llama_finetuning.py', '--model_name', '/opt/ml/additonals3data', '--num_gpus', '1', '--pure_bf16', '--dist_checkpoint_root_folder', 'model_checkpoints', '--dist_checkpoint_folder', 'fine-tuned', '--batch_size_training', '2', '--micro_batch_size', '2', '--train_file', '/opt/ml/input/data/training', '--lr', '1e-05', '--do_train', '--output_dir', 'saved_peft_model', '--num_epochs', '3', '--use_peft', '--peft_method', 'lora', '--max_train_samples', '-1', '--max_val_samples', '-1', '--seed', '10', '--per_device_eval_batch_size', '1', '--max_input_length', '2048', '--preprocessing_num_workers', '--4', '--validation_split_ratio', '0.2', '--train_data_split_seed', '0', '--num_workers_dataloader', '0', '--weight_decay', '0.1', '--lora_r', '16', '--lora_alpha', '64', '--lora_dropout', '0.05', '--target_modules', 'q_proj,k_proj,v_proj,o_proj', '--chat_template', 'Llama3.1', '--add_input_output_demarcation_key', '--chat_dataset']' returned non-zero exit status 1.
+ 
+ During handling of the above exception, another exception occurred
+ File "/opt/ml/code/transfer_learning.py", line 175, in <module>
+ subprocess.run_with_error_handling(command)
+ File "/opt/conda/lib/python3.10/site-packages/sagemaker_jumpstart_script_utilities/subprocess.py", line 12, in run_with_error_handling
+ raise RuntimeError(e)
+ RuntimeError: Command '['python', 'llama_finetuning.py', '--model_name', '/opt/ml/additonals3data', '--num_gpus', '1', '--pure_bf16', '--dist_checkpoint_root_folder', 'model_checkpoints', '--dist_checkpoint_folder', 'fine-tuned', '--batch_size_training', '2', '--micro_batch_size', '2', '--train_file', '/opt/ml/input/data/training', '--lr', '1e-05', '--do_train', '--output_dir', 'saved_peft_model', '--num_epochs', '3', '--use_peft', '--peft_method', 'lora', '--max_train_samples', '-1', '--max_val_samples', '-1', '--seed', '10', '--per_device_eval_batch_size', '1', '--max_input_length', '2048', '--preprocessing_num_workers', '--4', '--validation_split_ratio', '0.2', '--train_data_split_seed', '0', '--num_workers_dataloader', '0', '--weight_decay', '0.1', '--lora_r', '16', '--lora_alpha', '64', '--lora_dropout', '0.05', '--target_modules', 'q_proj,k_proj,v_proj,o_proj', '--chat_template', 'Llama3.1', '--add_input_output_demarcation_key', '--chat_dataset']' returned non-zero exit status 1."
+Command "/opt/conda/bin/python3.10 transfer_learning.py --add_input_output_demarcation_key True --chat_dataset True --chat_template Llama3.1 --enable_fsdp False --epoch 3 --gradient_accumulation_steps 4 --instruction_tuned False --int8_quantization False --learning_rate 1e-5 --lora_alpha 64 --lora_dropout 0.05 --lora_r 16 --max_input_length 2048 --max_train_samples -1 --max_val_samples -1 --model_name meta-textgeneration-llama-3-2-1b --num_workers_dataloader 4 --per_device_eval_batch_size 1 --per_device_train_batch_size 2 --preprocessing_num_workers 4 --seed 10 --target_modules q_proj,k_proj,v_proj,o_proj --train_data_split_seed 0 --train_file /opt/ml/input/data/training/patient_care_plan.jsonl --use_default_template False --validation_split_ratio 0.2"
+2025-06-25 16:14:08,983 sagemaker-training-toolkit ERROR    Encountered exit_code 1
+
+2025-06-25 16:14:22 Uploading - Uploading generated training model
+2025-06-25 16:14:22 Failed - Training job failed

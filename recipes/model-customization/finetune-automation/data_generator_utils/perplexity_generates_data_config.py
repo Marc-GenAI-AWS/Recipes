@@ -477,7 +477,7 @@ def main():
     parser.add_argument("--domain", required=True, help="Domain for use case generation")
     parser.add_argument("--instructions", default="data_generator_utils/instructions_for_usecase_data_creation.md", 
                        help="Instructions file path")
-    parser.add_argument("--output-dir", default="data_generation/usecase_config_files", help="Output directory")
+    parser.add_argument("--output-dir", default="data_gen_configs", help="Output directory")
     
     args = parser.parse_args()
     

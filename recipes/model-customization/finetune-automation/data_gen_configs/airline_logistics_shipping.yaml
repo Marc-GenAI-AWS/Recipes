@@ -1,0 +1,475 @@
+# Enhanced Synthetic Data Configuration
+# Domain: airline logistics shipping
+# Display Name: Airline Logistics Shipping
+# Generated: 2025-06-20 12:25:21
+# Total Attributes: 88
+# Entities: 5
+# Primary Entity Attributes: 26
+# High-Cardinality Fields: 23
+# List Fields: 9
+# Temporal Fields: 11
+# Numeric Fields: 13
+# Template Placeholders: 34
+# Validation: PASSED
+
+domain_name: airline_logistics_shipping
+display_name: "Airline Logistics Shipping"
+description: Comprehensive synthetic data configuration for global airline logistics shipping operations, supporting cargo management, shipment tracking, regulatory compliance, and workflow optimization across diverse geographies and cultures.
+
+entities:
+  - name: AirCargoShipment
+    description: Primary entity representing a shipment of cargo transported via airline logistics.
+    attributes:
+      - name: shipment_id
+        type: id
+        description: Unique identifier for the shipment.
+      - name: airwaybill_number
+        type: text
+        max_length: 16
+        description: Official airway bill number for the shipment.
+      - name: origin_airport
+        type: categorical
+        categories: [JFK, LHR, DXB, HND, FRA, SIN, ATL, CDG, PEK, SYD, GRU, DEL, YYZ, JNB, ICN]
+        description: IATA code of the origin airport.
+      - name: destination_airport
+        type: categorical
+        categories: [LAX, ORD, AMS, SFO, MAD, BKK, MEX, ZRH, DOH, IST, BOM, SCL, EZE, YVR, CPT]
+        description: IATA code of the destination airport.
+      - name: route
+        type: list
+        min_length: 1
+        max_length: 6
+        description: List of IATA codes representing the shipment's route.
+      - name: cargo_type
+        type: categorical
+        categories: [General, Perishable, Dangerous Goods, Live Animals, Pharmaceuticals, Valuables, Human Remains, Diplomatic, Oversized, Fragile, Temperature-Controlled, Express, E-commerce, Automotive, Electronics]
+        description: Type of cargo being shipped.
+      - name: weight_kg
+        type: float
+        min: 0.1
+        max: 50000.0
+        description: Total weight of the shipment in kilograms.
+      - name: volume_cbm
+        type: float
+        min: 0.01
+        max: 300.0
+        description: Total volume of the shipment in cubic meters.
+      - name: declared_value_usd
+        type: integer
+        min: 100
+        max: 1000000
+        description: Declared value of the shipment in USD.
+      - name: shipper_id
+        type: text
+        max_length: 24
+        description: Unique identifier for the shipper.
+      - name: consignee_id
+        type: text
+        max_length: 24
+        description: Unique identifier for the consignee.
+      - name: status
+        type: categorical
+        categories: [Booked, Manifested, In-Transit, Customs-Hold, Security-Check, Offloaded, Delayed, Arrived, Delivered, Returned, Cancelled, Damaged, Lost, Pending-Docs, Awaiting-Pickup]
+        description: Current workflow status of the shipment.
+      - name: priority_level
+        type: categorical
+        categories: [Critical, High, Standard, Low, Deferred, Express, Economy, Charter, Humanitarian, Diplomatic]
+        description: Priority assigned to the shipment.
+      - name: booking_datetime
+        type: datetime
+        min: "2022-01-01"
+        max: "2025-12-31"
+        description: Date and time when the shipment was booked.
+      - name: estimated_departure
+        type: datetime
+        min: "2022-01-01"
+        max: "2026-12-31"
+        description: Estimated departure date and time.
+      - name: estimated_arrival
+        type: datetime
+        min: "2022-01-01"
+        max: "2026-12-31"
+        description: Estimated arrival date and time.
+      - name: actual_departure
+        type: datetime
+        min: "2022-01-01"
+        max: "2026-12-31"
+        description: Actual departure date and time.
+      - name: actual_arrival
+        type: datetime
+        min: "2022-01-01"
+        max: "2026-12-31"
+        description: Actual arrival date and time.
+      - name: last_status_update
+        type: datetime
+        min: "2022-01-01"
+        max: "now"
+        description: Timestamp of the last status update.
+      - name: handling_codes
+        type: list
+        min_length: 0
+        max_length: 8
+        description: List of special handling codes (e.g., PER, DGR, VAL, AVI).
+      - name: customs_clearance_status
+        type: categorical
+        categories: [Pending, Cleared, Hold, Inspection, Documentation-Required, Duty-Paid, Duty-Unpaid, Rejected, Released, Awaiting-Payment]
+        description: Customs clearance workflow status.
+      - name: regulatory_compliance
+        type: list
+        min_length: 0
+        max_length: 5
+        description: List of regulatory standards applicable (e.g., IATA, ICAO, TSA, EU-AVSEC, CBP).
+      - name: shipment_notes
+        type: text
+        max_length: 512
+        description: Free-text notes regarding the shipment.
+      - name: risk_assessment
+        type: categorical
+        categories: [Very-Low, Low, Medium, High, Critical, Security-Flagged, Customs-Flagged, Weather-Flagged]
+        description: Risk assessment for the shipment.
+      - name: satisfaction_score
+        type: integer
+        min: 1
+        max: 10
+        description: Customer satisfaction score for the shipment.
+      - name: display_name
+        type: text
+        max_length: 64
+        description: Human-readable display name for the shipment.
+
+  - name: Shipper
+    description: Entity representing the party sending the cargo.
+    attributes:
+      - name: shipper_id
+        type: id
+        description: Unique identifier for the shipper.
+      - name: company_name
+        type: text
+        max_length: 64
+        description: Name of the shipping company.
+      - name: contact_name
+        type: text
+        max_length: 48
+        description: Primary contact person for the shipper.
+      - name: email
+        type: email
+        description: Contact email address.
+      - name: phone
+        type: phone
+        description: Contact phone number.
+      - name: address
+        type: text
+        max_length: 128
+        description: Shipper's address.
+      - name: country
+        type: categorical
+        categories: [US, UK, DE, JP, AU, CA, FR, SG, IN, BR, CN, ZA, RU, MX, AE]
+        description: Country of the shipper.
+      - name: industry
+        type: categorical
+        categories: [Manufacturing, Pharmaceuticals, Automotive, Electronics, Agriculture, Retail, E-commerce, Energy, Aerospace, Food-Beverage, Textiles, Chemicals, Mining, Construction, Logistics]
+        description: Industry sector of the shipper.
+      - name: languages_spoken
+        type: list
+        min_length: 1
+        max_length: 6
+        description: Languages spoken by shipper's staff.
+      - name: cultural_background
+        type: categorical
+        categories: [Hispanic-Mexican, Asian-Chinese, Asian-Indian, African-Nigerian, European-German, European-Italian, Middle Eastern-Lebanese, South Asian-Pakistani, Pacific Islander-Hawaiian, Indigenous-Cherokee, Caribbean-Jamaican, Mixed-Heritage, North American, South American, Oceanian]
+        description: Cultural background of the shipper.
+      - name: socioeconomic_status
+        type: categorical
+        categories: [Lower-income, Lower-middle, Middle-class, Upper-middle, High-income, Ultra-high-net-worth]
+        description: Socioeconomic status of the shipper organization.
+      - name: education_level
+        type: categorical
+        categories: [High School, Some College, Associates, Bachelors, Masters, PhD, Professional Degree, Trade Certification, Self-taught, International Equivalent]
+        description: Education level of the primary contact.
+      - name: certifications
+        type: list
+        min_length: 0
+        max_length: 8
+        description: List of logistics or compliance certifications held.
+      - name: skills
+        type: list
+        min_length: 2
+        max_length: 12
+        description: Professional skills and competencies of the shipper's logistics team.
+      - name: employee_count
+        type: integer
+        min: 1
+        max: 50000
+        description: Number of employees in the shipper organization.
+      - name: revenue
+        type: integer
+        min: 100000
+        max: 1000000000
+        description: Annual revenue in USD.
+      - name: growth_rate
+        type: float
+        min: -0.2
+        max: 2.5
+        description: Year-over-year revenue growth rate.
+      - name: display_name
+        type: text
+        max_length: 64
+        description: Human-readable display name for the shipper.
+
+  - name: Consignee
+    description: Entity representing the party receiving the cargo.
+    attributes:
+      - name: consignee_id
+        type: id
+        description: Unique identifier for the consignee.
+      - name: company_name
+        type: text
+        max_length: 64
+        description: Name of the consignee company.
+      - name: contact_name
+        type: text
+        max_length: 48
+        description: Primary contact person for the consignee.
+      - name: email
+        type: email
+        description: Contact email address.
+      - name: phone
+        type: phone
+        description: Contact phone number.
+      - name: address
+        type: text
+        max_length: 128
+        description: Consignee's address.
+      - name: country
+        type: categorical
+        categories: [US, UK, DE, JP, AU, CA, FR, SG, IN, BR, CN, ZA, RU, MX, AE]
+        description: Country of the consignee.
+      - name: industry
+        type: categorical
+        categories: [Retail, Pharmaceuticals, Automotive, Electronics, Agriculture, Manufacturing, E-commerce, Energy, Aerospace, Food-Beverage, Textiles, Chemicals, Mining, Construction, Logistics]
+        description: Industry sector of the consignee.
+      - name: languages_spoken
+        type: list
+        min_length: 1
+        max_length: 6
+        description: Languages spoken by consignee's staff.
+      - name: cultural_background
+        type: categorical
+        categories: [Hispanic-Puerto Rican, Asian-Filipino, Asian-Vietnamese, African-Ethiopian, European-French, European-Spanish, Middle Eastern-Turkish, South Asian-Bangladeshi, Pacific Islander-Samoan, Indigenous-Maori, Caribbean-Trinidadian, Mixed-Heritage, North American, South American, Oceanian]
+        description: Cultural background of the consignee.
+      - name: socioeconomic_status
+        type: categorical
+        categories: [Lower-income, Lower-middle, Middle-class, Upper-middle, High-income, Ultra-high-net-worth]
+        description: Socioeconomic status of the consignee organization.
+      - name: education_level
+        type: categorical
+        categories: [High School, Some College, Associates, Bachelors, Masters, PhD, Professional Degree, Trade Certification, Self-taught, International Equivalent]
+        description: Education level of the primary contact.
+      - name: certifications
+        type: list
+        min_length: 0
+        max_length: 8
+        description: List of logistics or compliance certifications held.
+      - name: skills
+        type: list
+        min_length: 2
+        max_length: 12
+        description: Professional skills and competencies of the consignee's logistics team.
+      - name: employee_count
+        type: integer
+        min: 1
+        max: 50000
+        description: Number of employees in the consignee organization.
+      - name: revenue
+        type: integer
+        min: 100000
+        max: 1000000000
+        description: Annual revenue in USD.
+      - name: growth_rate
+        type: float
+        min: -0.2
+        max: 2.5
+        description: Year-over-year revenue growth rate.
+      - name: display_name
+        type: text
+        max_length: 64
+        description: Human-readable display name for the consignee.
+
+  - name: FlightManifest
+    description: Supporting entity representing a flight manifest for a specific airline flight carrying cargo.
+    attributes:
+      - name: manifest_id
+        type: id
+        description: Unique identifier for the flight manifest.
+      - name: flight_number
+        type: text
+        max_length: 8
+        description: Airline flight number.
+      - name: aircraft_type
+        type: categorical
+        categories: [B747, B777, B787, A330, A350, A380, B767, B737, A321, A320, MD-11, B757, A340, B727, DC-10]
+        description: Aircraft model/type.
+      - name: airline
+        type: categorical
+        categories: [Delta, Lufthansa, Emirates, ANA, Air France, Singapore Airlines, United, British Airways, Qatar Airways, Turkish Airlines, Qantas, Air Canada, LATAM, Ethiopian, Korean Air]
+        description: Operating airline.
+      - name: departure_airport
+        type: categorical
+        categories: [JFK, LHR, DXB, HND, FRA, SIN, ATL, CDG, PEK, SYD, GRU, DEL, YYZ, JNB, ICN]
+        description: IATA code of the departure airport.
+      - name: arrival_airport
+        type: categorical
+        categories: [LAX, ORD, AMS, SFO, MAD, BKK, MEX, ZRH, DOH, IST, BOM, SCL, EZE, YVR, CPT]
+        description: IATA code of the arrival airport.
+      - name: scheduled_departure
+        type: datetime
+        min: "2022-01-01"
+        max: "2026-12-31"
+        description: Scheduled departure date and time.
+      - name: scheduled_arrival
+        type: datetime
+        min: "2022-01-01"
+        max: "2026-12-31"
+        description: Scheduled arrival date and time.
+      - name: actual_departure
+        type: datetime
+        min: "2022-01-01"
+        max: "2026-12-31"
+        description: Actual departure date and time.
+      - name: actual_arrival
+        type: datetime
+        min: "2022-01-01"
+        max: "2026-12-31"
+        description: Actual arrival date and time.
+      - name: cargo_capacity_kg
+        type: integer
+        min: 10000
+        max: 150000
+        description: Total cargo capacity in kilograms.
+      - name: cargo_booked_kg
+        type: integer
+        min: 0
+        max: 150000
+        description: Total cargo weight booked on the flight.
+      - name: cargo_utilization_rate
+        type: float
+        min: 0.0
+        max: 1.0
+        description: Percentage of cargo capacity utilized.
+      - name: manifest_status
+        type: categorical
+        categories: [Open, Closed, Finalized, In-Transit, Arrived, Cancelled, Delayed, Security-Check, Customs-Hold, Archived]
+        description: Workflow status of the manifest.
+      - name: seasonal_activity
+        type: categorical
+        categories: [Spring-High, Summer-Peak, Fall-Moderate, Winter-Low, Year-round-Stable, Holiday-Focused, Academic-Calendar, Fiscal-Year-End]
+        description: Seasonal activity pattern for the flight.
+      - name: display_name
+        type: text
+        max_length: 64
+        description: Human-readable display name for the manifest.
+
+  - name: ShipmentEventHistory
+    description: Historical/audit entity tracking status changes and events for each shipment.
+    attributes:
+      - name: event_id
+        type: id
+        description: Unique identifier for the event.
+      - name: shipment_id
+        type: text
+        max_length: 24
+        description: Associated shipment ID.
+      - name: event_type
+        type: categorical
+        categories: [Status-Update, Customs-Scan, Security-Scan, Offload, Delay, Damage, Lost, Documentation, Inspection, Delivery, Pickup, Rebooking, Notification, Exception, Audit]
+        description: Type of event recorded.
+      - name: event_datetime
+        type: datetime
+        min: "2022-01-01"
+        max: "now"
+        description: Date and time of the event.
+      - name: event_location
+        type: categorical
+        categories: [JFK, LHR, DXB, HND, FRA, SIN, ATL, CDG, PEK, SYD, GRU, DEL, YYZ, JNB, ICN, LAX, ORD, AMS, SFO, MAD, BKK, MEX, ZRH, DOH, IST, BOM, SCL, EZE, YVR, CPT]
+        description: Location where the event occurred.
+      - name: responsible_party
+        type: categorical
+        categories: [Airline, Shipper, Consignee, Customs, Security, Ground-Handler, Freight-Forwarder, Agent, Warehouse, Regulatory-Authority, IT-System, Third-Party, Unknown]
+        description: Party responsible for the event.
+      - name: notes
+        type: text
+        max_length: 256
+        description: Additional notes or comments about the event.
+      - name: status_after_event
+        type: categorical
+        categories: [Booked, Manifested, In-Transit, Customs-Hold, Security-Check, Offloaded, Delayed, Arrived, Delivered, Returned, Cancelled, Damaged, Lost, Pending-Docs, Awaiting-Pickup]
+        description: Shipment status after the event.
+      - name: compliance_flag
+        type: boolean
+        description: Whether the event triggered a compliance flag.
+      - name: display_name
+        type: text
+        max_length: 64
+        description: Human-readable display name for the event.
+
+relationships:
+  - from: AirCargoShipment
+    to: Shipper
+    type: many-to-one
+    description: Each shipment is sent by a single shipper.
+  - from: AirCargoShipment
+    to: Consignee
+    type: many-to-one
+    description: Each shipment is received by a single consignee.
+  - from: AirCargoShipment
+    to: FlightManifest
+    type: many-to-one
+    description: Each shipment is assigned to a specific flight manifest.
+  - from: ShipmentEventHistory
+    to: AirCargoShipment
+    type: many-to-one
+    description: Each event history record is linked to a shipment.
+  - from: FlightManifest
+    to: AirCargoShipment
+    type: one-to-many
+    description: Each flight manifest contains multiple shipments.
+
+fine_tuning_task:
+  task_type: text_generation
+  system_prompt: "You are an expert in airline logistics shipping, providing detailed, actionable recommendations for optimizing global air cargo operations. Your responses must be operationally accurate, culturally aware, and compliant with international aviation and customs regulations. Consider workflow status, risk, regulatory requirements, and cultural/geographic diversity in all analyses."
+  user_template: |
+    SHIPMENT ANALYSIS REPORT
+
+    SHIPMENT DETAILS:
+    Airwaybill: {airwaybill_number}
+    Origin: {origin_airport} → Destination: {destination_airport}
+    Route: {route}
+    Cargo Type: {cargo_type}
+    Weight: {weight_kg} kg, Volume: {volume_cbm} cbm
+    Declared Value: ${declared_value_usd}
+    Priority: {priority_level}
+    Status: {status}
+    Risk Assessment: {risk_assessment}
+    Customs Clearance: {customs_clearance_status}
+    Regulatory Compliance: {regulatory_compliance}
+    Handling Codes: {handling_codes}
+    Booking Date: {booking_datetime}
+    Estimated Departure: {estimated_departure}, Estimated Arrival: {estimated_arrival}
+    Actual Departure: {actual_departure}, Actual Arrival: {actual_arrival}
+    Last Status Update: {last_status_update}
+    Satisfaction Score: {satisfaction_score}/10
+
+    SHIPPER PROFILE:
+    Company: {company_name}
+    Contact: {contact_name}
+    Country: {country}
+    Industry: {industry}
+    Languages: {languages_spoken}
+    Cultural Background: {cultural_background}
+    Socioeconomic Status: {socioeconomic_status}
+    Education Level: {education_level}
+    Certifications: {certifications}
+    Skills: {skills}
+    Employee Count: {employee_count}
+    Revenue: ${revenue}
+    Growth Rate: {growth_rate}

@@ -1,0 +1,485 @@
+# Enhanced Synthetic Data Configuration
+# Domain: Logistics & routes for international shipping
+# Display Name: International Shipping Logistics & Route Management
+# Generated: 2025-06-20 11:59:11
+# Total Attributes: 81
+# Entities: 5
+# Primary Entity Attributes: 32
+# High-Cardinality Fields: 18
+# List Fields: 10
+# Temporal Fields: 11
+# Numeric Fields: 13
+# Template Placeholders: 73
+# Validation: PASSED
+
+domain_name: international_shipping_logistics
+display_name: "International Shipping Logistics & Route Management"
+description: Comprehensive synthetic data schema for modeling global logistics, shipping routes, carrier operations, and supply chain workflows in international shipping.
+
+entities:
+  - name: Shipment
+    description: Primary entity representing an individual international shipment, including routing, cargo, and status details.
+    attributes:
+      - name: shipment_id
+        type: id
+        description: Unique identifier for the shipment
+      - name: display_name
+        type: text
+        max_length: 120
+        description: Human-readable shipment reference for UI
+      - name: origin_port
+        type: categorical
+        categories: [Shanghai, Singapore, Rotterdam, Los Angeles, Hamburg, Dubai, Antwerp, Hong Kong, Busan, New York, Santos, Felixstowe, Jebel Ali, Valencia, Tanjung Pelepas]
+        description: Port where shipment originates
+      - name: destination_port
+        type: categorical
+        categories: [Long Beach, Yokohama, Durban, Le Havre, Melbourne, Vancouver, Mumbai, Algeciras, Port Klang, Manzanillo, Bremerhaven, Gioia Tauro, Savannah, Piraeus, Colombo]
+        description: Port where shipment is delivered
+      - name: route_code
+        type: text
+        max_length: 20
+        description: Internal code for the shipping route
+      - name: carrier
+        type: categorical
+        categories: [MSC, Maersk, CMA CGM, COSCO, Hapag-Lloyd, ONE, Evergreen, Yang Ming, ZIM, PIL, Hyundai MM, OOCL, Wan Hai, SITC, X-Press Feeders]
+        description: Shipping carrier responsible for the shipment
+      - name: vessel_name
+        type: text
+        max_length: 60
+        description: Name of the vessel transporting the shipment
+      - name: vessel_type
+        type: categorical
+        categories: [Container, Bulk Carrier, Ro-Ro, Con-Ro, Tanker, Feeder, General Cargo, LNG Carrier, Reefer, Heavy Lift, Car Carrier, Barge]
+        description: Type of vessel used
+      - name: cargo_type
+        type: categorical
+        categories: [General Cargo, Refrigerated, Hazardous, Automotive, Electronics, Apparel, Machinery, Chemicals, Foodstuffs, Furniture, Pharmaceuticals, Textiles, Plastics, Metals, Paper]
+        description: Main cargo category
+      - name: cargo_description
+        type: text
+        max_length: 200
+        description: Detailed description of cargo contents
+      - name: container_types
+        type: list
+        min_length: 1
+        max_length: 8
+        description: Types of containers used (e.g., 20ft, 40ft, Reefer, Open Top)
+      - name: container_count
+        type: integer
+        min: 1
+        max: 500
+        description: Number of containers in the shipment
+      - name: gross_weight_kg
+        type: float
+        min: 100.0
+        max: 250000.0
+        description: Total gross weight of the shipment in kilograms
+      - name: volume_cbm
+        type: float
+        min: 1.0
+        max: 10000.0
+        description: Total volume in cubic meters
+      - name: incoterm
+        type: categorical
+        categories: [EXW, FCA, FAS, FOB, CFR, CIF, CPT, CIP, DAP, DPU, DDP]
+        description: International commercial term for the shipment
+      - name: declared_value_usd
+        type: float
+        min: 1000.0
+        max: 10000000.0
+        description: Declared value of the shipment in USD
+      - name: insurance_type
+        type: categorical
+        categories: [All Risk, Total Loss, Named Perils, Free of Particular Average, With Average, No Insurance]
+        description: Type of insurance coverage
+      - name: status
+        type: categorical
+        categories: [Draft, Booked, Confirmed, At Origin, In Transit, At Transshipment, Customs Hold, Delayed, Out for Delivery, Delivered, Cancelled, Returned, Lost, Damaged, Archived]
+        description: Current workflow status of the shipment
+      - name: priority_level
+        type: categorical
+        categories: [Critical, High, Standard, Low, Deferred, Express, Economy, Time-Definite, Guaranteed, Non-Guaranteed]
+        description: Priority assigned to the shipment
+      - name: risk_assessment
+        type: categorical
+        categories: [Very Low, Low, Moderate, Elevated, High, Severe, Critical, Unknown]
+        description: Risk level for the shipment
+      - name: scheduled_departure
+        type: datetime
+        min: "2022-01-01"
+        max: "2025-12-31"
+        description: Scheduled departure date and time
+      - name: actual_departure
+        type: datetime
+        min: "2022-01-01"
+        max: "2025-12-31"
+        description: Actual departure date and time
+      - name: scheduled_arrival
+        type: datetime
+        min: "2022-01-01"
+        max: "2026-06-30"
+        description: Scheduled arrival date and time
+      - name: actual_arrival
+        type: datetime
+        min: "2022-01-01"
+        max: "2026-06-30"
+        description: Actual arrival date and time
+      - name: last_status_update
+        type: datetime
+        min: "2022-01-01"
+        max: "now"
+        description: Last time the shipment status was updated
+      - name: route_waypoints
+        type: list
+        min_length: 2
+        max_length: 12
+        description: List of intermediate ports or waypoints
+      - name: customs_clearance_status
+        type: categorical
+        categories: [Not Required, Pending, In Progress, Cleared, On Hold, Rejected, Escalated, Completed]
+        description: Customs clearance workflow state
+      - name: hazardous_materials
+        type: boolean
+        description: Indicates if shipment contains hazardous materials
+      - name: special_handling_instructions
+        type: text
+        max_length: 200
+        description: Special handling or routing instructions
+      - name: documentation_list
+        type: list
+        min_length: 1
+        max_length: 8
+        description: List of required shipping documents (e.g., B/L, Invoice, Packing List)
+      - name: created_at
+        type: datetime
+        min: "2021-01-01"
+        max: "2025-12-31"
+        description: Record creation timestamp
+      - name: updated_at
+        type: datetime
+        min: "2022-01-01"
+        max: "now"
+        description: Last update timestamp
+
+  - name: Carrier
+    description: Shipping line or logistics provider responsible for transporting shipments.
+    attributes:
+      - name: carrier_id
+        type: id
+        description: Unique identifier for the carrier
+      - name: display_name
+        type: text
+        max_length: 80
+        description: Human-readable carrier name for UI
+      - name: carrier_name
+        type: text
+        max_length: 80
+        description: Official name of the carrier
+      - name: carrier_type
+        type: categorical
+        categories: [Shipping Line, Freight Forwarder, NVOCC, 3PL, Courier, Air Cargo, Rail Operator, Trucking, Port Operator, Customs Broker]
+        description: Type of carrier organization
+      - name: headquarters_location
+        type: categorical
+        categories: [Geneva, Copenhagen, Marseille, Shanghai, Hamburg, Tokyo, Singapore, London, Dubai, New York, Hong Kong, Seoul, Mumbai, Rotterdam, Antwerp]
+        description: Carrier's headquarters city
+      - name: operating_regions
+        type: list
+        min_length: 1
+        max_length: 6
+        description: List of global regions where carrier operates
+      - name: fleet_size
+        type: integer
+        min: 1
+        max: 800
+        description: Number of vessels or vehicles in fleet
+      - name: vessel_types_supported
+        type: list
+        min_length: 1
+        max_length: 6
+        description: Types of vessels or vehicles operated
+      - name: alliance_membership
+        type: categorical
+        categories: [2M Alliance, Ocean Alliance, THE Alliance, Independent, G6, CKYHE, New World Alliance, Grand Alliance, None]
+        description: Shipping alliance membership
+      - name: founded_year
+        type: integer
+        min: 1850
+        max: 2025
+        description: Year carrier was founded
+      - name: employee_count
+        type: integer
+        min: 50
+        max: 120000
+        description: Number of employees
+      - name: annual_revenue_usd
+        type: float
+        min: 10000000.0
+        max: 50000000000.0
+        description: Annual revenue in USD
+      - name: certifications
+        type: list
+        min_length: 0
+        max_length: 8
+        description: List of industry certifications held
+      - name: contact_email
+        type: email
+        description: Main contact email
+      - name: contact_phone
+        type: phone
+        description: Main contact phone number
+      - name: regulatory_compliance
+        type: list
+        min_length: 1
+        max_length: 6
+        description: List of regulatory frameworks complied with (e.g., IMO, SOLAS, ISM, CTPAT)
+      - name: last_audit_date
+        type: datetime
+        min: "2020-01-01"
+        max: "now"
+        description: Date of last compliance audit
+
+  - name: Route
+    description: Reference entity representing a standard international shipping route.
+    attributes:
+      - name: route_id
+        type: id
+        description: Unique identifier for the route
+      - name: display_name
+        type: text
+        max_length: 80
+        description: Human-readable route name for UI
+      - name: origin_port
+        type: categorical
+        categories: [Shanghai, Singapore, Rotterdam, Los Angeles, Hamburg, Dubai, Antwerp, Hong Kong, Busan, New York, Santos, Felixstowe, Jebel Ali, Valencia, Tanjung Pelepas]
+        description: Starting port of the route
+      - name: destination_port
+        type: categorical
+        categories: [Long Beach, Yokohama, Durban, Le Havre, Melbourne, Vancouver, Mumbai, Algeciras, Port Klang, Manzanillo, Bremerhaven, Gioia Tauro, Savannah, Piraeus, Colombo]
+        description: Ending port of the route
+      - name: waypoints
+        type: list
+        min_length: 1
+        max_length: 10
+        description: List of intermediate ports or waypoints
+      - name: distance_nm
+        type: float
+        min: 100.0
+        max: 25000.0
+        description: Total route distance in nautical miles
+      - name: estimated_transit_days
+        type: integer
+        min: 2
+        max: 60
+        description: Estimated transit time in days
+      - name: seasonal_activity
+        type: categorical
+        categories: [Spring-High, Summer-Peak, Fall-Moderate, Winter-Low, Year-round-Stable, Holiday-Focused, Monsoon-Impacted, Typhoon-Season, Ice-Restricted, Academic-Calendar, Fiscal-Year-End]
+        description: Seasonal activity pattern for the route
+      - name: risk_zones
+        type: list
+        min_length: 0
+        max_length: 5
+        description: List of high-risk maritime zones (e.g., piracy, weather)
+      - name: last_updated
+        type: datetime
+        min: "2022-01-01"
+        max: "now"
+        description: Last time the route was updated
+
+  - name: Port
+    description: Reference entity for global seaports and terminals.
+    attributes:
+      - name: port_id
+        type: id
+        description: Unique identifier for the port
+      - name: display_name
+        type: text
+        max_length: 80
+        description: Human-readable port name for UI
+      - name: port_name
+        type: text
+        max_length: 80
+        description: Official name of the port
+      - name: country
+        type: categorical
+        categories: [China, Singapore, Netherlands, USA, Germany, UAE, Belgium, Hong Kong, South Korea, Brazil, UK, Spain, Malaysia, India, Canada, Australia, France, Italy, Greece, Japan]
+        description: Country where the port is located
+      - name: city
+        type: text
+        max_length: 60
+        description: City where the port is located
+      - name: port_type
+        type: categorical
+        categories: [Container, Bulk, Ro-Ro, General Cargo, Oil, LNG, Cruise, Feeder, Inland, Transshipment, Freeport, Dry Dock]
+        description: Type of port
+      - name: annual_throughput_teu
+        type: integer
+        min: 100000
+        max: 50000000
+        description: Annual container throughput in TEU
+      - name: timezone
+        type: text
+        max_length: 40
+        description: Timezone of the port
+      - name: latitude
+        type: float
+        min: -90.0
+        max: 90.0
+        description: Latitude coordinate
+      - name: longitude
+        type: float
+        min: -180.0
+        max: 180.0
+        description: Longitude coordinate
+      - name: customs_facility
+        type: boolean
+        description: Indicates if port has customs clearance facility
+      - name: languages_spoken
+        type: list
+        min_length: 1
+        max_length: 6
+        description: List of major languages spoken at the port
+      - name: last_inspection_date
+        type: datetime
+        min: "2020-01-01"
+        max: "now"
+        description: Date of last port inspection
+
+  - name: ShipmentHistory
+    description: Historical/audit entity tracking status changes and events for each shipment.
+    attributes:
+      - name: history_id
+        type: id
+        description: Unique identifier for the history record
+      - name: shipment_id
+        type: id
+        description: Reference to the shipment
+      - name: event_type
+        type: categorical
+        categories: [Created, StatusChanged, CustomsCleared, Delayed, Rerouted, Arrived, Departed, Inspected, Damaged, Lost, Delivered, Returned, Cancelled, DocumentationUpdated, Exception]
+        description: Type of event recorded
+      - name: previous_status
+        type: categorical
+        categories: [Draft, Booked, Confirmed, At Origin, In Transit, At Transshipment, Customs Hold, Delayed, Out for Delivery, Delivered, Cancelled, Returned, Lost, Damaged, Archived]
+        description: Previous status before event
+      - name: new_status
+        type: categorical
+        categories: [Draft, Booked, Confirmed, At Origin, In Transit, At Transshipment, Customs Hold, Delayed, Out for Delivery, Delivered, Cancelled, Returned, Lost, Damaged, Archived]
+        description: New status after event
+      - name: event_timestamp
+        type: datetime
+        min: "2021-01-01"
+        max: "now"
+        description: Timestamp of the event
+      - name: performed_by
+        type: text
+        max_length: 80
+        description: Name or ID of user/system performing the action
+      - name: location
+        type: text
+        max_length: 80
+        description: Location where event occurred
+      - name: notes
+        type: text
+        max_length: 200
+        description: Additional notes or comments
+
+relationships:
+  - from: Shipment
+    to: Carrier
+    type: many-to-one
+    description: Each shipment is assigned to a single carrier.
+  - from: Shipment
+    to: Route
+    type: many-to-one
+    description: Each shipment follows a specific route.
+  - from: Shipment
+    to: Port
+    type: many-to-one
+    description: Each shipment has an origin and destination port.
+  - from: Shipment
+    to: ShipmentHistory
+    type: one-to-many
+    description: Each shipment has a history of status changes and events.
+  - from: Carrier
+    to: Route
+    type: many-to-many
+    description: Carriers operate on multiple routes, and routes can be served by multiple carriers.
+  - from: Port
+    to: Route
+    type: many-to-many
+    description: Ports are linked to multiple routes as origins, destinations, or waypoints.
+
+fine_tuning_task:
+  task_type: text_generation
+  system_prompt: "You are a global logistics and shipping domain expert. Generate detailed, context-aware analyses and recommendations for international shipments, considering routing, carrier performance, regulatory compliance, risk, and cultural/geographic factors. Ensure outputs reflect real-world complexity, workflow states, and industry terminology. Address customs, documentation, and operational best practices for diverse global scenarios."
+  user_template: |
+    SHIPMENT OVERVIEW:
+    - Reference: {display_name}
+    - Shipment ID: {shipment_id}
+    - Origin: {origin_port} → Destination: {destination_port}
+    - Route Code: {route_code}
+    - Carrier: {carrier}
+    - Vessel: {vessel_name} ({vessel_type})
+    - Cargo: {cargo_type} — {cargo_description}
+    - Container Types: {container_types}
+    - Container Count: {container_count}
+    - Gross Weight: {gross_weight_kg} kg, Volume: {volume_cbm} cbm
+    - Incoterm: {incoterm}, Declared Value: ${declared_value_usd}
+    - Insurance: {insurance_type}
+    - Priority: {priority_level}, Risk: {risk_assessment}
+    - Status: {status}
+    - Customs Clearance: {customs_clearance_status}
+    - Hazardous Materials: {hazardous_materials}
+    - Special Handling: {special_handling_instructions}
+    - Documentation: {documentation_list}
+    - Scheduled Departure: {scheduled_departure}, Actual Departure: {actual_departure}
+    - Scheduled Arrival: {scheduled_arrival}, Actual Arrival: {actual_arrival}
+    - Last Status Update: {last_status_update}
+    - Route Waypoints: {route_waypoints}
+    - Created At: {created_at}, Updated At: {updated_at}
+
+    CARRIER PROFILE:
+    - Carrier Name: {carrier}
+    - Carrier Type: {carrier_type}
+    - Headquarters: {headquarters_location}
+    - Operating Regions: {operating_regions}
+    - Fleet Size: {fleet_size}
+    - Vessel Types Supported: {vessel_types_supported}
+    - Alliance: {alliance_membership}
+    - Founded: {founded_year}
+    - Employees: {employee_count}
+    - Annual Revenue: ${annual_revenue_usd}
+    - Certifications: {certifications}
+    - Regulatory Compliance: {regulatory_compliance}
+    - Last Audit: {last_audit_date}
+    - Contact: {contact_email}, {contact_phone}
+
+    ROUTE DETAILS:
+    - Route: {origin_port} → {destination_port}
+    - Waypoints: {waypoints}
+    - Distance: {distance_nm} nm
+    - Estimated Transit: {estimated_transit_days} days
+    - Seasonal Activity: {seasonal_activity}
+    - Risk Zones: {risk_zones}
+    - Last Updated: {last_updated}
+
+    PORT INFORMATION:
+    - Port Name: {port_name}
+    - Country: {country}, City: {city}
+    - Port Type: {port_type}
+    - Throughput: {annual_throughput_teu} TEU
+    - Timezone: {timezone}
+    - Coordinates: {latitude}, {longitude}
+    - Customs Facility: {customs_facility}
+    - Languages: {languages_spoken}
+    - Last Inspection: {last_inspection_date}
+
+    SHIPMENT HISTORY:
+    - Event: {event_type}
+    - Previous Status: {previous_status} → New Status: {new_status}
+    - Timestamp: {event_timestamp}
+    - Performed By: {performed_by}
+    - Location: {location}
+    - Notes: {notes}

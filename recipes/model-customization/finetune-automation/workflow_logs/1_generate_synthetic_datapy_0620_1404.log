@@ -1,0 +1,35 @@
+Generating 100 training examples for airline_logistics_shipping
+Generating entity data...
+  Generating AirCargoShipment entities...
+  Generating Shipper entities...
+  Generating Consignee entities...
+  Generating FlightManifest entities...
+  Generating ShipmentEventHistory entities...
+Creating training examples...
+  Generated 50/100 examples
+  Generated 100/100 examples
+
+DATASET GENERATION COMPLETE!
+============================================================
+Output File: usecase_data/airline_logistics_shipping/airline_logistics_shipping_1750453476.jsonl
+Metadata File: usecase_data/airline_logistics_shipping/airline_logistics_shipping_1750453476_metadata.json
+Domain: airline_logistics_shipping
+Examples Generated: 100
+Generation Time: 0.09 seconds
+
+ENTITY STATISTICS:
+  * AirCargoShipment: 50 records
+  * Shipper: 50 records
+  * Consignee: 50 records
+  * FlightManifest: 50 records
+  * ShipmentEventHistory: 50 records
+
+CONFIGURATION UTILIZATION:
+  * Entities: 5
+  * Total Attributes: 88
+  * Relationships: 5
+
+NEXT STEPS:
+1. Review generated data: head -n 3 usecase_data/airline_logistics_shipping/airline_logistics_shipping_1750453476.jsonl
+2. Validate format: python -c "import json; [json.loads(line) for line in open('usecase_data/airline_logistics_shipping/airline_logistics_shipping_1750453476.jsonl')]"
+3. Start fine-tuning with your preferred framework

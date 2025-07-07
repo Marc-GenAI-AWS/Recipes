@@ -319,13 +319,24 @@ def update_config_for_usecase(usecase_path, custom_name=None):
     
     return save_config(config)
 
-def run_script(script_name, capture_output=True):
-    """Run a Python script and return its output."""
+def run_script(script_name, args=None, capture_output=True):
+    """Run a Python script and return its output.
+    
+    Args:
+        script_name: The name of the script to run
+        args: List of command-line arguments to pass to the script
+        capture_output: Whether to capture and display the output
+    """
     log_file = f"{LOG_DIR}/{script_name.replace(' ', '_').replace('.', '')}_{datetime.now().strftime('%m%d_%H%M')}.log"
     
-    st.info(f"Running {script_name}...")
+    # Prepare command with arguments if provided
+    command = [sys.executable, script_name]
+    if args:
+        command.extend(args)
+    
+    st.info(f"Running {script_name} {' '.join(args) if args else ''}...")
     process = subprocess.Popen(
-        [sys.executable, script_name],
+        command,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,
@@ -513,11 +524,17 @@ with data_tab:
             current_config['count_synthetic_data'] = data_count
             save_config(current_config)
         
-        output, returncode, log_file = run_script("1. generate_synthetic_data.py")
-        if returncode == 0:
-            st.success("Data generation complete! Check the logs tab for details.")
+        # Use the specific data config file defined in config.yaml, not the main config.yaml
+        data_config_file = current_config.get('data_config_file')
+        
+        if not data_config_file:
+            st.error("No data configuration file specified in config.yaml. Please set the data_config_file setting first.")
         else:
-            st.error("Data generation failed. Check the logs for errors.")
+            output, returncode, log_file = run_script("1. generate_synthetic_data.py", args=["--config", data_config_file])
+            if returncode == 0:
+                st.success("Data generation complete! Check the logs tab for details.")
+            else:
+                st.error("Data generation failed. Check the logs for errors.")
 
     st.divider()
     st.header("Step 2: Upload Data to S3")
@@ -1155,7 +1172,7 @@ with usecase_tab:
         
         # Import the EnhancedUseCaseGenerator
         try:
-            import perplexity_generates_data_config
+            from data_generator_utils import perplexity_generates_data_config
             EnhancedUseCaseGenerator = perplexity_generates_data_config.EnhancedUseCaseGenerator
             st.success("✅ Successfully loaded EnhancedUseCaseGenerator.")
         except Exception as e:
@@ -1176,7 +1193,7 @@ with usecase_tab:
             
             output_dir = st.text_input(
                 "Output Directory", 
-                value="data_generation/usecase_config_files",
+                value="data_gen_configs",
                 help="Directory where the generated YAML file will be saved")
             
             api_key = st.text_input(

@@ -317,7 +317,7 @@ class EnhancedDataGenerator:
         # Count total attributes for validation
         total_attrs = sum(len(entity.get('attributes', [])) for entity in self.config['entities'])
         if total_attrs < 20:  # Minimum threshold
-            print(f"⚠️  Warning: Only {total_attrs} total attributes found. Consider adding more for richer data.")
+            print(f"WARNING: Only {total_attrs} total attributes found. Consider adding more for richer data.")
     
     def generate_entity_data(self, entity_config: Dict[str, Any], context: Dict[str, Any] = None) -> Dict[str, Any]:
         """Generate data for a single entity with full attribute utilization."""
@@ -343,7 +343,7 @@ class EnhancedDataGenerator:
                 generation_context[field_name] = value
                 
             except Exception as e:
-                print(f"⚠️  Error generating field '{field_name}': {e}")
+                print(f"ERROR generating field '{field_name}': {e}")
                 entity_data[field_name] = None
         
         return entity_data
@@ -441,7 +441,7 @@ class EnhancedDataGenerator:
         
         # Create training example
         training_example = {
-            "messages": [
+            "dialog": [
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_message},
                 {"role": "assistant", "content": assistant_response}
@@ -519,16 +519,16 @@ class EnhancedDataGenerator:
     
     def generate_dataset(self, num_examples: int) -> List[Dict[str, Any]]:
         """Generate complete dataset with specified number of examples."""
-        print(f"🎯 Generating {num_examples} training examples for {self.config['domain_name']}")
+        print(f"Generating {num_examples} training examples for {self.config['domain_name']}")
         
         start_time = time.time()
         dataset = []
         
         # Generate entity data once and reuse for multiple training examples
-        print("📊 Generating entity data...")
+        print("Generating entity data...")
         entity_data = self.generate_related_entities(max(num_examples // 2, 10))  # Generate reasonable number of entities
         
-        print("🔄 Creating training examples...")
+        print("Creating training examples...")
         for i in range(num_examples):
             if (i + 1) % 50 == 0:
                 print(f"  Generated {i + 1}/{num_examples} examples")
@@ -537,7 +537,7 @@ class EnhancedDataGenerator:
                 training_example = self.create_training_example(entity_data)
                 dataset.append(training_example)
             except Exception as e:
-                print(f"⚠️  Error generating example {i + 1}: {e}")
+                print(f"WARNING: Error generating example {i + 1}: {e}")
                 self.stats.validation_errors.append(f"Example {i + 1}: {str(e)}")
                 continue
         
@@ -598,17 +598,17 @@ class EnhancedDataGenerator:
 
     def print_generation_summary(self, dataset: List[Dict[str, Any]], output_path: str):
         """Print comprehensive generation summary."""
-        print(f"\n🎉 DATASET GENERATION COMPLETE!")
+        print(f"\nDATASET GENERATION COMPLETE!")
         print("=" * 60)
-        print(f"📁 Output File: {output_path}")
-        print(f"📁 Metadata File: {output_path.replace('.jsonl', '_metadata.json')}")
-        print(f"🏷️  Domain: {self.config['domain_name']}")
-        print(f"📊 Examples Generated: {len(dataset)}")
-        print(f"⏱️  Generation Time: {self.stats.generation_time:.2f} seconds")
+        print(f"Output File: {output_path}")
+        print(f"Metadata File: {output_path.replace('.jsonl', '_metadata.json')}")
+        print(f"Domain: {self.config['domain_name']}")
+        print(f"Examples Generated: {len(dataset)}")
+        print(f"Generation Time: {self.stats.generation_time:.2f} seconds")
         
-        print(f"\n📈 ENTITY STATISTICS:")
+        print(f"\nENTITY STATISTICS:")
         for entity_name, count in self.stats.entities_generated.items():
-            print(f"  • {entity_name}: {count} records")
+            print(f"  * {entity_name}: {count} records")
         
         config_summary = {
             'total_entities': len(self.config['entities']),
@@ -616,19 +616,19 @@ class EnhancedDataGenerator:
             'relationships': len(self.config.get('relationships', [])),
         }
         
-        print(f"\n🔧 CONFIGURATION UTILIZATION:")
-        print(f"  • Entities: {config_summary['total_entities']}")
-        print(f"  • Total Attributes: {config_summary['total_attributes']}")
-        print(f"  • Relationships: {config_summary['relationships']}")
+        print(f"\nCONFIGURATION UTILIZATION:")
+        print(f"  * Entities: {config_summary['total_entities']}")
+        print(f"  * Total Attributes: {config_summary['total_attributes']}")
+        print(f"  * Relationships: {config_summary['relationships']}")
         
         if self.stats.validation_errors:
-            print(f"\n⚠️  VALIDATION WARNINGS ({len(self.stats.validation_errors)}):")
+            print(f"\nVALIDATION WARNINGS ({len(self.stats.validation_errors)}):")
             for error in self.stats.validation_errors[:5]:  # Show first 5
-                print(f"  • {error}")
+                print(f"  * {error}")
             if len(self.stats.validation_errors) > 5:
-                print(f"  • ... and {len(self.stats.validation_errors) - 5} more")
+                print(f"  * ... and {len(self.stats.validation_errors) - 5} more")
         
-        print(f"\n🚀 NEXT STEPS:")
+        print(f"\nNEXT STEPS:")
         print(f"1. Review generated data: head -n 3 {output_path}")
         print(f"2. Validate format: python -c \"import json; [json.loads(line) for line in open('{output_path}')]\"")
         print(f"3. Start fine-tuning with your preferred framework")
@@ -649,11 +649,11 @@ def main():
         generator = EnhancedDataGenerator(args.config)
         
         if args.validate_only:
-            print("✅ Configuration validation passed!")
+            print("VALIDATION PASSED: Configuration is valid!")
             return 0
         
         if args.preview:
-            print("🔍 PREVIEW MODE - Generating sample data...")
+            print("PREVIEW MODE - Generating sample data...")
             entity_data = generator.generate_related_entities(2)
             example = generator.create_training_example(entity_data)
             print(json.dumps(example, indent=2, ensure_ascii=False))
@@ -667,7 +667,7 @@ def main():
         return 0
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"ERROR: {e}")
         return 1
 
 if __name__ == "__main__":
