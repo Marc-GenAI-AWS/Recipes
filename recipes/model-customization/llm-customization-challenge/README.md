@@ -116,32 +116,223 @@ Self-Improvement    Judge (Claude)        AWS Services
    pip install -r requirements.txt
    ```
 
-4. **Configure AWS credentials**:
+4. **Set up configuration**:
+   - Copy `config/pipeline_config.yaml.template` to `config/pipeline_config.yaml`
+   - Update with your AWS settings (region, role ARN, S3 bucket)
+
+5. **Configure AWS credentials** (see detailed guide below):
+   ```powershell
+   aws configure
+   ```
+
+### 🔐 Setting Up AWS Credentials
+
+This section explains how to configure AWS credentials to run the application. **Your credentials are never stored in the project** - they're managed securely by AWS CLI or environment variables.
+
+#### Option 1: AWS CLI Configuration (Recommended)
+
+This is the easiest and most secure method for local development.
+
+1. **Install AWS CLI** (if not already installed):
+   ```powershell
+   # Download from: https://aws.amazon.com/cli/
+   # Or use winget:
+   winget install Amazon.AWSCLI
+   ```
+
+2. **Configure your credentials**:
    ```powershell
    aws configure
    ```
    
-   **⚠️ IMPORTANT: Security Best Practices**
-   
-   Your AWS credentials are stored in `~/.aws/credentials` (NOT in this project).
-   This is the correct and secure way to manage credentials.
-   
-   **Before pushing to GitHub:**
-   - Run the security check: `python scripts/check_security.py`
-   - Review [SECURITY.md](SECURITY.md) for detailed security guidelines
-   - Ensure `.gitignore` is properly configured (it already is!)
-   
-   **Never commit:**
-   - AWS credentials or access keys
-   - `.env` files with real values
-   - Private keys or certificates
-   - Personal use case files with sensitive data
-   
-   See [SECURITY.md](SECURITY.md) and [documentation/SECURITY_QUICK_REFERENCE.md](documentation/SECURITY_QUICK_REFERENCE.md) for complete security guidelines.
+   You'll be prompted for:
+   - **AWS Access Key ID**: Your access key (starts with `AKIA...`)
+   - **AWS Secret Access Key**: Your secret key
+   - **Default region**: e.g., `us-east-1`
+   - **Default output format**: `json` (recommended)
 
-5. **Set up configuration**:
-   - Copy `config/pipeline_config.yaml.template` to `config/pipeline_config.yaml`
-   - Update with your AWS settings (region, role ARN, S3 bucket)
+3. **Verify configuration**:
+   ```powershell
+   # Test AWS credentials
+   aws sts get-caller-identity
+   
+   # Test Bedrock access
+   python validate_bedrock_connection.py
+   ```
+
+**Where are credentials stored?**
+- Windows: `C:\Users\<YourUsername>\.aws\credentials`
+- This file is **outside your project directory** and **never committed to git**
+
+#### Option 2: Environment Variables
+
+Use this for temporary credentials or CI/CD environments.
+
+```powershell
+# Set credentials for current session
+$env:AWS_ACCESS_KEY_ID = "your-access-key-id"
+$env:AWS_SECRET_ACCESS_KEY = "your-secret-access-key"
+$env:AWS_REGION = "us-east-1"
+
+# Optional: Session token for temporary credentials
+$env:AWS_SESSION_TOKEN = "your-session-token"
+
+# Verify
+aws sts get-caller-identity
+```
+
+**Note**: These credentials only last for your current PowerShell session.
+
+#### Option 3: AWS Profiles (Multiple Accounts)
+
+Use profiles if you work with multiple AWS accounts.
+
+1. **Configure a named profile**:
+   ```powershell
+   aws configure --profile my-project
+   ```
+
+2. **Use the profile**:
+   ```powershell
+   # Set profile for current session
+   $env:AWS_PROFILE = "my-project"
+   
+   # Or specify in each command
+   aws s3 ls --profile my-project
+   ```
+
+3. **Run the application with profile**:
+   ```powershell
+   $env:AWS_PROFILE = "my-project"
+   streamlit run streamlit_app.py
+   ```
+
+#### Option 4: IAM Roles (Production/EC2)
+
+For production deployments on AWS infrastructure (EC2, ECS, Lambda), use IAM roles instead of credentials.
+
+**Benefits**:
+- No credentials to manage
+- Automatic credential rotation
+- Better security
+
+**Setup**:
+1. Attach an IAM role to your EC2 instance/ECS task
+2. Grant the role necessary permissions (SageMaker, Bedrock, S3)
+3. Application automatically uses the role credentials
+
+#### Getting AWS Credentials
+
+If you don't have AWS credentials yet:
+
+1. **Sign in to AWS Console**: https://console.aws.amazon.com/
+2. **Navigate to IAM**: Services → IAM → Users
+3. **Create or select your user**
+4. **Security credentials tab** → Create access key
+5. **Choose use case**: "Command Line Interface (CLI)"
+6. **Download credentials**: Save the Access Key ID and Secret Access Key
+
+**⚠️ Security Warning**: 
+- Never share your secret access key
+- Never commit credentials to git
+- Rotate keys regularly
+- Use least-privilege permissions
+
+#### Required AWS Permissions
+
+Your AWS credentials need access to these services:
+
+- **Amazon Bedrock**: For Claude Sonnet 4 (data generation and judging)
+  - `bedrock:InvokeModel`
+  - `bedrock:ListFoundationModels`
+
+- **Amazon SageMaker**: For model training and deployment
+  - `sagemaker:CreateTrainingJob`
+  - `sagemaker:CreateModel`
+  - `sagemaker:CreateEndpoint`
+  - `sagemaker:DescribeTrainingJob`
+  - `sagemaker:DescribeEndpoint`
+
+- **Amazon S3**: For storing training data and model artifacts
+  - `s3:PutObject`
+  - `s3:GetObject`
+  - `s3:ListBucket`
+
+- **IAM**: For passing SageMaker execution role
+  - `iam:PassRole`
+
+See `config/aws/policies/` for example IAM policies.
+
+#### Verifying Your Setup
+
+After configuring credentials, verify everything works:
+
+```powershell
+# 1. Check AWS identity
+aws sts get-caller-identity
+
+# 2. Test Bedrock access
+python validate_bedrock_connection.py
+
+# 3. List available Bedrock models
+python list_bedrock_models.py
+
+# 4. Check SageMaker access
+aws sagemaker list-training-jobs --max-results 5
+
+# 5. Check S3 access (replace with your bucket)
+aws s3 ls s3://your-bucket-name/
+```
+
+If all commands succeed, you're ready to run the application!
+
+#### Troubleshooting Credentials
+
+**"Unable to locate credentials"**
+- Run `aws configure` to set up credentials
+- Check that `~/.aws/credentials` file exists
+- Verify environment variables are set (if using that method)
+
+**"Access Denied" errors**
+- Check IAM permissions for your user/role
+- Verify the service is available in your region
+- Ensure you're using the correct AWS account
+
+**"Region not found"**
+- Set AWS region: `$env:AWS_REGION = "us-east-1"`
+- Or configure default region: `aws configure set region us-east-1`
+
+**Credentials work in CLI but not in application**
+- Restart your terminal/IDE after configuring credentials
+- Check that virtual environment is activated
+- Verify no conflicting environment variables
+
+#### Security Best Practices
+
+✅ **DO**:
+- Store credentials in `~/.aws/credentials` (outside project)
+- Use IAM roles for production deployments
+- Rotate access keys regularly (every 90 days)
+- Use least-privilege permissions
+- Enable MFA on your AWS account
+
+❌ **DON'T**:
+- Commit credentials to git
+- Share credentials via email/chat
+- Use root account credentials
+- Store credentials in code files
+- Use overly permissive policies
+
+**Before pushing to GitHub:**
+```powershell
+# Run security check
+python scripts/check_security.py
+
+# Verify no credentials in staged files
+git diff --staged
+```
+
+See [SECURITY.md](SECURITY.md) for comprehensive security guidelines.
 
 ### Running the Pipeline
 
