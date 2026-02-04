@@ -1,0 +1,50 @@
+1.	A senior Parsons business development employee is deciding whether to pursue an opportunity released by the USAF that requires expertise in cloud, cybersecurity, and EW. They want to know if Parsons has the listed expertise in company, and which programs or markets they should reach out to for support if Parsons does.
+2.	A junior Parsons software engineer is interested in learning a new programming language and wants to understand what languages Parsons delivers solutions in most often, and where in the company.
+3.	A Parsons innovation advocate is exploring ways to adapt Parsons’ smart city technologies for disaster response projects. They want to know which teams and technologies could support this adaptation.
+4.	A Parsons strategist is tasked with identifying emerging trends in autonomous systems and wants to know which Parsons divisions are working on related projects.
+5.	A Parsons employee with a new IRAD idea wants to develop AI-driven logistics optimization solutions. They need recommendations for internal collaborators and technologies to support their idea.
+6.	A Parsons cross-domain awareness advocate is working on an Army base project and wants to know how existing Parsons solutions for urban planning can be applied to optimize base logistics.
+7.	A Parsons business development lead is preparing a proposal for a client interested in renewable energy integration. They need recommendations for internal expertise and technologies to include in the proposal.
+8.	A Parsons junior engineer is interested in learning about Parsons’ capabilities in cybersecurity and wants to know which divisions or teams they should connect with for mentorship opportunities.
+9.	A Parsons project manager is tasked with forming a multi-domain team to address urban flood management. They need recommendations for team composition and technologies.
+10.	A Parsons employee exploring innovation pathways wants to develop smart agriculture solutions. They need recommendations for resources, collaborators, and technologies.
+11.	A Parsons strategist is tasked with identifying niche capabilities in AI-driven healthcare solutions and wants to know which Parsons teams are working in this area.
+12.	A Parsons innovation advocate wants to adapt Parsons’ autonomous drone technologies for environmental monitoring. They need recommendations for collaborators and technologies.
+13.	A Parsons business development strategist is preparing a proposal for a smart city traffic management project. They need recommendations for team composition and technologies.
+14.	A Parsons employee with a new IRAD idea wants to develop AI-driven disaster response solutions. They need recommendations for domain experts and technologies.
+15.	A Parsons cross-domain awareness advocate is working on a renewable energy project and wants to know how existing Parsons solutions for smart agriculture can be applied.
+16.	A Parsons business development lead is preparing a proposal for a client interested in autonomous vehicle technologies. They need recommendations for internal expertise and technologies.
+17.	A Parsons junior engineer wants to learn about Parsons’ capabilities in IoT and sensor integration. They need recommendations for teams and projects to connect with.
+18.	A Parsons project manager is tasked with forming a multi-domain team to address AI-driven disaster response. They need recommendations for team composition and technologies.
+19.	A Parsons employee exploring innovation pathways wants to develop smart building technologies. They need recommendations for resources, collaborators, and technologies.
+20.	A Parsons strategist is tasked with identifying emerging trends in cybersecurity and wants to know which Parsons divisions are working on related projects.
+21.	A Parsons innovation advocate wants to adapt Parsons’ smart city technologies for Army base logistics optimization. They need recommendations for collaborators and technologies.
+22.	A Parsons business development strategist is preparing a proposal for a renewable energy integration project. They need recommendations for team composition and technologies.
+23.	A Parsons employee with a new IRAD idea wants to develop AI-driven healthcare solutions. They need recommendations for domain experts and technologies.
+24.	A Parsons cross-domain awareness advocate is working on a smart city project and wants to know how existing Parsons solutions for disaster response can be applied.
+25.	A Parsons business development lead is preparing a proposal for a client interested in smart agriculture technologies. They need recommendations for internal expertise and technologies.
+26.	A Parsons junior engineer wants to learn about Parsons’ capabilities in AI-driven navigation systems. They need recommendations for teams and projects to connect with.
+27.	A Parsons project manager is tasked with forming a multi-domain team to address renewable energy integration. They need recommendations for team composition and technologies.
+28.	A Parsons employee exploring innovation pathways wants to develop autonomous vehicle technologies. They need recommendations for resources, collaborators, and technologies.
+29.	A Parsons strategist is tasked with identifying niche capabilities in smart building technologies and wants to know which Parsons teams are working in this area.
+30.	A Parsons innovation advocate wants to adapt Parsons’ AI-driven disaster response technologies for urban planning. They need recommendations for collaborators and technologies.
+31.	A Parsons business development strategist is preparing a proposal for a smart building technologies project. They need recommendations for team composition and technologies.
+32.	A Parsons employee with a new IRAD idea wants to develop AI-driven logistics optimization solutions. They need recommendations for domain experts and technologies.
+33.	A Parsons cross-domain awareness advocate is working on a disaster response project and wants to know how existing Parsons solutions for healthcare can be applied.
+34.	A Parsons business development lead is preparing a proposal for a client interested in AI-driven disaster response. They need recommendations for internal expertise and technologies.
+35.	A Parsons junior engineer wants to learn about Parsons’ capabilities in renewable energy integration. They need recommendations for teams and projects to connect with.
+36.	A Parsons project manager is tasked with forming a multi-domain team to address smart agriculture. They need recommendations for team composition and technologies.
+37.	A Parsons employee exploring innovation pathways wants to develop AI-driven healthcare solutions. They need recommendations for resources, collaborators, and technologies.
+38.	A Parsons strategist is tasked with identifying emerging trends in smart city technologies and wants to know which Parsons divisions are working on related projects.
+39.	A Parsons innovation advocate wants to adapt Parsons’ renewable energy technologies for smart building applications. They need recommendations for collaborators and technologies.
+40.	A Parsons business development strategist is preparing a proposal for an autonomous vehicle technologies project. They need recommendations for team composition and technologies.
+41.	A Parsons employee with a new IRAD idea wants to develop smart city infrastructure optimization solutions. They need recommendations for domain experts and technologies.
+42.	A Parsons cross-domain awareness advocate is working on a smart agriculture project and wants to know how existing Parsons solutions for renewable energy can be applied.
+43.	A Parsons business development lead is preparing a proposal for a client interested in smart building technologies. They need recommendations for internal expertise and technologies.
+44.	A Parsons junior engineer wants to learn about Parsons’ capabilities in disaster response technologies. They need recommendations for teams and projects to connect with.
+45.	A Parsons project manager is tasked with forming a multi-domain team to address AI-driven healthcare. They need recommendations for team composition and technologies.
+46.	A Parsons employee exploring innovation pathways wants to develop AI-driven disaster response solutions. They need recommendations for resources, collaborators, and technologies.
+47.	A Parsons strategist is tasked with identifying niche capabilities in smart agriculture technologies and wants to know which Parsons teams are working in this area.
+48.	A Parsons innovation advocate wants to adapt Parsons’ autonomous vehicle technologies for logistics optimization. They need recommendations for collaborators and technologies.
+49.	A Parsons business development strategist is preparing a proposal for a disaster response technologies project. They need recommendations for team composition and technologies.
+50.	A Parsons employee with a new IRAD idea wants to develop renewable energy integration solutions. They need recommendations for domain experts and technologies.

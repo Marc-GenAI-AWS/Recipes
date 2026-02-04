@@ -1,0 +1,289 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'IAM Role for SageMaker LLM Finetuning Pipeline with minimal required permissions'
+
+Parameters:
+  S3BucketName:
+    Type: String
+    Description: 'Name of the S3 bucket for training data and model artifacts'
+    MinLength: 3
+    MaxLength: 63
+    AllowedPattern: '^[a-z0-9][a-z0-9-]*[a-z0-9]$'
+    ConstraintDescription: 'Bucket name must be lowercase, alphanumeric, and hyphens only'
+  
+  RoleName:
+    Type: String
+    Description: 'Name for the SageMaker execution role'
+    Default: 'SageMakerFinetuningRole'
+    MinLength: 1
+    MaxLength: 64
+    AllowedPattern: '^[\w+=,.@-]+$'
+    ConstraintDescription: 'Role name must contain only alphanumeric characters and +=,.@-'
+  
+  EnableVPCAccess:
+    Type: String
+    Description: 'Enable VPC access for SageMaker (requires EC2 network interface permissions)'
+    Default: 'false'
+    AllowedValues:
+      - 'true'
+      - 'false'
+  
+  EnableKMSEncryption:
+    Type: String
+    Description: 'Enable KMS encryption for S3 (requires KMS key ARN parameter)'
+    Default: 'false'
+    AllowedValues:
+      - 'true'
+      - 'false'
+  
+  KMSKeyArn:
+    Type: String
+    Description: 'ARN of KMS key for S3 encryption (only if EnableKMSEncryption is true)'
+    Default: ''
+
+Conditions:
+  HasVPCAccess: !Equals [!Ref EnableVPCAccess, 'true']
+  HasKMSEncryption: !Equals [!Ref EnableKMSEncryption, 'true']
+
+Resources:
+  SageMakerExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Ref RoleName
+      Description: 'Execution role for SageMaker LLM finetuning pipeline with least privilege permissions'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: sagemaker.amazonaws.com
+            Action: 'sts:AssumeRole'
+            Condition:
+              StringEquals:
+                'aws:SourceAccount': !Ref 'AWS::AccountId'
+      ManagedPolicyArns: []
+      Tags:
+        - Key: Purpose
+          Value: SageMaker-Finetuning
+        - Key: ManagedBy
+          Value: CloudFormation
+        - Key: Project
+          Value: LLM-Finetuning-Pipeline
+
+  S3AccessPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: S3AccessPolicy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: S3BucketAccess
+            Effect: Allow
+            Action:
+              - 's3:ListBucket'
+              - 's3:GetBucketLocation'
+            Resource:
+              - !Sub 'arn:aws:s3:::${S3BucketName}'
+          - Sid: S3ObjectAccess
+            Effect: Allow
+            Action:
+              - 's3:GetObject'
+              - 's3:PutObject'
+              - 's3:DeleteObject'
+            Resource:
+              - !Sub 'arn:aws:s3:::${S3BucketName}/*'
+          - Sid: S3ListAllBuckets
+            Effect: Allow
+            Action:
+              - 's3:ListAllMyBuckets'
+            Resource: '*'
+      Roles:
+        - !Ref SageMakerExecutionRole
+
+  BedrockAccessPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: BedrockAccessPolicy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: BedrockModelInvocation
+            Effect: Allow
+            Action:
+              - 'bedrock:InvokeModel'
+              - 'bedrock:InvokeModelWithResponseStream'
+            Resource:
+              - 'arn:aws:bedrock:*::foundation-model/anthropic.claude-sonnet-4-*'
+              - 'arn:aws:bedrock:*::foundation-model/anthropic.claude-3-*'
+          - Sid: BedrockModelInfo
+            Effect: Allow
+            Action:
+              - 'bedrock:GetFoundationModel'
+              - 'bedrock:ListFoundationModels'
+            Resource: '*'
+      Roles:
+        - !Ref SageMakerExecutionRole
+
+  CloudWatchLogsPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: CloudWatchLogsPolicy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: CloudWatchLogsAccess
+            Effect: Allow
+            Action:
+              - 'logs:CreateLogGroup'
+              - 'logs:CreateLogStream'
+              - 'logs:PutLogEvents'
+              - 'logs:DescribeLogStreams'
+            Resource:
+              - !Sub 'arn:aws:logs:*:${AWS::AccountId}:log-group:/aws/sagemaker/*'
+              - !Sub 'arn:aws:logs:*:${AWS::AccountId}:log-group:FinetuningPipeline/*'
+          - Sid: CloudWatchMetrics
+            Effect: Allow
+            Action:
+              - 'cloudwatch:PutMetricData'
+            Resource: '*'
+            Condition:
+              StringEquals:
+                'cloudwatch:namespace':
+                  - 'AWS/SageMaker'
+                  - 'FinetuningPipeline/Dev'
+                  - 'FinetuningPipeline/Prod'
+      Roles:
+        - !Ref SageMakerExecutionRole
+
+  SageMakerExecutionPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: SageMakerExecutionPolicy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: SageMakerTraining
+            Effect: Allow
+            Action:
+              - 'sagemaker:CreateTrainingJob'
+              - 'sagemaker:DescribeTrainingJob'
+              - 'sagemaker:StopTrainingJob'
+              - 'sagemaker:ListTrainingJobs'
+            Resource:
+              - !Sub 'arn:aws:sagemaker:*:${AWS::AccountId}:training-job/*'
+          - Sid: SageMakerModel
+            Effect: Allow
+            Action:
+              - 'sagemaker:CreateModel'
+              - 'sagemaker:DescribeModel'
+              - 'sagemaker:DeleteModel'
+              - 'sagemaker:ListModels'
+            Resource:
+              - !Sub 'arn:aws:sagemaker:*:${AWS::AccountId}:model/*'
+          - Sid: SageMakerEndpointConfig
+            Effect: Allow
+            Action:
+              - 'sagemaker:CreateEndpointConfig'
+              - 'sagemaker:DescribeEndpointConfig'
+              - 'sagemaker:DeleteEndpointConfig'
+            Resource:
+              - !Sub 'arn:aws:sagemaker:*:${AWS::AccountId}:endpoint-config/*'
+          - Sid: SageMakerEndpoint
+            Effect: Allow
+            Action:
+              - 'sagemaker:CreateEndpoint'
+              - 'sagemaker:DescribeEndpoint'
+              - 'sagemaker:DeleteEndpoint'
+              - 'sagemaker:UpdateEndpoint'
+              - 'sagemaker:InvokeEndpoint'
+              - 'sagemaker:ListEndpoints'
+            Resource:
+              - !Sub 'arn:aws:sagemaker:*:${AWS::AccountId}:endpoint/*'
+          - Sid: SageMakerJumpStart
+            Effect: Allow
+            Action:
+              - 'sagemaker:ListModelPackages'
+              - 'sagemaker:DescribeModelPackage'
+            Resource: '*'
+          - Sid: ECRAccess
+            Effect: Allow
+            Action:
+              - 'ecr:GetAuthorizationToken'
+              - 'ecr:BatchCheckLayerAvailability'
+              - 'ecr:GetDownloadUrlForLayer'
+              - 'ecr:BatchGetImage'
+            Resource: '*'
+      Roles:
+        - !Ref SageMakerExecutionRole
+
+  VPCAccessPolicy:
+    Type: AWS::IAM::Policy
+    Condition: HasVPCAccess
+    Properties:
+      PolicyName: VPCAccessPolicy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: EC2NetworkInterfaces
+            Effect: Allow
+            Action:
+              - 'ec2:CreateNetworkInterface'
+              - 'ec2:CreateNetworkInterfacePermission'
+              - 'ec2:DeleteNetworkInterface'
+              - 'ec2:DeleteNetworkInterfacePermission'
+              - 'ec2:DescribeNetworkInterfaces'
+              - 'ec2:DescribeVpcs'
+              - 'ec2:DescribeDhcpOptions'
+              - 'ec2:DescribeSubnets'
+              - 'ec2:DescribeSecurityGroups'
+            Resource: '*'
+      Roles:
+        - !Ref SageMakerExecutionRole
+
+  KMSAccessPolicy:
+    Type: AWS::IAM::Policy
+    Condition: HasKMSEncryption
+    Properties:
+      PolicyName: KMSAccessPolicy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: KMSEncryption
+            Effect: Allow
+            Action:
+              - 'kms:Decrypt'
+              - 'kms:Encrypt'
+              - 'kms:GenerateDataKey'
+              - 'kms:DescribeKey'
+            Resource: !Ref KMSKeyArn
+      Roles:
+        - !Ref SageMakerExecutionRole
+
+Outputs:
+  RoleArn:
+    Description: 'ARN of the SageMaker execution role'
+    Value: !GetAtt SageMakerExecutionRole.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-RoleArn'
+  
+  RoleName:
+    Description: 'Name of the SageMaker execution role'
+    Value: !Ref SageMakerExecutionRole
+    Export:
+      Name: !Sub '${AWS::StackName}-RoleName'
+  
+  S3BucketName:
+    Description: 'S3 bucket name configured for this role'
+    Value: !Ref S3BucketName
+    Export:
+      Name: !Sub '${AWS::StackName}-S3BucketName'
+  
+  ConfigurationInstructions:
+    Description: 'Next steps to configure the pipeline'
+    Value: !Sub |
+      1. Copy the Role ARN: ${SageMakerExecutionRole.Arn}
+      2. Update config/pipeline_config.yaml with:
+         aws:
+           sagemaker_role_arn: ${SageMakerExecutionRole.Arn}
+           s3_bucket: ${S3BucketName}
+      3. Ensure S3 bucket ${S3BucketName} exists in your account
+      4. Run validation: python config/aws/scripts/validate_permissions.py --role-arn ${SageMakerExecutionRole.Arn}

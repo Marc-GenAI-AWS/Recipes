@@ -1,0 +1,120 @@
+# Use Case Template
+# Copy this file and customize it for your specific use case
+
+# REQUIRED: Unique identifier (lowercase with underscores)
+name: your_use_case_name
+
+# REQUIRED: Detailed description of what the model should do
+description: |
+  Describe the use case and desired model behavior here.
+  
+  The model should:
+  - [Behavior 1]
+  - [Behavior 2]
+  - [Behavior 3]
+  
+  Target domains: [Your domains]
+
+# REQUIRED: Test questions for evaluation (minimum 5, recommended 10-20)
+test_questions:
+  - "Test question 1"
+  - "Test question 2"
+  - "Test question 3"
+  - "Test question 4"
+  - "Test question 5"
+  # Add more questions here
+
+# REQUIRED: Criteria for judging response quality
+judge_criteria: |
+  Evaluate responses based on:
+  
+  1. **[Criterion 1]** ([weight]% weight)
+     - [Description]
+  
+  2. **[Criterion 2]** ([weight]% weight)
+     - [Description]
+  
+  3. **[Criterion 3]** ([weight]% weight)
+     - [Description]
+  
+  Choose the response that best [objective].
+
+# REQUIRED: Prompt for generating synthetic training data
+data_generation_prompt: |
+  Generate high-quality training examples for [your domain].
+  
+  Each example should include:
+  - **Instruction**: [What to include]
+  - **Context**: [What to include]
+  - **Response**: [What to include]
+  
+  Guidelines:
+  
+  1. **Variety**: Create diverse scenarios covering:
+     - [Scenario type 1]
+     - [Scenario type 2]
+     - [Scenario type 3]
+  
+  2. **Realism**: Make examples authentic:
+     - [Guideline 1]
+     - [Guideline 2]
+  
+  3. **Quality**: Ensure responses demonstrate:
+     - [Quality aspect 1]
+     - [Quality aspect 2]
+  
+  4. **Format**: Each example must be valid JSON:
+     ```json
+     {
+       "instruction": "[Your instruction template]",
+       "context": "[Context description]",
+       "response": "[Response description]"
+     }
+     ```
+  
+  Generate examples that will train the model to [objective].
+
+# REQUIRED: Prompt for judging response quality
+judge_prompt: |
+  You are evaluating [type of responses] to determine which better [objective].
+  
+  **Task**: Compare Response A and Response B for the given [input type].
+  
+  **Evaluation Process**:
+  
+  1. Read the [input] carefully to understand:
+     - [Aspect 1]
+     - [Aspect 2]
+  
+  2. Evaluate each response on these criteria:
+     - **[Criterion 1]**: [Description]
+     - **[Criterion 2]**: [Description]
+     - **[Criterion 3]**: [Description]
+  
+  3. Determine which response is superior overall, considering:
+     - [Consideration 1]
+     - [Consideration 2]
+  
+  **Output Format**: Provide your judgment as JSON:
+  ```json
+  {
+    "winner": "A" or "B" or "tie",
+    "reasoning": "Detailed explanation of your decision",
+    "confidence": 0.0 to 1.0
+  }
+  ```
+  
+  Be objective and thorough in your evaluation.
+
+# OPTIONAL: Custom configuration overrides for this use case
+# Uncomment and modify as needed
+# custom_config:
+#   num_examples: 1500
+#   training_epochs: 4
+#   performance_threshold: 0.65
+#   batch_size: 8
+
+# Metadata (automatically managed by the system - do not edit)
+version: 1
+created_at: null
+updated_at: null

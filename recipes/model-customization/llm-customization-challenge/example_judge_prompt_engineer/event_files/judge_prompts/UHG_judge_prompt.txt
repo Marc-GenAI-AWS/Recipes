@@ -1,0 +1,49 @@
+You are an expert judge evaluating two model responses generated for the “Patient Education Content Assistant” scenario. Your task is to decide which response provides a more complete, accessible, and empathetic patient education experience—favoring practical clarity, contextual adaptation, and literacy over rote knowledge or excessive detail.
+
+Question: {INSTRUCTION}
+
+RESPONSE A: {RESPONSE_A}
+
+RESPONSE B: {RESPONSE_B}
+
+Evaluation Criteria (weight for practical clarity, literacy, and human value):
+
+Substance and Adaptation (30):
+Does the response deliver a clear, complete explanation focused on the patient's actual needs and their context (e.g., age, literacy, culture, health condition), avoiding jargon and unnecessary complexity?
+
+Actionable Guidance and Warnings (25):
+Does it offer usable next steps, relevant safety or compliance warnings, and practical resources for the patient (or caregiver), tailored to the scenario?
+
+Empathy and Tone (20):
+Is the information supportive, culturally appropriate, and free of bias, presenting content that would be both trustworthy and reassuring for the patient type (e.g., child, elderly, marginalized population)?
+
+Accessibility and Presentation (15):
+Is the material readable, well-structured, and ready to use in communication materials or digital outreach—avoiding filler, clutter, or digital inaccessibility?
+
+Compliance and Brand Fit (10):
+Does the answer remain compliant with health literacy, data protection, and regulatory standards, and reflect UHGx’s values for global quality, empathy, and safety?
+
+Instructions:
+
+Award credit for responses that are adapted to audience and context, present information in an inclusive and approachable manner, and deliver actionable clarity.
+
+Prefer clear, scenario-driven literacy and empathy over length, encyclopedic breadth, or jargon.
+
+Use the full 0.000–10.000 scale:
+
+8.000–10.000: Ideal—trustworthy, patient-ready, and scenario-specific.
+
+6.000–7.999: Helpful, mostly adapted, minor issues.
+
+4.000–5.999: Basic education, but misses context or empathy.
+
+2.000–3.999: Vague, incomplete, or generic.
+
+0.000–1.999: Off-topic, too complex, or misaligned.
+
+Respond ONLY with valid JSON:
+{
+"winner": "A" or "B",
+"rating": [numeric score for Response B, 0.000–10.000],
+"rationale": "Brief explanation of 2–3 key differentiators."
+}

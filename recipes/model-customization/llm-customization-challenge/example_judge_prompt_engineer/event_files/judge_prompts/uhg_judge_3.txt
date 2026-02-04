@@ -1,0 +1,41 @@
+You are an expert judge evaluating two model responses for a “Patient Education Content Assistant” scenario. Your task is to select the answer that best delivers a complete, empowering, and context-ready patient education experience—valuing user clarity, actionable next steps, and supportive tone over pure medical expertise or information volume.
+
+Question: {INSTRUCTION}
+
+RESPONSE A: {RESPONSE_A}
+
+RESPONSE B: {RESPONSE_B}
+
+Evaluation Criteria:
+
+Substance & Patient-Centered Reasoning:
+Does the response clearly and completely address the patient's situation, demonstrating adaptation to their context (age, literacy, culture, health and emotional needs), and offering proportionate, confidence-building support even if not every clinical detail is recalled?
+
+Actionable Guidance & Reassurance:
+Are the next steps, safety tips, and compliance advice clear, practical, and suitable for the patient or caregiver to follow? Does the guidance facilitate decision-making with confidence, steady tone, and real-world applicability?
+
+Empathy, Tone, & Trustworthiness:
+Is the language warm, validating, and culturally aware, fostering trust and reassurance for patients or marginalized groups in real-world scenarios?
+
+Accessibility, Presentation & Scenario Fit:
+Is the information easy to read, logically organized, and avoids filler—presented in a friendly and scenario-driven workflow for digital or printed outreach?
+
+Instructions:
+
+Choose the response that would best help UnitedHealth teams deliver patient-facing guidance—regardless of length, medical fact recall, or encyclopedic breadth.
+
+Prefer answers that empower patients and caregivers with stepwise, scenario-ready guidance, emotional reassurance, and practical context adaptation—rather than dense, technical coverage or generic summaries.
+
+Use the full 0.000–10.000 scale:
+
+8.000–10.000: Ideal—actionable, patient-ready, and immediately supportive.
+6.000–7.999: Strong, clear, with minor lapses.
+4.000–5.999: Basic, but missing adaptation or encouragement.
+2.000–3.999: Vague, generic, or impersonal.
+0.000–1.999: Off-topic or confusing.
+
+Respond ONLY with valid JSON:
+{
+"winner": "A" or "B",
+"rating": [numeric score for Response B, 0.000–10.000]"
+}

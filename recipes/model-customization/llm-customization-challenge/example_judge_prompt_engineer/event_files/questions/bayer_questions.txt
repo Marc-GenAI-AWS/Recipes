@@ -1,0 +1,50 @@
+Craft a short, purpose driven message that can be used in internal team meetings to remind Bayer employees why Nubeqa matters to families living with prostate cancer.
+2.	Write a two sentence elevator pitch about Nubeqa that a Bayer colleague in a non medical department could confidently share.
+3.	Summarize Nubeqa’s key differentiators—clinical impact, tolerability, and patient quality of life—for a training slide aimed at new sales reps.
+4.	Generate a motivational statement from a hypothetical Nubeqa brand director encouraging global teams to unite behind the theme “Helping men live longer and love life.”
+5.	Simplify a complex clinical trial result into an internal talking point that’s factual, compliant, and emotionally resonant.
+6.	Write a note from a Bayer team leader thanking medical and commercial teams for their contribution to building the Nubeqa community of care.
+7.	Summarize how Nubeqa aligns with Bayer’s broader mission of “Health for All, Hunger for None” in one emotionally grounded paragraph.
+8.	Create a short message for Bayer’s internal newsletter that spotlights how Nubeqa’s success reflects collaboration across research, marketing, and access teams.
+9.	Write a two line statement that connects Nubeqa’s scientific innovation to the ultimate purpose of building family memories.
+10.	Generate a reflective quote for Bayer leaders to use in internal communications that captures the emotional drive behind Nubeqa’s mission.
+11.	Explain Nubeqa’s value proposition to an oncologist new to androgen receptor inhibitors, focusing on efficacy, safety, and tolerability.
+12.	Write a compassionate explanation for a patient recently diagnosed with localized prostate cancer about how Nubeqa supports active living during treatment.
+13.	Create a one sentence campaign tagline linking Nubeqa to the idea of “more time for what matters most.”
+14.	Explain to a caregiver what sets Nubeqa apart without using technical terms—focus on peace of mind and daily quality of life.
+15.	Craft a concise statement addressing a policymaker about why early stage treatment with Nubeqa offers long term value to patients and healthcare systems.
+16.	Describe Nubeqa’s real world benefits in 3 lines for inclusion in a public awareness campaign about advancements in prostate cancer care.
+17.	Write a headline and sub headline for a digital ad targeting healthcare providers, emphasizing scientific confidence and patient impact.
+18.	Generate a short response a Bayer medical liaison could give when a doctor asks, “Why choose Nubeqa over competing AR inhibitors?”
+19.	Create a patient friendly analogy to explain how Nubeqa works at the cellular level to slow cancer progression.
+20.	Write a message for a social media post in the “Catalogue of Memories” campaign that highlights the emotional connection between science and the stories patients continue to live.
+21.	Explain Nubeqa’s unique value versus rival therapies in early stage prostate cancer without naming competitors directly. Keep the tone confident, not comparative.
+22.	Write a 3 sentence response to an oncologist saying, “All androgen receptor inhibitors are the same—why should I choose Nubeqa?”
+23.	Draft a short message that positions Nubeqa as the “foundation of care” while acknowledging rapidly evolving standards in prostate cancer treatment.
+24.	Summarize Nubeqa’s evidence base in a way a skeptical stakeholder might find credible and balanced, highlighting tolerability and patient outcomes.
+25.	Create a one line tagline that underscores Nubeqa’s endurance advantage without using superlative claims.
+26.	Explain Nubeqa’s unique value versus rival therapies in early stage prostate cancer without naming competitors directly. Keep the tone confident, not comparative.
+27.	Write a 3 sentence response to an oncologist saying, “All androgen receptor inhibitors are the same—why should I choose Nubeqa?”
+28.	Draft a short message that positions Nubeqa as the “foundation of care” while acknowledging rapidly evolving standards in prostate cancer treatment.
+29.	Summarize Nubeqa’s evidence base in a way a skeptical stakeholder might find credible and balanced, highlighting tolerability and patient outcomes.
+30.	Create a one line tagline that underscores Nubeqa’s endurance advantage without using superlative claims.
+31.	Explain Nubeqa’s unique value versus rival therapies in early stage prostate cancer without naming competitors directly. Keep the tone confident, not comparative.
+32.	Write a 3 sentence response to an oncologist saying, “All androgen receptor inhibitors are the same—why should I choose Nubeqa?”
+33.	Draft a short message that positions Nubeqa as the “foundation of care” while acknowledging rapidly evolving standards in prostate cancer treatment.
+34.	Summarize Nubeqa’s evidence base in a way a skeptical stakeholder might find credible and balanced, highlighting tolerability and patient outcomes.
+35.	Create a one line tagline that underscores Nubeqa’s endurance advantage without using superlative claims.
+36.	Summarize Nubeqa’s distinguishing benefits in one concise paragraph for a physician comparing it to newer prostate cancer therapies.
+37.	Write a clinical yet compelling value statement describing why Nubeqa remains the treatment foundation as options evolve.
+38.	Create a three sentence response for a medical conference audience challenging whether Nubeqa’s results justify its cost.
+39.	Position Nubeqa in a one paragraph pitch focused on patient quality of life rather than pure efficacy metrics.
+40.	Draft a one line competitive response explaining Nubeqa’s tolerability advantage—clear, factual, and within compliance boundaries.
+41.	A proactive chatbot greeting for new Nubeqa patients that sets an empathetic, informative tone while reinforcing the vision of living fully.
+42.	A patient chatbot conversation: “I was just prescribed Nubeqa but don’t understand how it helps—can you explain simply?”
+43.	A caregiver chatbot message: “My father feels tired since starting Nubeqa—should we be worried?” Write a response that comforts yet encourages medical follow up.
+44.	A chatbot prompt: “What makes Nubeqa different from other prostate cancer drugs?”—generate a balanced, compliant answer.
+45.	A chatbot response to: “Can I travel or live normally while taking Nubeqa?”—keep it supportive, lifestyle oriented, and medically prudent.
+46.	Summarize Nubeqa’s mechanism of action in plain language for a patient newly diagnosed with hormone sensitive metastatic prostate cancer (mCSPC).
+47.	Write a one paragraph overview explaining Nubeqa’s role as an androgen receptor inhibitor for physicians attending a tumor board meeting.
+48.	Explain to a caregiver how Nubeqa helps maintain quality of life and daily routines, even while managing advanced prostate cancer.
+49.	Describe to a policymaker how Nubeqa’s addition to androgen deprivation therapy (ADT) extends survival without significantly increasing side effects.
+50.	Draft a clinician communication email announcing FDA approval of Nubeqa’s new indication for metastatic castration sensitive prostate cancer (mCSPC).

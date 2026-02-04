@@ -1,0 +1,12 @@
+Challenge Description:
+A cross-functional intelligence platform that powers holistic, creative collaboration across Parsons:
+This tool goes beyond standard collaboration—by leveraging organization-wide data, project history, and live expertise, it recommends teams, technologies, and resources to boost project creativity, surface synergies, and enable breakthrough solutions. Whether supporting customer-driven holistic problem-solving, enabling business development to spot and combine emerging capabilities, or connecting innovators with the right partners and tools, the platform acts as a “recommendation engine” for creative teaming and opportunity discovery across Parsons.
+Targeted uses:
+o	Holistic Customer Solutions: Recommends multi-domain teams, technologies, and best practices to deliver innovative proposals and solve client problems from every angle.
+o	Strategic Business Development: Surfaces niche capabilities and internal expertise relevant to future-facing (3-5 year) opportunities, so emerging trends and technologies can be brought to the forefront.
+o	Cross-Domain Awareness: Suggests existing Parsons solutions (e.g., smart city tech for traffic management) to groups working in disconnected silos (e.g., Army base projects).
+o	Employee Innovation Support: Connects employees who have new project or IRAD ideas to internal networks, resources, technologies, and domain experts, making innovation pathways smoother and more likely to succeed.
+Solution Description:
+Host an AI League event to develop a “One Parsons Collaboration Recommender”—a fine-tuned model that, given well-crafted background and requirements, generates Parsons-specific recommendations for collaboration across teams and organizations at Parsons. These recommend organizations, products, IR&D initiatives, and employee skillsets to pull in for the input opportunity—all adapted for the industry, technical/systems context, and core Parsons capabilities.
+Outcome Description:
+Parsons teams gain instant access to tailored, and insight-rich content. The recommender enhances Parsons’ ability to operate in a true One Parsons fashion, drawing together applicable capability from across the company to address the use case provided by the user.

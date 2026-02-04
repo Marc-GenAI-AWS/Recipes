@@ -1,0 +1,115 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# AWS credentials and sensitive files
+.aws/
+*.pem
+*.key
+credentials
+config.ini
+secrets.yaml
+.env
+.env.local
+
+# Log files
+logs/*.log
+*.log
+
+# Generated data and artifacts
+event_files/training_data/*.jsonl
+event_files/questions/*.json
+event_files/usecases/*.txt
+event_files/judge_prompts/*.txt
+
+# Progress and state files
+progress/**/*.json
+progress/**/*.yaml
+
+# Test coverage reports
+.coverage
+htmlcov/
+.pytest_cache/
+.hypothesis/
+coverage.xml
+*.cover
+.tox/
+.nox/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+# Model artifacts and large files
+models/
+*.tar.gz
+*.zip
+*.h5
+*.pkl
+*.joblib
+
+# SageMaker local mode
+.sagemaker/
+
+# Streamlit
+.streamlit/secrets.toml

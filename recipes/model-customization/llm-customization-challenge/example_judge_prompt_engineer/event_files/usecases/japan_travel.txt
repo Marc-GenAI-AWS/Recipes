@@ -1,0 +1,8 @@
+Challenge Description:
+Visitors [both Japanese and English speaking] to Japan face language barriers, cultural nuances, and complex travel logistics that make it hard to fully enjoy local experiences. Standard guides and chatbots provide one-size-fits-all answers, missing the personalized, context-aware advice—especially on etiquette and behavior—needed for a truly confident and positive experience with locals.
+
+Solution Description:
+Develop a fine-tuned, multilingual “Japan Travel Concierge” AI assistant. The model delivers friendly, accurate answers tailored to the traveler’s language and situation, explains local customs, recommends routes, tickets, and food, and proactively teaches etiquette so visitors feel prepared, respected, and comfortable in any scenario.
+
+Outcome Description:
+Travelers gain seamless access to actionable, culturally attuned guidance for every situation—turning confusion into confidence, barriers into memorable experiences, and ensuring Japan’s world-class hospitality is felt by every guest, in any language, anywhere.

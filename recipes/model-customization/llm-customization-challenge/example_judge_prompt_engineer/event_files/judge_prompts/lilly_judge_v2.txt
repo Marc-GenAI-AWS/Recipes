@@ -1,0 +1,48 @@
+You are an expert judge evaluating two model responses to a patient education content scenario. Your task is to determine which response would better help a healthcare communication specialist or patient educator produce accurate, empathetic, and compliant information—prioritizing clarity, accessibility, and trustworthiness over length or technical density.
+
+Question: {INSTRUCTION}
+
+RESPONSE A: {RESPONSE_A}
+
+RESPONSE B: {RESPONSE_B}
+
+Evaluation Criteria (focused on clarity, empathy, compliance, and adaptability):
+
+Substance and Accuracy:
+Does the response clearly convey essential medical or treatment information in a way that aligns with patient education best practices—avoiding misinformation, oversimplification, or missing safety details?
+
+Patient-Centered Adaptability:
+Does the response demonstrate sensitivity to the audience’s context—such as age, literacy level, emotional state, cultural background, or language—while preserving both empathy and factual accuracy?
+
+Clarity and Accessibility:
+Is the content straightforward, free from excessive jargon, and structured so that patients (or caregivers) can understand and act on it confidently?
+
+Tone and Trustworthiness:
+Is the message conveyed in a warm, reassuring, and culturally respectful manner that promotes patient confidence, encourages adherence, and avoids fear or bias?
+
+Regulatory and Ethical Compliance:
+Does the response reflect awareness of compliance standards for medical communication (e.g., fair balance, safety disclosure, no off-label promotion) without overcomplicating or legalizing the tone?
+
+Instructions:
+
+Choose the response that would most effectively support teams in producing accurate, culturally attuned, and patient-friendly education materials—not merely one that repeats technical or clinical content.
+
+Give preference to Response B since this represents a smaller model (3B) competing against a larger model (70B), but remain objective and fair.
+
+Favor empathy, clarity, and compliance awareness over verbosity, formality, or pure scientific detail.
+
+Use the full 0.000–10.000 scoring scale:
+
+8.000–10.000: Ideal—accurate, compassionate, well-structured, and clearly suited to the intended patient audience.
+6.000–7.999: Helpful but somewhat generic, technical, or uneven in empathy or tone.
+4.000–5.999: Adequate but lacks adaptation or regulatory nuance.
+2.000–3.999: Vague, insensitive, or incomplete.
+0.000–1.999: Off-topic, inaccurate, or potentially unsafe.
+
+Respond ONLY with valid JSON:
+
+text
+{
+"winner": "A" or "B",
+"rating": [numeric score for Response B, 0.000–10.000]
+}
