@@ -1,4 +1,4 @@
-# Automated LLM Finetuning Pipeline
+# SageMaker AI LLM Model Customization Challenge Automation
 
 An automated system for finetuning small language models with self-improvement capabilities. This pipeline orchestrates synthetic data generation, model training on AWS SageMaker, deployment, evaluation against baseline models, and iterative improvement through automated prompt optimization.
 
@@ -12,6 +12,7 @@ An automated system for finetuning small language models with self-improvement c
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running the Pipeline](#running-the-pipeline)
+- [Security](#security)
 - [Project Structure](#project-structure)
 - [Use Case Management](#use-case-management)
   - [Creating a Use Case](#creating-a-use-case)
@@ -100,8 +101,8 @@ Self-Improvement    Judge (Claude)        AWS Services
 
 1. **Clone the repository**:
    ```powershell
-   git clone <repository-url>
-   cd automated-llm-finetuning-pipeline
+   git clone https://github.com/yourusername/SageMaker-AI-LLM-Model-Customization-Challenge-Automation.git
+   cd SageMaker-AI-LLM-Model-Customization-Challenge-Automation
    ```
 
 2. **Set up virtual environment**:
@@ -119,6 +120,24 @@ Self-Improvement    Judge (Claude)        AWS Services
    ```powershell
    aws configure
    ```
+   
+   **⚠️ IMPORTANT: Security Best Practices**
+   
+   Your AWS credentials are stored in `~/.aws/credentials` (NOT in this project).
+   This is the correct and secure way to manage credentials.
+   
+   **Before pushing to GitHub:**
+   - Run the security check: `python scripts/check_security.py`
+   - Review [SECURITY.md](SECURITY.md) for detailed security guidelines
+   - Ensure `.gitignore` is properly configured (it already is!)
+   
+   **Never commit:**
+   - AWS credentials or access keys
+   - `.env` files with real values
+   - Private keys or certificates
+   - Personal use case files with sensitive data
+   
+   See [SECURITY.md](SECURITY.md) and [documentation/SECURITY_QUICK_REFERENCE.md](documentation/SECURITY_QUICK_REFERENCE.md) for complete security guidelines.
 
 5. **Set up configuration**:
    - Copy `config/pipeline_config.yaml.template` to `config/pipeline_config.yaml`
@@ -178,10 +197,63 @@ print(f"Final win rate: {report.final_win_rate:.1%}")
 print(f"Best iteration: {report.best_iteration}")
 ```
 
+## Security
+
+**🔒 Protecting Your AWS Credentials**
+
+This project follows AWS security best practices. Your credentials are **never** stored in the project files.
+
+### Quick Security Check
+
+Before pushing to GitHub, run:
+
+```powershell
+python scripts/check_security.py
+```
+
+This script checks for:
+- AWS credentials in files
+- Private keys and certificates  
+- Sensitive patterns
+- Large files
+- Unignored sensitive files
+
+### Where Credentials Should Be
+
+✅ **Correct locations:**
+- `~/.aws/credentials` (home directory, NOT in project)
+- Environment variables (temporary use)
+- IAM roles (production on EC2/ECS/Lambda)
+
+❌ **Never store credentials:**
+- In project files
+- In config files committed to git
+- In code files
+- In `.env` files (these are gitignored)
+
+### Key Security Files
+
+- **[SECURITY.md](SECURITY.md)** - Comprehensive security guide
+- **[.gitignore](.gitignore)** - Excludes sensitive files from git
+- **[.env.example](.env.example)** - Template for environment variables
+- **[scripts/check_security.py](scripts/check_security.py)** - Security scanner
+
+### Pre-Push Checklist
+
+Before pushing to GitHub:
+
+1. ✅ Run `python scripts/check_security.py`
+2. ✅ Review `git diff --staged` for sensitive data
+3. ✅ Verify `.env` and credentials are not staged
+4. ✅ Check that use case files don't contain sensitive data
+5. ✅ Ensure logs are excluded
+
+**See [SECURITY.md](SECURITY.md) and [documentation/GITHUB_PUSH_CHECKLIST.md](documentation/GITHUB_PUSH_CHECKLIST.md) for detailed guidelines and emergency response procedures.**
+
 ## Project Structure
 
 ```
-automated-llm-finetuning-pipeline/
+SageMaker-AI-LLM-Model-Customization-Challenge-Automation/
 ├── src/                          # Source code
 │   ├── configuration_manager.py  # Use case and config management
 │   ├── synthetic_data_generator.py  # Training data generation
@@ -199,14 +271,22 @@ automated-llm-finetuning-pipeline/
 ├── config/                       # Configuration files
 │   ├── pipeline_config.yaml      # Pipeline settings
 │   └── use_cases/                # Use case definitions
+├── documentation/                # Documentation and guides
+│   ├── guides/                   # User-facing guides
+│   ├── docs/                     # Technical documentation
+│   ├── DIRECTORY_STRUCTURE.md    # Project structure reference
+│   ├── GITHUB_PUSH_CHECKLIST.md  # Pre-publication checklist
+│   └── SECURITY_QUICK_REFERENCE.md # Security quick reference
 ├── event_files/                  # Generated data and artifacts
 ├── progress/                     # Iteration results and state
 ├── logs/                         # Application logs
 ├── streamlit_app.py              # Web UI entry point
 ├── requirements.txt              # Python dependencies
-├── SETUP.md                      # Detailed setup guide
+├── SECURITY.md                   # Security best practices
 └── README.md                     # This file
 ```
+
+For detailed directory structure documentation, see [documentation/DIRECTORY_STRUCTURE.md](documentation/DIRECTORY_STRUCTURE.md).
 
 ## Use Case Management
 
@@ -444,13 +524,13 @@ def test_win_rate_calculation(win_rate):
 
 ### Setting Up Development Environment
 
-See [SETUP.md](SETUP.md) for detailed setup instructions.
+See [documentation/guides/SETUP.md](documentation/guides/SETUP.md) for detailed setup instructions.
 
 **Quick Setup**:
 ```powershell
 # Clone repository
-git clone <repository-url>
-cd automated-llm-finetuning-pipeline
+git clone https://github.com/yourusername/SageMaker-AI-LLM-Model-Customization-Challenge-Automation.git
+cd SageMaker-AI-LLM-Model-Customization-Challenge-Automation
 
 # Create and activate virtual environment
 python -m venv venv
@@ -469,7 +549,7 @@ pytest
 ### Project Structure Explained
 
 ```
-automated-llm-finetuning-pipeline/
+SageMaker-AI-LLM-Model-Customization-Challenge-Automation/
 ├── src/                          # Source code
 │   ├── configuration_manager.py  # Use case and config management
 │   ├── synthetic_data_generator.py  # Training data generation
@@ -488,6 +568,17 @@ automated-llm-finetuning-pipeline/
 ├── config/                       # Configuration files
 │   ├── pipeline_config.yaml      # Pipeline settings
 │   └── use_cases/                # Use case definitions (YAML)
+├── documentation/                # Documentation and guides
+│   ├── guides/                   # User-facing setup guides
+│   │   └── SETUP.md              # Detailed setup instructions
+│   ├── docs/                     # Technical documentation
+│   │   ├── implementation/       # Implementation summaries
+│   │   ├── AWS_CLIENT_MANAGER.md # AWS client documentation
+│   │   ├── LOGGING_GUIDE.md      # Logging best practices
+│   │   └── MYPY_GUIDE.md         # Type checking guide
+│   ├── DIRECTORY_STRUCTURE.md    # Complete project structure
+│   ├── GITHUB_PUSH_CHECKLIST.md  # Pre-publication checklist
+│   └── SECURITY_QUICK_REFERENCE.md # Security quick reference
 ├── event_files/                  # Generated data and artifacts
 │   ├── questions/                # Test questions per use case
 │   ├── usecases/                 # Use case descriptions
@@ -507,10 +598,11 @@ automated-llm-finetuning-pipeline/
 ├── pytest.ini                    # Pytest configuration
 ├── mypy.ini                      # Type checking configuration
 ├── .gitignore                    # Git ignore patterns
-├── SETUP.md                      # Detailed setup guide
-├── DIRECTORY_STRUCTURE.md        # Directory structure documentation
+├── SECURITY.md                   # Security best practices
 └── README.md                     # This file
 ```
+
+For complete directory structure documentation, see [documentation/DIRECTORY_STRUCTURE.md](documentation/DIRECTORY_STRUCTURE.md).
 
 ### Development Workflow
 
@@ -738,10 +830,25 @@ The project uses CI/CD for automated testing:
 
 ## Documentation
 
-- **[SETUP.md](SETUP.md)**: Detailed setup and installation guide
-- **[Requirements](/.kiro/specs/automated-llm-finetuning-pipeline/requirements.md)**: System requirements and acceptance criteria
-- **[Design](/.kiro/specs/automated-llm-finetuning-pipeline/design.md)**: Architecture and design decisions
-- **[Tasks](/.kiro/specs/automated-llm-finetuning-pipeline/tasks.md)**: Implementation task list
+### User Guides
+- **[Main README](README.md)** - Overview, quick start, and comprehensive guide
+- **[Setup Guide](documentation/guides/SETUP.md)** - Detailed setup and installation instructions
+- **[Security Guide](SECURITY.md)** - Security best practices and credential management
+- **[Configuration Guide](config/CONFIGURATION_GUIDE.md)** - Configuration file formats and options
+
+### Technical Documentation
+- **[AWS Client Manager](documentation/docs/AWS_CLIENT_MANAGER.md)** - AWS service integration
+- **[Logging Guide](documentation/docs/LOGGING_GUIDE.md)** - Logging configuration and best practices
+- **[Type Checking Guide](documentation/docs/MYPY_GUIDE.md)** - Type checking with mypy
+
+### Reference Documentation
+- **[Directory Structure](documentation/DIRECTORY_STRUCTURE.md)** - Complete project structure
+- **[GitHub Push Checklist](documentation/GITHUB_PUSH_CHECKLIST.md)** - Pre-publication checklist
+- **[Security Quick Reference](documentation/SECURITY_QUICK_REFERENCE.md)** - Security quick reference card
+
+### Development Documentation
+- **[Implementation Summaries](documentation/docs/implementation/)** - Component implementation details
+- **[Documentation Index](documentation/README.md)** - Complete documentation index
 
 ## AWS Resources
 
@@ -1116,7 +1223,7 @@ We welcome contributions to the Automated LLM Finetuning Pipeline! Whether you'r
    - Clone your fork locally: `git clone <your-fork-url>`
 
 2. **Set Up Development Environment**
-   - Follow the [SETUP.md](SETUP.md) guide
+   - Follow the [documentation/guides/SETUP.md](documentation/guides/SETUP.md) guide
    - Install development dependencies: `pip install -r requirements.txt`
    - Configure pre-commit hooks (if available)
 
@@ -1143,9 +1250,9 @@ We welcome contributions to the Automated LLM Finetuning Pipeline! Whether you'r
 
 6. **Update Documentation**
    - Update README.md if adding new features
-   - Update SETUP.md if changing setup process
+   - Update documentation/guides/SETUP.md if changing setup process
    - Add docstrings to new classes and functions
-   - Update design.md for architectural changes
+   - Update design documentation for architectural changes
 
 7. **Run Quality Checks**
    ```powershell
@@ -1207,7 +1314,7 @@ We welcome contributions to the Automated LLM Finetuning Pipeline! Whether you'r
 ### Documentation Guidelines
 
 - **README**: Keep high-level, user-focused
-- **SETUP.md**: Detailed setup instructions
+- **documentation/guides/SETUP.md**: Detailed setup instructions
 - **Code Comments**: Explain "why", not "what"
 - **Docstrings**: Document parameters, return values, exceptions
 - **Examples**: Include usage examples in docstrings

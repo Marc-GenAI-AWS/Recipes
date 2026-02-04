@@ -162,65 +162,110 @@ class TestPageRendering:
                                     # Verify list_use_cases was called
                                     mock_cm.list_use_cases.assert_called_once()
     
-    def test_render_use_cases_shows_placeholder(self):
-        """Test that render_use_cases shows placeholder message."""
-        with patch('streamlit_app.st.title'):
-            with patch('streamlit_app.st.markdown'):
-                with patch('streamlit_app.st.info') as mock_info:
-                    streamlit_app.render_use_cases()
-                    
-                    # Verify placeholder message is shown
-                    mock_info.assert_called_once()
+    def test_render_use_cases_with_no_config_manager(self):
+        """Test that render_use_cases handles missing config manager."""
+        mock_session_state = {'config_manager': None}
+        
+        with patch('streamlit_app.st.session_state', mock_session_state):
+            with patch('streamlit_app.st.error') as mock_error:
+                with patch('streamlit_app.st.title'):
+                    with patch('streamlit_app.st.markdown'):
+                        streamlit_app.render_use_cases()
+                        
+                        # Verify error was displayed
+                        mock_error.assert_called_once()
     
-    def test_render_create_use_case_shows_placeholder(self):
-        """Test that render_create_use_case shows placeholder message."""
-        with patch('streamlit_app.st.title'):
-            with patch('streamlit_app.st.markdown'):
-                with patch('streamlit_app.st.info') as mock_info:
-                    streamlit_app.render_create_use_case()
-                    
-                    # Verify placeholder message is shown
-                    mock_info.assert_called_once()
+    def test_render_use_cases_displays_use_cases(self):
+        """Test that render_use_cases displays use cases."""
+        mock_cm = Mock()
+        mock_cm.list_use_cases.return_value = ['use_case_1', 'use_case_2']
+        mock_pt = Mock()
+        mock_pt.get_performance_history.return_value = []
+        
+        mock_session_state = {
+            'config_manager': mock_cm,
+            'progress_tracker': mock_pt
+        }
+        
+        with patch('streamlit_app.st.session_state', mock_session_state):
+            with patch('streamlit_app.st.title'):
+                with patch('streamlit_app.st.markdown'):
+                    with patch('streamlit_app.st.columns', return_value=[Mock(), Mock()]):
+                        with patch('streamlit_app.st.text_input', return_value=''):
+                            with patch('streamlit_app.st.checkbox', return_value=False):
+                                with patch('streamlit_app.st.write'):
+                                    streamlit_app.render_use_cases()
+                                    
+                                    # Verify list_use_cases was called
+                                    mock_cm.list_use_cases.assert_called_once()
     
-    def test_render_run_pipeline_shows_placeholder(self):
-        """Test that render_run_pipeline shows placeholder message."""
-        with patch('streamlit_app.st.title'):
-            with patch('streamlit_app.st.markdown'):
-                with patch('streamlit_app.st.info') as mock_info:
-                    streamlit_app.render_run_pipeline()
-                    
-                    # Verify placeholder message is shown
-                    mock_info.assert_called_once()
+    def test_render_create_use_case_shows_form(self):
+        """Test that render_create_use_case shows form."""
+        mock_cm = Mock()
+        mock_session_state = {
+            'config_manager': mock_cm
+        }
+        
+        with patch('streamlit_app.st.session_state', mock_session_state):
+            with patch('streamlit_app.st.title'):
+                with patch('streamlit_app.st.markdown'):
+                    with patch('streamlit_app.st.form', return_value=Mock(__enter__=Mock(), __exit__=Mock())):
+                        streamlit_app.render_create_use_case()
+                        
+                        # Verify form is created
+                        # No assertion needed - just verify no errors
     
-    def test_render_results_shows_placeholder(self):
-        """Test that render_results shows placeholder message."""
-        with patch('streamlit_app.st.title'):
-            with patch('streamlit_app.st.markdown'):
-                with patch('streamlit_app.st.info') as mock_info:
-                    streamlit_app.render_results()
-                    
-                    # Verify placeholder message is shown
-                    mock_info.assert_called_once()
+    def test_render_run_pipeline_with_no_config_manager(self):
+        """Test that render_run_pipeline handles missing config manager."""
+        mock_session_state = {'config_manager': None}
+        
+        with patch('streamlit_app.st.session_state', mock_session_state):
+            with patch('streamlit_app.st.error') as mock_error:
+                with patch('streamlit_app.st.title'):
+                    with patch('streamlit_app.st.markdown'):
+                        streamlit_app.render_run_pipeline()
+                        
+                        # Verify error was displayed
+                        mock_error.assert_called_once()
     
-    def test_render_training_data_shows_placeholder(self):
-        """Test that render_training_data shows placeholder message."""
-        with patch('streamlit_app.st.title'):
-            with patch('streamlit_app.st.markdown'):
-                with patch('streamlit_app.st.info') as mock_info:
-                    streamlit_app.render_training_data()
-                    
-                    # Verify placeholder message is shown
-                    mock_info.assert_called_once()
+    def test_render_results_with_no_components(self):
+        """Test that render_results handles missing components."""
+        mock_session_state = {'config_manager': None, 'progress_tracker': None}
+        
+        with patch('streamlit_app.st.session_state', mock_session_state):
+            with patch('streamlit_app.st.error') as mock_error:
+                with patch('streamlit_app.st.title'):
+                    with patch('streamlit_app.st.markdown'):
+                        streamlit_app.render_results()
+                        
+                        # Verify error was displayed
+                        mock_error.assert_called_once()
     
-    def test_render_performance_shows_placeholder(self):
-        """Test that render_performance shows placeholder message."""
-        with patch('streamlit_app.st.title'):
-            with patch('streamlit_app.st.markdown'):
-                with patch('streamlit_app.st.info') as mock_info:
-                    streamlit_app.render_performance()
-                    
-                    # Verify placeholder message is shown
-                    mock_info.assert_called_once()
+    def test_render_training_data_with_no_config_manager(self):
+        """Test that render_training_data handles missing config manager."""
+        mock_session_state = {'config_manager': None}
+        
+        with patch('streamlit_app.st.session_state', mock_session_state):
+            with patch('streamlit_app.st.error') as mock_error:
+                with patch('streamlit_app.st.title'):
+                    with patch('streamlit_app.st.markdown'):
+                        streamlit_app.render_training_data()
+                        
+                        # Verify error was displayed
+                        mock_error.assert_called_once()
+    
+    def test_render_performance_with_no_components(self):
+        """Test that render_performance handles missing components."""
+        mock_session_state = {'config_manager': None, 'progress_tracker': None}
+        
+        with patch('streamlit_app.st.session_state', mock_session_state):
+            with patch('streamlit_app.st.error') as mock_error:
+                with patch('streamlit_app.st.title'):
+                    with patch('streamlit_app.st.markdown'):
+                        streamlit_app.render_performance()
+                        
+                        # Verify error was displayed
+                        mock_error.assert_called_once()
 
 
 class TestMainFunction:

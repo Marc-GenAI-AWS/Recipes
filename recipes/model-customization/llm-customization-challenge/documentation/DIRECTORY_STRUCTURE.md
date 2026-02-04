@@ -1,18 +1,20 @@
-# Automated LLM Finetuning Pipeline - Directory Structure
+# SageMaker AI LLM Model Customization Challenge Automation - Directory Structure
 
-This document describes the complete directory structure for the automated LLM finetuning pipeline project.
+This document describes the complete directory structure for the SageMaker AI LLM Model Customization Challenge Automation project.
 
 ## Root Directory Structure
 
 ```
-project_root/
+SageMaker-AI-LLM-Model-Customization-Challenge-Automation/
 ├── src/                    # Source code for all pipeline components
 ├── tests/                  # All test files (unit, property-based, integration)
 ├── config/                 # Configuration files for pipeline and use cases
+├── documentation/          # Documentation, guides, and implementation summaries
 ├── event_files/            # Pipeline artifacts and intermediate results
 ├── progress/               # Pipeline execution state and performance history
 ├── logs/                   # Application logs
-└── .kiro/                  # Kiro specifications and documentation
+├── SECURITY.md             # Security best practices
+└── README.md               # Main project documentation
 ```
 
 ## Detailed Structure
@@ -72,6 +74,30 @@ config/
 **File Formats**:
 - `pipeline_config.yaml` - Main pipeline configuration
 - `use_cases/*.yaml` - Individual use case definitions
+
+### documentation/ - Documentation and Guides
+```
+documentation/
+├── README.md              # Documentation index and overview
+├── DIRECTORY_STRUCTURE.md # This file - complete project structure
+├── GITHUB_PUSH_CHECKLIST.md # Pre-publication checklist
+├── SECURITY_QUICK_REFERENCE.md # Security quick reference card
+├── guides/                # User-facing setup and configuration guides
+│   └── SETUP.md           # Detailed setup instructions
+└── docs/                  # Technical documentation
+    ├── AWS_CLIENT_MANAGER.md  # AWS client manager documentation
+    ├── LOGGING_GUIDE.md       # Logging framework guide
+    ├── MYPY_GUIDE.md          # Type checking guide
+    └── implementation/        # Implementation summaries and historical docs
+        ├── README.md          # Overview of implementation docs
+        └── *.md               # Component implementation summaries
+```
+
+**Purpose**: Stores all project documentation:
+- User guides and setup instructions
+- Technical reference materials
+- Implementation summaries from development
+- Security and best practices documentation
 
 ### event_files/ - Pipeline Artifacts
 ```
