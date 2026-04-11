@@ -1,0 +1,4 @@
+﻿S3_BUCKET_NAME=fsx-validation-scripts-20260410
+S3_BUCKET_REGION=us-west-2
+S3_SCRIPTS_PATH=s3://fsx-validation-scripts-20260410/scripts/
+CREATED_DATE=2026-04-10 19:43:49
