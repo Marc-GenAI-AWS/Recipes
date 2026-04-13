@@ -96,57 +96,68 @@ runs themselves.
 
 ## Key architectural decisions
 
-### Decision 1: FSx for Lustre, not FSx for NetApp ONTAP
+### Decision 1: FSx for Lustre for the training input layer
 
-**We tested both.** The customer's existing data may live on NetApp systems,
-which makes ONTAP an initial choice. It does not work for this use case.
+FSx for Lustre is used as the training input filesystem because it is the
+only FSx option designed for high-throughput ML/HPC workloads and one of
+only two filesystem types that SageMaker's `FileSystemConfig` natively
+supports:
 
-**SageMaker's `FileSystemConfig` only supports three filesystem types:**
+**SageMaker's `FileSystemDataSource.FileSystemType` accepts:**
 - `FSxLustre`
 - `EFS`
-- `FSxOpenZFS`
 
-**FSx NetApp ONTAP is not on the list.** There is no SageMaker-native way to
-mount it from a training container. The only workaround — having the
-container do its own NFS mount via `mount -t nfs` — fails because SageMaker
-training containers run without the `CAP_SYS_ADMIN` Linux capability required
-to invoke the `mount()` syscall. We verified this end-to-end: network
-connectivity was fine, security groups were correct, `mount.nfs4` was
-present in the container — the kernel returned `EPERM` on the syscall itself.
-This is a hard-coded restriction of the SageMaker training runtime that
-cannot be changed through any API.
+This is an AWS API constraint. Any filesystem not on this list cannot be
+mounted by a SageMaker training job — natively or via workaround. The
+common workaround of mounting from inside the container (`mount -t nfs`)
+fails because SageMaker training containers run without the `CAP_SYS_ADMIN`
+Linux capability; the kernel returns `EPERM` on the `mount()` syscall
+regardless of network configuration or security groups.
 
-**Conclusion:** for SageMaker native training, the filesystem must be one
-SageMaker supports. We chose FSx for Lustre because it is the only option
-designed for high-throughput ML workloads and because it supports **Data
-Repository Associations to S3** (see Decision 4).
+#### What if your data already lives on FSx NetApp ONTAP?
 
-#### Why ONTAP is still a sensible suggestion (just not for this layer)
+ONTAP is a strong choice for genomic data *management* — multi-protocol
+access (NFS, SMB, iSCSI), storage efficiency (dedup/compression on FASTA/BAM
+typically yields 2–4×), SnapMirror replication for DR, and straightforward
+lift-and-shift from on-premises NetApp systems. If your team is already
+using ONTAP or evaluating it for your data lake, there is no need to
+abandon it.
 
-If an AWS solutions architect or your storage team suggested FSx NetApp
-ONTAP, they were not wrong. ONTAP is an excellent choice for genomic data
-at the *storage and management layer*:
+The two systems serve different layers and work well together. ONTAP owns
+the data; Lustre is a disposable high-throughput scratch layer for training
+runs that can be torn down and rebuilt without touching the source of truth:
 
-- **Multi-protocol access** — NFS, SMB, and iSCSI from a single filesystem;
-  covers Windows analysis workstations, Linux HPC clusters, and database
-  workloads simultaneously.
-- **Storage efficiency** — transparent dedup and compression. Genomic
-  reference data (FASTA, BAM, VCF) compresses 2–4×, which matters at
-  hundreds of TBs.
-- **SnapMirror replication** — synchronous or async replication to a second
-  AZ or region for DR; important for data that took years to generate.
-- **NetApp ecosystem** — teams with existing on-premises NetApp infrastructure
-  can use SnapMirror to lift data into FSx ONTAP with no format changes.
-
-The gap is SageMaker-specific. The `CreateTrainingJob` API's
-`FileSystemDataSource` accepts `EFS` and `FSxLustre` only. ONTAP is not on
-the list. This is an AWS API constraint, not a networking or permissions
-issue — there is no flag or workaround that changes it.
-
-#### If you are an ONTAP shop: the hybrid architecture
-
-ONTAP and Lustre solve different problems and work well in the same stack.
-The recommended pattern:
+```
+┌─────────────────────────────────────────────────────────┐
+│                   Primary data lake                     │
+│          FSx NetApp ONTAP  (e.g. us-west-2a)            │
+│  • Genomic data (FASTA, BAM, VCF, annotations)         │
+│  • NFS/SMB access for analysis workstations             │
+│  • SnapMirror DR, dedup/compression, lifecycle mgmt     │
+└────────────────────────┬────────────────────────────────┘
+                         │  AWS DataSync or rsync
+                         │  (one-time or incremental
+                         │   before each training run)
+                         ▼
+                    ┌─────────┐
+                    │   S3    │  (intermediate, durable)
+                    └────┬────┘
+                         │  FSx Lustre Data Repository
+                         │  Association (lazy import)
+                         ▼
+┌─────────────────────────────────────────────────────────┐
+│               Training scratch filesystem               │
+│         FSx Lustre  SCRATCH_2  (us-west-2a)             │
+│  • Only the training split staged here                  │
+│  • High-throughput parallel reads for SageMaker         │
+└────────────────────────┬────────────────────────────────┘
+                         │  SageMaker FileSystemConfig
+                         │  (native, no mount needed)
+                         ▼
+┌─────────────────────────────────────────────────────────┐
+│          SageMaker Training Job  (us-west-2c)           │
+│          ml.p5.48xlarge  ·  Evo2 40B  ·  PP=8          │
+└─────────────────────────────────────────────────────────┘
 
 ```
 ┌─────────────────────────────────────────────────────────┐
