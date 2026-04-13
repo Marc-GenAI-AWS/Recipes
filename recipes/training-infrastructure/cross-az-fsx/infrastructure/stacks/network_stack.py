@@ -1,6 +1,9 @@
 """
-Network stack for cross-AZ FSx SageMaker validation
-Creates VPC with subnets in us-west-2a and us-west-2b
+Network stack for cross-AZ FSx + SageMaker validation.
+
+Creates a VPC with two public subnets — one per AZ — plus security groups
+and an S3 gateway endpoint.  The AZs are injected by the CDK app (via
+config.py) so the same stack works for any region/AZ combination.
 """
 from aws_cdk import (
     Stack,
@@ -12,25 +15,43 @@ from constructs import Construct
 
 class NetworkStack(Stack):
     """
-    Creates VPC infrastructure for cross-AZ validation:
-    - VPC with 10.0.0.0/16 CIDR
-    - Subnet in us-west-2a for FSx NetApp ONTAP
-    - Subnet in us-west-2b for P5 SageMaker Training Jobs
-    - Internet Gateway for external access
-    - Route tables for both subnets
+    Creates:
+    - VPC with subnets in fsx_az (holds the Lustre FS) and sagemaker_az
+      (hosts SageMaker training jobs).
+    - Security groups for SageMaker training jobs and EC2 data-prep instances.
+    - S3 gateway endpoint (required for VPC-mode SageMaker to reach S3).
+
+    Args:
+        fsx_az:       AZ for the FSx Lustre subnet (e.g. "us-west-2a")
+        sagemaker_az: AZ for the SageMaker training subnet (e.g. "us-west-2c")
+        vpc_cidr:     VPC CIDR block (default "10.0.0.0/16")
     """
 
-    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+    def __init__(
+        self,
+        scope: Construct,
+        construct_id: str,
+        fsx_az: str,
+        sagemaker_az: str,
+        vpc_cidr: str = "10.0.0.0/16",
+        **kwargs,
+    ) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        # Create VPC with explicit AZ configuration
+        self._fsx_az = fsx_az
+        self._sagemaker_az = sagemaker_az
+
+        # Include both AZs; CDK needs the full list up front.
+        # We deduplicate in case fsx_az == sagemaker_az (same-AZ mode).
+        azs = list(dict.fromkeys([fsx_az, sagemaker_az]))
+
         self.vpc = ec2.Vpc(
             self,
             "CrossAzVpc",
             vpc_name="cross-az-fsx-sagemaker-vpc",
-            ip_addresses=ec2.IpAddresses.cidr("10.0.0.0/16"),
-            availability_zones=["us-west-2a", "us-west-2b", "us-west-2c"],
-            nat_gateways=0,  # No NAT gateway needed for this validation
+            ip_addresses=ec2.IpAddresses.cidr(vpc_cidr),
+            availability_zones=azs,
+            nat_gateways=0,
             subnet_configuration=[
                 ec2.SubnetConfiguration(
                     name="Public",
@@ -41,138 +62,92 @@ class NetworkStack(Stack):
             ],
         )
 
-        # Get subnets by AZ
-        # CDK creates subnets in the order specified in availability_zones
-        # us-west-2a will be first, us-west-2b will be second
+        # Locate subnets by AZ. CDK creates one subnet per AZ in the order
+        # specified above, so we match by availability_zone rather than index.
         self.fsx_subnet = None
         self.sagemaker_subnet = None
-        
+
         for subnet in self.vpc.public_subnets:
-            az = subnet.availability_zone
-            if az == "us-west-2a":
+            if subnet.availability_zone == fsx_az:
                 self.fsx_subnet = subnet
-            elif az == "us-west-2b":
+            if subnet.availability_zone == sagemaker_az:
                 self.sagemaker_subnet = subnet
-        
-        # Fallback: if specific AZs not found, use first two subnets
-        if self.fsx_subnet is None and len(self.vpc.public_subnets) >= 1:
+
+        # Fallback: same-AZ mode — both point to the single subnet.
+        if self.fsx_subnet is None:
             self.fsx_subnet = self.vpc.public_subnets[0]
-        if self.sagemaker_subnet is None and len(self.vpc.public_subnets) >= 2:
-            self.sagemaker_subnet = self.vpc.public_subnets[1]
+        if self.sagemaker_subnet is None:
+            self.sagemaker_subnet = self.vpc.public_subnets[0]
 
-        # Create security group for FSx NetApp ONTAP
-        self.fsx_security_group = ec2.SecurityGroup(
-            self,
-            "FsxSecurityGroup",
-            vpc=self.vpc,
-            security_group_name="fsx-netapp-ontap-sg",
-            description="Security group for FSx NetApp ONTAP - allows NFS access from SageMaker",
-            allow_all_outbound=True,
-        )
-
-        # Create security group for SageMaker Training Jobs
+        # Security group for SageMaker Training Jobs.
+        # The Lustre stack adds ingress rules on ports 988 and 1018-1023
+        # from this SG to the Lustre SG.
         self.sagemaker_security_group = ec2.SecurityGroup(
             self,
             "SageMakerSecurityGroup",
             vpc=self.vpc,
             security_group_name="sagemaker-training-sg",
-            description="Security group for SageMaker Training Jobs - allows NFS access to FSx",
+            description=(
+                f"SageMaker training jobs in {sagemaker_az} — "
+                "allows Lustre client traffic to FSx"
+            ),
             allow_all_outbound=True,
         )
 
-        # Create security group for throwaway EC2 data prep instances
+        # Security group for throwaway EC2 data-prep instances.
+        # Used by scripts in data_preparation/ that mount Lustre and stage data.
         self.ec2_data_prep_security_group = ec2.SecurityGroup(
             self,
             "Ec2DataPrepSecurityGroup",
             vpc=self.vpc,
             security_group_name="ec2-data-prep-sg",
-            description="Security group for EC2 data preparation instances - outbound only, SSM access",
+            description="EC2 data-preparation instances — outbound only, SSM access",
             allow_all_outbound=True,
         )
 
-        # Allow NFS traffic (port 2049) from SageMaker to FSx
-        self.fsx_security_group.add_ingress_rule(
-            peer=self.sagemaker_security_group,
-            connection=ec2.Port.tcp(2049),
-            description="Allow NFS access from SageMaker Training Jobs",
-        )
-
-        # Allow NFS traffic (port 2049) from FSx to SageMaker (for bidirectional communication)
-        self.sagemaker_security_group.add_ingress_rule(
-            peer=self.fsx_security_group,
-            connection=ec2.Port.tcp(2049),
-            description="Allow NFS responses from FSx NetApp ONTAP",
-        )
-
-        # Allow NFS traffic (port 2049) from EC2 data prep instances to FSx
-        self.fsx_security_group.add_ingress_rule(
-            peer=self.ec2_data_prep_security_group,
-            connection=ec2.Port.tcp(2049),
-            description="Allow NFS access from EC2 data preparation instances",
-        )
-
-        # S3 Gateway endpoint — required so VPC-attached SageMaker training
-        # jobs can reach S3 (input channel, output, model artifacts) without
-        # relying on a public IP or NAT gateway.
+        # S3 Gateway endpoint — required for VPC-attached SageMaker training
+        # jobs to reach S3 (input channels, output, model artifacts) without
+        # a NAT gateway or public IP.
         self.s3_endpoint = self.vpc.add_gateway_endpoint(
             "S3GatewayEndpoint",
             service=ec2.GatewayVpcEndpointAwsService.S3,
         )
 
-        # Outputs
-        CfnOutput(
-            self,
-            "VpcId",
-            value=self.vpc.vpc_id,
-            description="VPC ID for cross-AZ validation",
-        )
+        # ── Outputs ────────────────────────────────────────────────────────────
 
-        CfnOutput(
-            self,
-            "FsxSubnetId",
-            value=self.fsx_subnet.subnet_id if self.fsx_subnet else "Not found",
-            description="Subnet ID in us-west-2a for FSx NetApp ONTAP",
-        )
+        CfnOutput(self, "VpcId",
+                  value=self.vpc.vpc_id,
+                  description="VPC ID")
 
-        CfnOutput(
-            self,
-            "SageMakerSubnetId",
-            value=self.sagemaker_subnet.subnet_id if self.sagemaker_subnet else "Not found",
-            description="Subnet ID in us-west-2b for SageMaker Training Jobs",
-        )
+        CfnOutput(self, "FsxAz",
+                  value=fsx_az,
+                  description="AZ where the FSx Lustre filesystem lives")
 
-        CfnOutput(
-            self,
-            "FsxSubnetCidr",
-            value=self.fsx_subnet.ipv4_cidr_block if self.fsx_subnet else "Not found",
-            description="CIDR block for FSx subnet",
-        )
+        CfnOutput(self, "SageMakerAz",
+                  value=sagemaker_az,
+                  description="AZ where SageMaker training jobs run")
 
-        CfnOutput(
-            self,
-            "SageMakerSubnetCidr",
-            value=self.sagemaker_subnet.ipv4_cidr_block if self.sagemaker_subnet else "Not found",
-            description="CIDR block for SageMaker subnet",
-        )
+        CfnOutput(self, "FsxSubnetId",
+                  value=self.fsx_subnet.subnet_id,
+                  description=f"Subnet ID in {fsx_az} (holds the Lustre filesystem)")
 
-        CfnOutput(
-            self,
-            "FsxSecurityGroupId",
-            value=self.fsx_security_group.security_group_id,
-            description="Security group ID for FSx NetApp ONTAP",
-        )
+        CfnOutput(self, "SageMakerSubnetId",
+                  value=self.sagemaker_subnet.subnet_id,
+                  description=f"Subnet ID in {sagemaker_az} (hosts SageMaker training jobs)")
 
-        CfnOutput(
-            self,
-            "SageMakerSecurityGroupId",
-            value=self.sagemaker_security_group.security_group_id,
-            description="Security group ID for SageMaker Training Jobs",
-        )
+        CfnOutput(self, "FsxSubnetCidr",
+                  value=self.fsx_subnet.ipv4_cidr_block,
+                  description=f"CIDR for the FSx subnet ({fsx_az})")
 
-        CfnOutput(
-            self,
-            "Ec2DataPrepSecurityGroupId",
-            value=self.ec2_data_prep_security_group.security_group_id,
-            description="Security group ID for EC2 data preparation instances",
-            export_name="Ec2DataPrepSecurityGroupId",
-        )
+        CfnOutput(self, "SageMakerSubnetCidr",
+                  value=self.sagemaker_subnet.ipv4_cidr_block,
+                  description=f"CIDR for the SageMaker subnet ({sagemaker_az})")
+
+        CfnOutput(self, "SageMakerSecurityGroupId",
+                  value=self.sagemaker_security_group.security_group_id,
+                  description="Security group ID for SageMaker Training Jobs")
+
+        CfnOutput(self, "Ec2DataPrepSecurityGroupId",
+                  value=self.ec2_data_prep_security_group.security_group_id,
+                  description="Security group ID for EC2 data-preparation instances",
+                  export_name="Ec2DataPrepSecurityGroupId")
