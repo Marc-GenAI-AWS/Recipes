@@ -570,10 +570,24 @@ diagnostic notes, see [LEARNINGS.md](LEARNINGS.md) "Scaling test results".
 - FSx Lustre versions are managed per-filesystem. The Lustre 2.10 default
   is incompatible with modern Lustre clients — this repo's CDK explicitly
   sets version 2.15 to avoid this.
-- SageMaker training containers run without `CAP_SYS_ADMIN`, which means
-  you cannot mount arbitrary filesystems from inside the container. Only
-  `FileSystemConfig`-supported filesystems (FSxLustre, EFS, FSxOpenZFS)
-  work. FSx NetApp ONTAP does **not** work.
+- **FSx NetApp ONTAP is a natural first choice for genomic data, but cannot
+  be mounted by SageMaker training jobs.** ONTAP is widely used in
+  bioinformatics for good reasons: multi-protocol access (NFS, SMB, iSCSI),
+  storage efficiency (dedup/compression), SnapMirror replication, and
+  existing integration with on-prem NetApp systems. If your team or a
+  solutions architect suggested it, that suggestion is not wrong — ONTAP is
+  an excellent data management layer. The constraint is SageMaker-specific:
+  `CreateTrainingJob`'s `FileSystemDataSource.FileSystemType` only accepts
+  `EFS` and `FSxLustre`. ONTAP is not on the list, and the workaround of
+  having the container do its own `mount -t nfs` fails because SageMaker
+  training containers run without `CAP_SYS_ADMIN` — the kernel returns
+  `EPERM` on the `mount()` syscall regardless of network or security group
+  configuration. **If you are an ONTAP shop:** the right pattern is to keep
+  ONTAP as your primary data lake and replicate training datasets to FSx
+  Lustre (via S3 + Data Repository Association) for the actual training runs.
+  The two systems solve different problems and work well together. See
+  [ARCHITECTURE.md](ARCHITECTURE.md) "Decision 1" for the full analysis and
+  hybrid architecture diagram.
 
 ## Contributing
 
