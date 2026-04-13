@@ -9,8 +9,12 @@
 #   LUSTRE_CHANNEL     - channel name SageMaker mounted Lustre under
 #                        (resolves to /opt/ml/input/data/$LUSTRE_CHANNEL)
 #   PHASE_SUBDIR       - subdir under the channel for phase data, e.g. phase_10gb
-#   CKPT_SUBDIR        - (optional) subdir under the channel for the checkpoint.
-#                        If unset or dir missing, train from scratch.
+#   CKPT_S3_URI        - (optional) S3 URI of an existing checkpoint to download
+#                        at job start (e.g. s3://bucket/models/evo2-40b/).
+#                        Takes precedence over CKPT_SUBDIR if both are set.
+#   CKPT_SUBDIR        - (optional) subdir under the Lustre channel root where
+#                        a checkpoint is already staged. Ignored if CKPT_S3_URI
+#                        is set. If unset or dir missing, train from scratch.
 #   PREPROC_PREFIX     - preprocess output prefix (e.g. hg38_uint8_distinct)
 #   MODEL_SIZE         - e.g. 1b_nv, 40b_nv
 #   MAX_STEPS          - e.g. 10
@@ -25,6 +29,7 @@ set -euxo pipefail
 echo "=== bionemo_entrypoint start $(date -u +%FT%TZ) ==="
 : "${LUSTRE_CHANNEL:=training}"
 : "${PHASE_SUBDIR:=phase_10gb}"
+: "${CKPT_S3_URI:=}"
 : "${CKPT_SUBDIR:=}"
 : "${PREPROC_PREFIX:=hg38_uint8_distinct}"
 : "${MODEL_SIZE:=1b_nv}"
@@ -54,19 +59,40 @@ echo "  PREPROC_DIR=${PREPROC_DIR}"
 echo "  MODEL_SIZE=${MODEL_SIZE}"
 echo "  DEVICES=${DEVICES}  TP=${TENSOR_PARALLEL}  PP=${PIPELINE_PARALLEL}"
 
-# Optional checkpoint dir
-if [ -n "$CKPT_SUBDIR" ]; then
+# Checkpoint resolution — three options in priority order:
+#
+#   1. CKPT_S3_URI (set via --ckpt-s3-uri)
+#      Checkpoint lives in S3 (e.g. your existing model store).
+#      Downloaded here at job start via aws s3 sync.  Takes precedence
+#      over CKPT_SUBDIR if both are set.
+#
+#   2. CKPT_SUBDIR (set via --ckpt-subdir)
+#      Checkpoint already staged on FSx Lustre by stage_checkpoint_on_lustre.py
+#      or manually copied.  Resolved relative to the Lustre channel root.
+#
+#   3. Neither set → train from random weight initialisation.
+
+CKPT_ARG=""
+if [ -n "${CKPT_S3_URI:-}" ]; then
+    CKPT_DIR=/tmp/evo2_checkpoint
+    mkdir -p "$CKPT_DIR"
+    echo "=== Downloading checkpoint from S3: $CKPT_S3_URI ==="
+    aws s3 sync "$CKPT_S3_URI" "$CKPT_DIR/" --no-progress
+    echo "=== Checkpoint download complete ==="
+    du -sh "$CKPT_DIR" || true
+    ls -lh "$CKPT_DIR" || true
+    CKPT_ARG="--ckpt-dir $CKPT_DIR"
+    echo "  CKPT_DIR=${CKPT_DIR} (downloaded from S3, will fine-tune)"
+elif [ -n "${CKPT_SUBDIR:-}" ]; then
     CKPT_DIR="${LUSTRE_ROOT}/${CKPT_SUBDIR}"
     if [ -d "$CKPT_DIR" ]; then
-        echo "  CKPT_DIR=${CKPT_DIR} (will fine-tune)"
+        echo "  CKPT_DIR=${CKPT_DIR} (on Lustre, will fine-tune)"
         CKPT_ARG="--ckpt-dir $CKPT_DIR"
     else
-        echo "  CKPT_SUBDIR was set to '$CKPT_SUBDIR' but dir missing; training from scratch"
-        CKPT_ARG=""
+        echo "  CKPT_SUBDIR='$CKPT_SUBDIR' set but directory not found on Lustre; training from scratch"
     fi
 else
-    echo "  No CKPT_SUBDIR set; training from scratch"
-    CKPT_ARG=""
+    echo "  No checkpoint specified (CKPT_S3_URI and CKPT_SUBDIR both empty); training from scratch"
 fi
 
 # ---- Sanity checks --------------------------------------------------------

@@ -54,6 +54,10 @@ def main() -> int:
                         help="Preprocessed .bin/.idx filename prefix (default: %(default)s)")
     parser.add_argument("--ckpt-subdir", default=tjc.CKPT_SUBDIR,
                         help="Lustre subdir with NeMo2 checkpoint; empty = train from scratch")
+    parser.add_argument("--ckpt-s3-uri", default=tjc.CKPT_S3_URI,
+                        help="S3 URI of an existing checkpoint (e.g. s3://bucket/path/). "
+                             "Downloaded into the container at job start via aws s3 sync. "
+                             "Takes precedence over --ckpt-subdir if both are set.")
     # ── Model ──
     parser.add_argument("--model-size", default=tjc.MODEL_SIZE,
                         help="Evo2 model variant (default: %(default)s)")
@@ -154,6 +158,7 @@ def main() -> int:
         "LUSTRE_CHANNEL": LUSTRE_CHANNEL_NAME,
         "PHASE_SUBDIR": args.phase_subdir,
         "CKPT_SUBDIR": args.ckpt_subdir,
+        "CKPT_S3_URI": args.ckpt_s3_uri,
         "PREPROC_PREFIX": args.preproc_prefix,
         "MODEL_SIZE": args.model_size,
         "MAX_STEPS": str(args.max_steps),

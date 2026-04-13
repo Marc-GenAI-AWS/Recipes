@@ -361,19 +361,42 @@ PREPROC_PREFIX: str = PHASES[ACTIVE_PHASE]["preproc_prefix"]  # .bin/.idx filena
 
 # ── Checkpoint (optional) ──────────────────────────────────────────────────────
 #
-# To fine-tune from a pretrained Evo2 checkpoint instead of training from
-# scratch, set this to the subdirectory name under /checkpoints/ on Lustre.
+# You have three options.  Set exactly one; leave the others empty.
 #
-# Leave it empty ("") to train from random weight initialisation.
+# OPTION A — checkpoint already on FSx Lustre (staged by this repo or manually)
+# ─────────────────────────────────────────────────────────────────────────────
+# Set CKPT_SUBDIR to the directory name under the Lustre mount root.
+# Example: if your checkpoint is at <lustre_root>/checkpoints/evo2_40b/
+#   CKPT_SUBDIR = "checkpoints/evo2_40b"
 #
-# Checkpoints are staged by:
+# Stage a fresh checkpoint from NGC using:
 #   python data_preparation/stage_checkpoint_on_lustre.py --resource evo2/1b-8k-bf16:1.0
 #
-# Available checkpoint resources (pass to --resource):
-#   evo2/1b-8k-bf16:1.0    → set CKPT_SUBDIR = "evo2_1b_8k_bf16"
-#   evo2/7b-1m:1.0         → set CKPT_SUBDIR = "evo2_7b_1m"
-#   evo2/40b-1m-fp8-bf16:1.0 → set CKPT_SUBDIR = "evo2_40b_1m_fp8_bf16"
+# Available NGC checkpoint resources (pass to --resource):
+#   evo2/1b-8k-bf16:1.0       → CKPT_SUBDIR = "checkpoints/evo2_1b_8k_bf16"
+#   evo2/7b-1m:1.0            → CKPT_SUBDIR = "checkpoints/evo2_7b_1m"
+#   evo2/40b-1m-fp8-bf16:1.0  → CKPT_SUBDIR = "checkpoints/evo2_40b_1m_fp8_bf16"
 CKPT_SUBDIR: str = ""
+
+# OPTION B — checkpoint already in S3 (your existing model store)
+# ─────────────────────────────────────────────────────────────────────────────
+# Set CKPT_S3_URI to the S3 prefix where your checkpoint files live.
+# The training container will download the checkpoint at job start using
+# `aws s3 sync` before training begins.  No manual staging required.
+# Example:
+#   CKPT_S3_URI = "s3://your-bucket/models/evo2-40b-finetuned/"
+#
+# The SageMaker execution role must have s3:GetObject on that prefix.
+# Download adds a one-time delay at job start (~5-30 min depending on
+# checkpoint size and instance network bandwidth) but does not affect
+# per-step training time after that.
+CKPT_S3_URI: str = ""
+
+# OPTION C — train from scratch (no checkpoint)
+# ─────────────────────────────────────────────────────────────────────────────
+# Leave both CKPT_SUBDIR and CKPT_S3_URI empty.  Weights are randomly
+# initialised.  For a cross-AZ validation run this is fine — step time
+# is identical with or without a pretrained checkpoint.
 
 # ── Training hyperparameters ───────────────────────────────────────────────────
 
@@ -476,7 +499,8 @@ def summary() -> str:
         f"  active_phase:          {ACTIVE_PHASE} ({PHASES[ACTIVE_PHASE]['description']})\n"
         f"  phase_subdir:          {PHASE_SUBDIR}\n"
         f"  preproc_prefix:        {PREPROC_PREFIX}\n"
-        f"  ckpt_subdir:           {CKPT_SUBDIR or '(none — train from scratch)'}\n"
+        f"  ckpt_subdir:           {CKPT_SUBDIR or '(none)'}\n"
+        f"  ckpt_s3_uri:           {CKPT_S3_URI or '(none)'}\n"
         f"  instance_type:         {INSTANCE_TYPE}\n"
         f"  devices:               {DEVICES}\n"
         f"  instance_volume_gb:    {INSTANCE_VOLUME_GB}\n"

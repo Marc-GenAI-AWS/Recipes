@@ -161,6 +161,21 @@ iteration, and the validated results above show it has no measurable impact
 on throughput. Steps 1–3 are one-time data staging; step 5 is a one-time
 container pull at job startup.
 
+## Already have the container or model weights?
+
+If you or your team already have the BioNeMo container mirrored to ECR or
+Evo2 model weights stored somewhere, several setup steps are not relevant.
+Use this table to skip what you don't need.
+
+| Asset you already have | What to set | Steps you can skip |
+|---|---|---|
+| BioNeMo container in your ECR | Set `BIONEMO_IMAGE=<your-ecr-uri>` in `.env` | [NGC API key](#step-1-nvidia-ngc-api-key), [Mirror container](#step-4-mirror-the-bionemo-container-to-your-ecr) |
+| Evo2 weights on FSx Lustre | Set `CKPT_SUBDIR=<path>` in `training_job_config.py` | [Stage checkpoint](#4-optional-stage-a-pretrained-evo2-checkpoint) |
+| Evo2 weights in S3 | Pass `--ckpt-s3-uri s3://your-bucket/path/` to the launch script — downloaded automatically at job start | [Stage checkpoint](#4-optional-stage-a-pretrained-evo2-checkpoint) |
+| Training data already on FSx Lustre | Set `ACTIVE_PHASE` in `training_job_config.py` to match the existing directory | [Stage training data](#3-stage-training-data) |
+
+If none of the above apply, follow the full walkthrough below from the top.
+
 ## Prerequisites
 
 ### Accounts and quotas
@@ -196,7 +211,7 @@ This project needs **two sets of credentials** — AWS (always) and NVIDIA NGC
 (for one-time container mirroring). This section walks you through both from
 scratch. You can skip any step you've already completed.
 
-### Step 1: NVIDIA NGC API key
+### Step 1: NVIDIA NGC API key *(skip if you already have the BioNeMo container in ECR and don't need to pull Evo2 checkpoints from NGC)*
 
 Your NGC API key gives you access to **two different NVIDIA assets**, both
 of which you'll need to complete the walkthrough:
@@ -328,7 +343,7 @@ echo "Account: $AWS_ACCOUNT_ID"
 echo "Image:   $BIONEMO_IMAGE"
 ```
 
-### Step 4: Mirror the BioNeMo container to your ECR
+### Step 4: Mirror the BioNeMo container to your ECR *(skip if you already have the container in ECR — just set `BIONEMO_IMAGE` to your existing URI)*
 
 NVIDIA's BioNeMo image lives on `nvcr.io` which is a private registry. SageMaker
 training jobs cannot pull directly from `nvcr.io` — you must **mirror** the
