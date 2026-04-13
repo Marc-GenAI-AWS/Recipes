@@ -97,7 +97,7 @@ def test_fsx_volume_created():
     template.has_resource_properties(
         "AWS::FSx::Volume",
         {
-            "Name": "genomics-training-data",
+            "Name": "genomics_training_data",
             "VolumeType": "ONTAP",
         }
     )

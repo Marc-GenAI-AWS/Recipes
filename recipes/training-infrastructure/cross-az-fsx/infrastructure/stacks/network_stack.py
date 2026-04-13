@@ -29,7 +29,7 @@ class NetworkStack(Stack):
             "CrossAzVpc",
             vpc_name="cross-az-fsx-sagemaker-vpc",
             ip_addresses=ec2.IpAddresses.cidr("10.0.0.0/16"),
-            availability_zones=["us-west-2a", "us-west-2b"],
+            availability_zones=["us-west-2a", "us-west-2b", "us-west-2c"],
             nat_gateways=0,  # No NAT gateway needed for this validation
             subnet_configuration=[
                 ec2.SubnetConfiguration(
@@ -80,6 +80,16 @@ class NetworkStack(Stack):
             allow_all_outbound=True,
         )
 
+        # Create security group for throwaway EC2 data prep instances
+        self.ec2_data_prep_security_group = ec2.SecurityGroup(
+            self,
+            "Ec2DataPrepSecurityGroup",
+            vpc=self.vpc,
+            security_group_name="ec2-data-prep-sg",
+            description="Security group for EC2 data preparation instances - outbound only, SSM access",
+            allow_all_outbound=True,
+        )
+
         # Allow NFS traffic (port 2049) from SageMaker to FSx
         self.fsx_security_group.add_ingress_rule(
             peer=self.sagemaker_security_group,
@@ -92,6 +102,21 @@ class NetworkStack(Stack):
             peer=self.fsx_security_group,
             connection=ec2.Port.tcp(2049),
             description="Allow NFS responses from FSx NetApp ONTAP",
+        )
+
+        # Allow NFS traffic (port 2049) from EC2 data prep instances to FSx
+        self.fsx_security_group.add_ingress_rule(
+            peer=self.ec2_data_prep_security_group,
+            connection=ec2.Port.tcp(2049),
+            description="Allow NFS access from EC2 data preparation instances",
+        )
+
+        # S3 Gateway endpoint — required so VPC-attached SageMaker training
+        # jobs can reach S3 (input channel, output, model artifacts) without
+        # relying on a public IP or NAT gateway.
+        self.s3_endpoint = self.vpc.add_gateway_endpoint(
+            "S3GatewayEndpoint",
+            service=ec2.GatewayVpcEndpointAwsService.S3,
         )
 
         # Outputs
@@ -142,4 +167,12 @@ class NetworkStack(Stack):
             "SageMakerSecurityGroupId",
             value=self.sagemaker_security_group.security_group_id,
             description="Security group ID for SageMaker Training Jobs",
+        )
+
+        CfnOutput(
+            self,
+            "Ec2DataPrepSecurityGroupId",
+            value=self.ec2_data_prep_security_group.security_group_id,
+            description="Security group ID for EC2 data preparation instances",
+            export_name="Ec2DataPrepSecurityGroupId",
         )

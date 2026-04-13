@@ -6,6 +6,7 @@ import aws_cdk as cdk
 from stacks.network_stack import NetworkStack
 from stacks.iam_stack import IamStack
 from stacks.fsx_stack import FsxStack
+from stacks.lustre_stack import LustreStack
 
 app = cdk.App()
 
@@ -36,5 +37,18 @@ fsx_stack = FsxStack(
     description="FSx NetApp ONTAP file system in us-west-2a for genomics training data"
 )
 fsx_stack.add_dependency(network_stack)
+
+# FSx for Lustre stack — alternative to NetApp ONTAP for SageMaker native support
+lustre_stack = LustreStack(
+    app,
+    "CrossAzFsxSageMakerLustre",
+    vpc=network_stack.vpc,
+    fsx_subnet=network_stack.fsx_subnet,
+    sagemaker_security_group=network_stack.sagemaker_security_group,
+    ec2_data_prep_security_group=network_stack.ec2_data_prep_security_group,
+    env=cdk.Environment(region="us-west-2"),
+    description="FSx for Lustre (SCRATCH_2) in us-west-2a for SageMaker cross-AZ validation",
+)
+lustre_stack.add_dependency(network_stack)
 
 app.synth()
