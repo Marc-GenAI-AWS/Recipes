@@ -124,6 +124,43 @@ Everything is declarative. A new deployment takes ~15 minutes from `git clone`
 to a running SageMaker training job, plus the time it takes to stage data and
 pull the container image.
 
+## Pipeline overview
+
+```mermaid
+flowchart TD
+    UCSC["UCSC hg38\npublic genomic reference"]
+    NGC["NVIDIA NGC\nBioNeMo container + Evo2 weights"]
+
+    subgraph AWS["AWS · us-west-2"]
+        ECR["ECR\nBioNeMo image mirror"]
+        S3["S3\nartifacts · entrypoint script"]
+
+        subgraph VPC["VPC"]
+            subgraph AZA["us-west-2a  —  FSx AZ"]
+                EC2["EC2 data prep instance\ng5.4xlarge  ·  throwaway"]
+                FSX[("FSx Lustre\nSCRATCH_2  ·  1.2 TiB+\n.bin / .idx training files")]
+            end
+
+            subgraph AZC["us-west-2c  —  Training AZ"]
+                SM["SageMaker Training Job\nml.g5 / p4d / p4de / p5\nEvo2 1B · 7B · 40B"]
+            end
+        end
+    end
+
+    UCSC -- "1  download hg38" --> EC2
+    NGC -- "2  mirror container" --> ECR
+    EC2 -- "3  preprocess_evo2\n      write .bin/.idx" --> FSX
+    FSX -- "4  cross-AZ reads\n      FileSystemConfig" --> SM
+    ECR -- "5  container pull" --> SM
+    SM -- "6  model artifacts" --> S3
+```
+
+The cross-AZ boundary between the FSx AZ and the Training AZ is the core of
+what this repo validates: step 4 traverses that boundary on every training
+iteration, and the validated results above show it has no measurable impact
+on throughput. Steps 1–3 are one-time data staging; step 5 is a one-time
+container pull at job startup.
+
 ## Prerequisites
 
 ### Accounts and quotas
