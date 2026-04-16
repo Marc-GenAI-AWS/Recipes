@@ -1,0 +1,31 @@
+# Slurm per-job logs produced by sbatch output/error directives
+smus-train-*.out
+smus-train-*.err
+*.out
+*.err
+
+# Local MLflow store (when MLFLOW_TRACKING_URI is unset)
+mlruns/
+mlflow.db
+*.db
+
+# Cloudflared quick-tunnel log
+on-prem/tunnel/cloudflared.log
+
+# Training artifacts that can appear if scripts are run from the repo root
+data/
+models/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+.pytest_cache/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store

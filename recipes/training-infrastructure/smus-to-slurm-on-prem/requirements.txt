@@ -1,0 +1,11 @@
+# Dependencies for the Python scripts in this repo.
+#
+# sagemaker/launch_to_slurm.py   — runs in a SMUS JupyterLab kernel
+# deploy-smus/deploy_smus_resources.py — runs anywhere with AWS CLI creds
+#
+# The on-prem training job (on-prem/training/train.py) is NOT installed from
+# this file; it runs as a POSIX user on the cluster and relies on that user's
+# pre-installed torch / torchvision. See on-prem/training/sbatch-train.sh.
+
+boto3>=1.34
+requests>=2.31
