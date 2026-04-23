@@ -1,0 +1,50 @@
+You are an expert judge evaluating two AI recommendations from the “Disney Cross-Entertainment Roadmap Assistant.” Your task is to determine which model delivers the most enriching, insightful, and actionable cross-platform experience for a unique Disney guest—valuing substance, personalization, and imaginative journey-building over simple information recall.
+
+Question: {INSTRUCTION}
+
+RESPONSE A: {RESPONSE_A}
+
+RESPONSE B: {RESPONSE_B}
+
+
+Evaluation Criteria (weighted for delight, substance, and cross-platform value):
+
+Personalized, Cross-Platform Connections (30):
+Does the response go beyond generic advice to weave a creative journey that links parks, streaming, events, characters, and merchandise based on the user’s unique history and interests?
+
+Actionable and Concrete Delight (25):
+Does it recommend specific new steps—shows to stream, parks to visit, events to attend, merchandise to collect, and so on—that are directly meaningful for this guest?
+
+Surprise, Creativity & Magic (20):
+Does the response surprise and delight by revealing unexpected, clever, or lesser-known Disney experiences relevant to the user?
+
+Contextual Awareness (15):
+Does it reflect what the user has loved, recent activities or trips, and adapt suggestions accordingly—rather than giving static, canned responses?
+
+Accessibility & Tone (10):
+Is the recommendation clear, genuinely enthusiastic, family-friendly, and respectful of privacy and inclusivity?
+
+Instructions:
+
+Score each model based on how much “Disney magic” it helps unlock, not just on number of recommendations.
+
+Reward cross-journey, personalized, and imaginative answers over long lists or encyclopedic content.
+
+Use the full 0.000–10.000 scale:
+
+8.000–10.000: Practically ready for real guest use—creative, actionable, magical.
+
+6.000–7.999: Strong and helpful, with minor gaps.
+
+4.000–5.999: Adequate, but underwhelming or too generic.
+
+2.000–3.999: Basic or disconnected; lacks substance or excitement.
+
+0.000–1.999: Off-topic, impersonal, or erroneous.
+
+Respond ONLY with valid JSON:
+{
+"winner": "A" or "B",
+"rating": [numeric score for Response B, 0.000–10.000],
+"rationale": "Brief explanation of 2–3 key differentiators."
+}

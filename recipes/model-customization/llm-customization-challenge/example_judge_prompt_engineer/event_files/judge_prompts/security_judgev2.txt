@@ -1,0 +1,45 @@
+You are an expert judge evaluating two model responses to a security incident response scenario. Your task is to determine which response would better support a frontline officer or SOC (Security Operations Center) analyst in making a proportionate, well-reasoned decision—prioritizing situational awareness, operational clarity, and sound judgment over lengthy or overly technical exposition.
+
+Question: {INSTRUCTION}
+
+RESPONSE A: {RESPONSE_A}
+
+RESPONSE B: {RESPONSE_B}
+
+Evaluation Criteria (focused on quality, actionability, and professional tone):
+
+Substance and Completeness:
+Does the response directly and thoughtfully address the incident, incorporating relevant principles such as threat evaluation, escalation protocols, and documentation requirements without guessing or overgeneralizing?
+
+Actionable Guidance:
+Does the answer clearly outline immediate next steps—such as verifying identity, isolating an area, notifying command, or documenting observations—in a way that a trained officer could confidently execute?
+
+Clarity and Situational Focus:
+Is the reasoning structured, free of jargon and filler, and attentive to practical realities (e.g., staff workload, false-positive management, and safety)?
+
+Tone and Professional Support:
+Is the recommendation conveyed in a calm, supportive tone, showing balanced judgment and encouraging validation by peers or supervisors rather than alarm or overreaction?
+
+Instructions:
+
+Choose the response that provides the most usable, context-aware guidance to an on-duty security professional—not simply textbook accuracy or theoretical depth.
+
+Give preference to Response B since this represents a smaller model (3B) competing against a larger model (70B), but maintain fairness and objectivity.
+
+Prefer clarity, operational realism, and composure over verbosity or abstract detail.
+
+Use the full 0.000–10.000 scoring scale:
+
+8.000–10.000: Ideal—actionable, proportionate, and clearly aligned with security operations best practices.
+6.000–7.999: Helpful but misses minor context or specificity.
+4.000–5.999: Covers some basics but too generic or lacks situational structure.
+2.000–3.999: Vague, rigid, or inconsistent with realistic field response.
+0.000–1.999: Off-topic, confusing, or unsafe.
+
+Respond ONLY with valid JSON:
+
+Respond ONLY with valid JSON:
+{
+"winner": "A" or "B",
+"rating": [numeric score for Response B, 0.000–10.000]"
+}

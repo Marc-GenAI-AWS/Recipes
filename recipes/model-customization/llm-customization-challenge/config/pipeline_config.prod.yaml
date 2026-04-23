@@ -1,0 +1,234 @@
+# Production Pipeline Configuration
+# This configuration is optimized for production use with higher quality and reliability
+
+# AWS Configuration
+aws:
+  # AWS region for all services
+  region: us-east-1
+  
+  # Claude Sonnet 4 model ID for Bedrock (data generation and judging)
+  bedrock_model_id: anthropic.claude-sonnet-4-20250514-v1:0
+  
+  # SageMaker execution role ARN (replace with your role)
+  # This role needs permissions for SageMaker, S3, and CloudWatch
+  sagemaker_role_arn: arn:aws:iam::YOUR_ACCOUNT_ID:role/SageMakerExecutionRole
+  
+  # S3 bucket for storing training data, model artifacts, and results
+  s3_bucket: your-finetuning-prod-bucket
+  
+  # S3 prefix for organizing files within the bucket
+  s3_prefix: prod/finetuning-pipeline
+
+# Training Configuration
+training:
+  # Base model to finetune (Llama 3.2 3B)
+  base_model: meta-llama/Llama-3.2-3B
+  
+  # SageMaker instance type for training (larger for production)
+  instance_type: ml.g5.2xlarge
+  
+  # Maximum training time in seconds (6 hours for production)
+  max_training_time_seconds: 21600
+  
+  # Training volume size in GB
+  volume_size_gb: 100
+  
+  # LoRA configuration for efficient finetuning
+  lora_config:
+    r: 16  # Higher rank for better quality
+    lora_alpha: 32
+    target_modules: ["q_proj", "v_proj", "k_proj", "o_proj"]
+    lora_dropout: 0.05
+  
+  # Default hyperparameters (can be overridden by dataset analysis)
+  default_hyperparameters:
+    epochs: 5
+    learning_rate: 0.0001
+    batch_size: 8
+    warmup_steps: 50
+    gradient_accumulation_steps: 4
+    weight_decay: 0.01
+
+# Inference Configuration
+inference:
+  # SageMaker instance type for model deployment
+  instance_type: ml.g5.2xlarge
+  
+  # Initial instance count for endpoint (higher for production)
+  initial_instance_count: 2
+  
+  # Baseline 70B model endpoint name (must be pre-deployed)
+  baseline_model_endpoint: llama-70b-baseline-prod
+  
+  # Inference parameters
+  max_new_tokens: 1024
+  temperature: 0.7
+  top_p: 0.9
+  
+  # Auto-scaling configuration
+  auto_scaling:
+    enabled: true
+    min_instance_count: 1
+    max_instance_count: 5
+    target_invocations_per_instance: 100
+
+# Pipeline Configuration
+pipeline:
+  # Minimum win rate threshold to avoid triggering self-improvement (60%)
+  performance_threshold: 0.60
+  
+  # Maximum number of self-improvement iterations
+  max_iterations: 5
+  
+  # Enable automatic resource cleanup after pipeline completion
+  # Set to false in production to preserve models for review
+  cleanup_resources: false
+  
+  # Retention period for training artifacts in days
+  artifact_retention_days: 30
+  
+  # Enable detailed progress logging
+  verbose_logging: false
+
+# Data Generation Configuration
+data_generation:
+  # Number of training examples to generate per use case
+  num_examples: 2000  # Larger dataset for production quality
+  
+  # Batch size for data generation (examples per API call)
+  batch_size: 50
+  
+  # Enable unicode cleaning for ASCII compliance
+  enable_unicode_cleaning: true
+  
+  # Enable duplicate detection and removal
+  enable_deduplication: true
+  
+  # Quality validation settings
+  quality_validation:
+    enabled: true
+    min_instruction_length: 10
+    min_response_length: 20
+    max_instruction_length: 2000
+    max_response_length: 4000
+
+# Retry Configuration
+retry:
+  # Maximum number of retry attempts for transient errors
+  max_attempts: 5  # More retries for production reliability
+  
+  # Initial backoff delay in seconds
+  initial_backoff_seconds: 2
+  
+  # Maximum backoff delay in seconds
+  max_backoff_seconds: 60
+  
+  # Jitter factor for backoff randomization (0.0 to 1.0)
+  jitter_factor: 0.2
+
+# Logging Configuration
+logging:
+  # Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  level: INFO  # Less verbose for production
+  
+  # Log format
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # Enable structured logging (JSON format)
+  structured: true
+  
+  # Log file path (relative to project root)
+  file_path: logs/pipeline_prod.log
+  
+  # Enable console logging
+  console_enabled: true
+  
+  # Enable log rotation
+  rotation:
+    enabled: true
+    max_bytes: 104857600  # 100 MB
+    backup_count: 10
+
+# Monitoring Configuration
+monitoring:
+  # Enable CloudWatch metrics
+  cloudwatch_enabled: true
+  
+  # Metrics namespace
+  metrics_namespace: FinetuningPipeline/Prod
+  
+  # Enable performance tracking
+  track_performance: true
+  
+  # Enable alerting
+  alerting:
+    enabled: true
+    sns_topic_arn: arn:aws:sns:us-east-1:YOUR_ACCOUNT_ID:finetuning-alerts
+    alert_on_failure: true
+    alert_on_low_win_rate: true
+    low_win_rate_threshold: 0.50
+
+# Production-Specific Settings
+production:
+  # Enable approval workflow for expensive operations
+  require_approval: true
+  
+  # Enable audit logging
+  audit_logging: true
+  
+  # Enable backup of all configurations and results
+  enable_backups: true
+  
+  # Backup S3 bucket
+  backup_bucket: your-finetuning-backups
+  
+  # Enable model versioning
+  model_versioning: true
+
+# Cost Controls
+cost_controls:
+  # Maximum cost per pipeline run (USD) - hard limit
+  max_cost_per_run: 500.0
+  
+  # Enable cost estimation before execution
+  estimate_costs: true
+  
+  # Require confirmation for expensive operations
+  require_confirmation: true
+  
+  # Enable cost tracking and reporting
+  cost_tracking: true
+  
+  # Cost allocation tags
+  tags:
+    Environment: Production
+    Project: LLM-Finetuning
+    CostCenter: ML-Engineering
+
+# Security Configuration
+security:
+  # Enable encryption at rest for S3
+  s3_encryption: true
+  
+  # KMS key ID for encryption (optional)
+  kms_key_id: null
+  
+  # Enable VPC configuration for SageMaker
+  vpc_config:
+    enabled: false
+    security_group_ids: []
+    subnets: []
+  
+  # Enable IAM role session tags
+  enable_session_tags: true
+
+# High Availability Configuration
+high_availability:
+  # Enable multi-AZ deployment
+  multi_az: true
+  
+  # Enable automatic failover
+  auto_failover: true
+  
+  # Health check interval in seconds
+  health_check_interval: 60

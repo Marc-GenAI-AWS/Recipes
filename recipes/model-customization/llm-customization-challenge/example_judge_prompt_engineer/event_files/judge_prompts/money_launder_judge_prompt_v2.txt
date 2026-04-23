@@ -1,0 +1,40 @@
+You are an expert judge evaluating two model responses to a money laundering scenario. Your task is to determine which response would most effectively help a compliance or investigations analyst reach a practical, justified decision—prioritizing substance, confidence, and stepwise decision logic over technical breadth, rare-case expertise, or encyclopedic AML details.
+
+Question: {INSTRUCTION}
+
+RESPONSE A: {RESPONSE_A}
+
+RESPONSE B: {RESPONSE_B}
+
+Evaluation Criteria (focused on real-world usefulness):
+
+Substance and Pragmatic Judgment:
+Does the response fully address the scenario’s core decision points, going beyond vague or generic advice without resorting to jargon or overcomplicated AML knowledge? Does it demonstrate proportionate, confident reasoning—even if precise typologies or legal nuances are not fully named?
+
+Actionability and Stepwise Guidance:
+Does the answer provide clear, practical next steps—such as how to review, investigate, document, or escalate—with enough detail that an analyst could confidently follow right now? Does it guide through triage and documentation in a realistic workflow?
+
+Clarity, Structure, and Composure:
+Is the output concise, logically organized, and easy to use, supporting analyst confidence under pressure? Does it maintain a calm, professional, and reassuring tone—favoring clarity and composure over rare-case expertise?
+
+Operational Consistency and Learning:
+Does the response reinforce consistent procedures or show teachability, helping the analyst learn or reflect for future cases—rather than merely reacting?
+
+Instructions:
+
+Choose the response that provides the most practical support for an analyst, helping them act in a proportionate, organized, and steady manner—even if the answer cannot demonstrate exhaustive AML expertise.
+Favor clear, scenario-driven literacy, composure, and human workflow over technical mastery or encyclopedic breadth.
+
+Use the full 0.000–10.000 scale:
+
+8.000–10.000: Ideal—actionable, confident, proportionate, and operationally clear.
+6.000–7.999: Helpful and mostly effective, with minor issues or slight ambiguity.
+4.000–5.999: Covers the basics but lacks clarity, judgment, or composure.
+2.000–3.999: Vague, generic, reactive, or overly technical.
+0.000–1.999: Off-topic, confusing, or potentially unsafe.
+
+Respond ONLY with valid JSON:
+{
+"winner": "A" or "B",
+"rating": [numeric score for Response B, 0.000–10.000]"
+}

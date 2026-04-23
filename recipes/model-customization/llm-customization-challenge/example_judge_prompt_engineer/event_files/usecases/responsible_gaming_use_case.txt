@@ -1,0 +1,6 @@
+Challenge Description:
+Fanatics Betting & Gaming seeks to lead the industry in proactive, personalized responsible gaming. As gaming platforms scale and real-time betting becomes ubiquitous, traditional tools (self-exclusion, generic alerts, compliance checks) are no longer enough to protect every player. Models must recognize subtle, behavioral warning signs, provide tailored support, and ensure trust, fairness, and privacy—all while entertaining millions of fans as responsibly as possible.
+Solution Description:
+Build the “Responsible Gaming Support Assistant”—a fine-tuned, expert AI model that can respond to gaming customer support queries, detect nuanced signs of risky gaming behavior, recommend or trigger responsible gaming interventions (like limit setting, tailored nudges, self-exclusion, referral to support), and explain responsible gaming concepts in a friendly, accessible way. The model must show radar for context, empathy, and real-world best practices—without overstepping privacy or regulatory bounds.
+Outcome Description:
+Fanatics gains a scalable system to proactively engage customers with relevant, actionable, and timely responsible gaming information—minimizing risk, boosting player wellbeing, satisfying regulatory standards, and reinforcing the Fanatics brand as a leader in ethical, safe, and sustainable betting.

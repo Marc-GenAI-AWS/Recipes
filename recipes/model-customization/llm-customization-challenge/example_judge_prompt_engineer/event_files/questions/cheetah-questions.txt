@@ -1,0 +1,50 @@
+1.	Design an internal enterprise document Q&A system that supports 5,000 concurrent users querying 10,000 policy PDFs. How would you structure indexing, caching, and retrieval layers to maintain sub-second latency?
+2.	An organization is evaluating on-prem vs. hybrid-cloud deployment for its document Q&A platform. What trade-offs would you analyze across cost, compliance, and performance?
+3.	Frequent API calls to large models are increasing operational costs. How would you introduce a multi-model orchestration layer to optimize usage without degrading answer quality?
+4.	Outline a single-server business continuity architecture for an enterprise AI document retrieval platform with minimal maintenance overhead.
+5.	How would you redesign a monolithic policy analytics pipeline into modular microservices for separate document ingestion, indexing, and retrieval?
+6.	Propose a system architecture to isolate HR, Legal, and Finance document indices, ensuring secure data segmentation and audit logging.
+7.	Under memory limitations, how do you balance vectorized data retrieval performance and hardware efficiency for millions of paragraph embeddings?
+8.	Design a feedback architecture that lets employees flag incorrect AI answers and automatically refine system accuracy without model retraining.
+9.	Suggest a monitoring architecture for error detection and performance metrics in an internal semantic retrieval system with minimal SaaS dependency.
+10.	Explain how you would implement knowledge base versioning so that answer provenance remains stable after policy updates.
+11.	Architect an integration layer between legacy HR and finance systems for joint policy document lookup via REST APIs.
+12.	Redesign a cloud-based search system to reduce compute cost per query by 50% while maintaining identical accuracy.
+13.	Draft a disaster recovery plan for an enterprise AI assistant running on internal servers.
+14.	Propose a document indexing update pipeline that processes fresh policies in near real time using lightweight open-source tools.
+15.	Recommend a tech stack (database, interface, orchestration) for a secure, local-only semantic search system.
+16.	Partition microservices for a document QA platform so teams can update individual services without downtime.
+17.	Describe an authentication architecture integrating SSO and MFA using FastAPI for internal knowledge systems.
+18.	Identify common latency bottlenecks in ETL → vectorization → retrieval systems and suggest mitigation strategies for each stage.
+19.	Propose an API rate-limiting mechanism per department using FastAPI and SQLite.
+20.	Design a metadata framework for tracking authorship, version, and departmental access rights in a searchable index.
+21.	Explain how to securely call third-party LLM APIs from behind a corporate firewall while limiting data exposure.
+22.	Build a CI/CD pipeline for frequent backend updates to a document retriever using Docker Compose and GitHub Actions.
+23.	Architect a policy retention and deletion flow consistent with 90-day internal audit retention rules.
+24.	Detail how you would surface document provenance (filename + page number) within model-generated answers.
+25.	Engineer a federated search layer across regionally hosted policy document indices with consistent ranking across sites.
+26.	Propose an optimal chunking length strategy for PDF segmentation when using bge-small-en for embedding.
+27.	Describe how user feedback and ranking data could dynamically influence search result ordering without retraining.
+28.	Outline steps to mitigate cloud provider lock-in risk for enterprise knowledge platforms reliant on vector-based search.
+29.	Design an architecture for minimal-bandwidth branch offices to still run the Q&A system with partial replication.
+30.	Propose a real-time anomaly detection and alert system for latency or retrieval failures using pandas and FastAPI logs.
+31.	Architect an automated new-employee onboarding pipeline across departments ensuring equipment, document, and access provisioning.
+32.	Develop a document-based CRM extension enabling real-time retrieval of product manuals and contracts for global sales teams.
+33.	Integrate AI-powered search into a multi-channel customer support workflow, ensuring cohesive escalation control.
+34.	Use pandas and FastAPI to design an automated invoice validation workflow with human review for flagged exceptions.
+35.	Create a collaborative content publishing workflow enabling legal and marketing review through Streamlit interface.
+36.	Build a procurement approval pipeline enforcing multi-level rules via SQLite and Python automation scripts.
+37.	Design an incident management system integrating Slack notifications, SQLite logs, and FastAPI dashboards for IT teams.
+38.	Develop a clause comparison and approval-tracking architecture for legal teams using PyMuPDF for document parsing.
+39.	Architect a compliance-enforcing data access platform for distributed remote teams using VPN and FastAPI authentication layers.
+40.	Create a cross-functional project dashboard aggregating tasks, milestones, and document references across departments.
+41.	Describe how to extract, segment, and embed internal policy PDFs using PyMuPDF and bge-small-en for semantic Q&A.
+42.	Construct a RESTful backend with FastAPI that retrieves from SQLite vectors and produces human-readable summaries via API calls.
+43.	Use Docker Compose to orchestrate standalone services for extraction, vectorization, and Q&A within the same server.
+44.	Design a simple Streamlit frontend for internal teams to search, view, and cite retrieved paragraphs with source metadata.
+45.	Implement a pandas-based pipeline to validate financial compliance data, log discrepancies, and summarize outcomes weekly.
+46.	Architect secure HR data segregation via multiple SQLite databases, departmental FastAPI endpoints, and email-based logins.
+47.	Plan a batch backup pipeline for document indices storing timestamped SQLite archives and PDFs using Python scripts.
+48.	Engineer a real-time access auditing dashboard that visualizes internal search activity from SQLite logs.
+49.	Explain how to locally generate and store dense document embeddings using bge-small-en without external dependencies.
+50.	Integrate pandas, SQLite, and Markdown reporting to automatically produce weekly executive summaries on retrieval accuracy and usage metrics.

@@ -1,0 +1,94 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SageMakerTraining",
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateTrainingJob",
+        "sagemaker:DescribeTrainingJob",
+        "sagemaker:StopTrainingJob",
+        "sagemaker:ListTrainingJobs"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:*:*:training-job/*"
+      ]
+    },
+    {
+      "Sid": "SageMakerModel",
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateModel",
+        "sagemaker:DescribeModel",
+        "sagemaker:DeleteModel",
+        "sagemaker:ListModels"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:*:*:model/*"
+      ]
+    },
+    {
+      "Sid": "SageMakerEndpointConfig",
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateEndpointConfig",
+        "sagemaker:DescribeEndpointConfig",
+        "sagemaker:DeleteEndpointConfig"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:*:*:endpoint-config/*"
+      ]
+    },
+    {
+      "Sid": "SageMakerEndpoint",
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateEndpoint",
+        "sagemaker:DescribeEndpoint",
+        "sagemaker:DeleteEndpoint",
+        "sagemaker:UpdateEndpoint",
+        "sagemaker:InvokeEndpoint",
+        "sagemaker:ListEndpoints"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:*:*:endpoint/*"
+      ]
+    },
+    {
+      "Sid": "SageMakerJumpStart",
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:ListModelPackages",
+        "sagemaker:DescribeModelPackage"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ECRAccess",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetAuthorizationToken",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "EC2NetworkInterfaces",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateNetworkInterface",
+        "ec2:CreateNetworkInterfacePermission",
+        "ec2:DeleteNetworkInterface",
+        "ec2:DeleteNetworkInterfacePermission",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeDhcpOptions",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeSecurityGroups"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

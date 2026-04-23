@@ -1,0 +1,174 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ============================================
+# AWS CREDENTIALS AND SENSITIVE FILES
+# ============================================
+# CRITICAL: Never commit AWS credentials!
+.aws/
+*.pem
+*.key
+credentials
+credentials.*
+config.ini
+secrets.yaml
+secrets.yml
+.env
+.env.*
+!.env.example
+*.secret
+*.secrets
+
+# AWS-specific files that may contain credentials
+aws-credentials.json
+aws-config.json
+~/.aws/
+
+# Streamlit secrets (may contain AWS credentials)
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# ============================================
+# CONFIGURATION FILES WITH SENSITIVE DATA
+# ============================================
+# Keep example configs, exclude actual configs with real values
+config/pipeline_config.yaml
+config/pipeline_config.*.yaml
+!config/pipeline_config.example.yaml
+!config/pipeline_config.dev.yaml
+!config/pipeline_config.prod.yaml
+
+# User-specific use cases (may contain sensitive prompts/data)
+config/use_cases/*.yaml
+!config/use_cases/*.example.yaml
+!config/use_cases/template.yaml
+
+# ============================================
+# LOG FILES AND RUNTIME DATA
+# ============================================
+logs/*.log
+logs/**/*.log
+*.log
+*.log.*
+
+# Generated data and artifacts
+event_files/training_data/*.jsonl
+event_files/questions/*.json
+event_files/usecases/*.txt
+event_files/judge_prompts/*.txt
+!event_files/**/*.example.*
+!event_files/**/README.md
+
+# Progress and state files (may contain model IDs, endpoints)
+progress/**/*.json
+progress/**/*.yaml
+progress/states/*.json
+progress/reports/*.json
+
+# ============================================
+# TEST AND COVERAGE
+# ============================================
+.coverage
+htmlcov/
+.pytest_cache/
+.hypothesis/
+coverage.xml
+*.cover
+.tox/
+.nox/
+
+# ============================================
+# OS-SPECIFIC FILES
+# ============================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================
+# JUPYTER AND NOTEBOOKS
+# ============================================
+.ipynb_checkpoints
+*.ipynb
+!docs/**/*.ipynb
+!examples/**/*.ipynb
+
+# ============================================
+# TYPE CHECKING AND LINTING
+# ============================================
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# ============================================
+# TEMPORARY FILES
+# ============================================
+*.tmp
+*.bak
+*.swp
+*~.nib
+*.orig
+
+# ============================================
+# MODEL ARTIFACTS AND LARGE FILES
+# ============================================
+models/
+*.tar.gz
+*.zip
+*.h5
+*.pkl
+*.joblib
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# SageMaker local mode
+.sagemaker/
+
+# ============================================
+# PERSONAL NOTES AND DRAFTS
+# ============================================
+NOTES.md
+TODO.md
+SCRATCH.md
+drafts/
+personal/
+

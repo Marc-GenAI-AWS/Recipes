@@ -1,0 +1,143 @@
+# Example Use Case: Code Review
+# This is a template for creating code review finetuning use cases
+
+# Use case identifier (must be unique, use lowercase with underscores)
+name: code_review
+
+# Detailed description of the use case and desired model behavior
+description: |
+  Finetune a model to provide thorough, constructive code reviews that identify
+  issues, suggest improvements, and explain best practices.
+  
+  The model should:
+  - Identify bugs, security issues, and performance problems
+  - Suggest specific improvements with code examples
+  - Explain the reasoning behind recommendations
+  - Maintain a constructive and educational tone
+  - Prioritize issues by severity
+  - Recognize good practices and provide positive feedback
+  
+  Target languages: Python, JavaScript, TypeScript, Java, Go
+
+# Test questions for evaluating model performance
+test_questions:
+  - "Review this Python function for potential issues:\n```python\ndef process_data(data):\n    result = []\n    for i in range(len(data)):\n        result.append(data[i] * 2)\n    return result\n```"
+  - "What's wrong with this JavaScript code?\n```javascript\nfunction getUserData(userId) {\n    const user = database.query('SELECT * FROM users WHERE id = ' + userId);\n    return user;\n}\n```"
+  - "Review this error handling:\n```python\ntry:\n    result = risky_operation()\nexcept:\n    pass\n```"
+  - "Is this TypeScript code following best practices?\n```typescript\nfunction calculateTotal(items: any[]): number {\n    let total = 0;\n    for (let i = 0; i < items.length; i++) {\n        total = total + items[i].price;\n    }\n    return total;\n}\n```"
+  - "Review this API endpoint for security issues:\n```python\n@app.route('/user/<user_id>')\ndef get_user(user_id):\n    query = f\"SELECT * FROM users WHERE id = {user_id}\"\n    return db.execute(query)\n```"
+
+# Criteria for the judge to evaluate responses
+judge_criteria: |
+  Evaluate code review responses based on:
+  
+  1. **Correctness** (35% weight)
+     - Are identified issues actually problems?
+     - Are suggestions technically sound?
+     - Does it avoid false positives?
+  
+  2. **Completeness** (30% weight)
+     - Does it identify all significant issues?
+     - Does it cover security, performance, and maintainability?
+     - Does it provide actionable suggestions?
+  
+  3. **Clarity** (20% weight)
+     - Are explanations clear and understandable?
+     - Does it provide code examples?
+     - Is the reasoning well-explained?
+  
+  4. **Tone** (15% weight)
+     - Is it constructive and educational?
+     - Does it balance criticism with positive feedback?
+     - Is it respectful and professional?
+  
+  Choose the response that provides the most valuable code review.
+
+# Prompt for generating synthetic training data
+data_generation_prompt: |
+  Generate high-quality code review training examples that demonstrate thorough,
+  constructive code review practices.
+  
+  Each example should include:
+  - **Instruction**: A directive to review code
+  - **Context**: Code snippet with potential issues
+  - **Response**: A comprehensive code review
+  
+  Guidelines:
+  
+  1. **Code Variety**: Include examples with:
+     - Security vulnerabilities (SQL injection, XSS, etc.)
+     - Performance issues (inefficient algorithms, memory leaks)
+     - Bug-prone patterns (race conditions, null pointer issues)
+     - Style and maintainability issues
+     - Good code that deserves positive feedback
+  
+  2. **Languages**: Cover Python, JavaScript, TypeScript, Java, Go
+  
+  3. **Review Quality**: Ensure reviews:
+     - Identify specific issues with line references
+     - Explain why something is problematic
+     - Provide concrete suggestions with code examples
+     - Prioritize issues by severity
+     - Include positive feedback when appropriate
+     - Maintain a constructive, educational tone
+  
+  4. **Format**: Each example must be valid JSON:
+     ```json
+     {
+       "instruction": "Review this code for potential issues and suggest improvements.",
+       "context": "[Code snippet to review]",
+       "response": "[Comprehensive code review]"
+     }
+     ```
+  
+  Generate examples that will train the model to provide valuable, actionable
+  code reviews across various languages and issue types.
+
+# Prompt for judging response quality
+judge_prompt: |
+  You are evaluating code review responses to determine which provides more value
+  to the developer.
+  
+  **Task**: Compare Response A and Response B for the given code review request.
+  
+  **Evaluation Process**:
+  
+  1. Examine the code snippet to identify:
+     - Actual bugs or security issues
+     - Performance problems
+     - Style and maintainability concerns
+     - Good practices that should be acknowledged
+  
+  2. Evaluate each response on:
+     - **Correctness**: Are identified issues real problems?
+     - **Completeness**: Does it catch all significant issues?
+     - **Clarity**: Are explanations clear with good examples?
+     - **Tone**: Is it constructive and educational?
+  
+  3. Determine which response would be more helpful to a developer:
+     - Which provides more actionable guidance?
+     - Which better explains the reasoning?
+     - Which balances criticism with constructive feedback?
+  
+  **Output Format**: Provide your judgment as JSON:
+  ```json
+  {
+    "winner": "A" or "B" or "tie",
+    "reasoning": "Detailed explanation comparing the reviews",
+    "confidence": 0.0 to 1.0
+  }
+  ```
+  
+  Focus on which review would genuinely help improve the code quality.
+
+# Metadata
+version: 1
+created_at: 2024-01-15T11:00:00Z
+updated_at: 2024-01-15T11:00:00Z
+
+# Optional: Custom configuration overrides
+custom_config:
+  num_examples: 1000
+  training_epochs: 5
+  performance_threshold: 0.70

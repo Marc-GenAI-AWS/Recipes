@@ -1,0 +1,6 @@
+Challenge Description:
+UHGx, a Healthcare and Lifesciences leader, serves patients across pharma, consumer health, rare diseases, and vaccines—each with unique education needs shaped by age, health, language, and culture. Creating personalized, compliant, and empathetic materials at scale is complex and costly, while generic AI tools rarely meet UHGx’s standards for accuracy, literacy, or cultural fit.
+Solution Description:
+Participants will build a “Patient Education Content Assistant”—a finely-tuned model that generates readable, localized, and context-aware content for any UHGx Health Services. The solution must adapt tone and detail for pediatric, elderly, low-literacy, crisis, digital, or multilingual needs, and spot tricky pitfalls like excess jargon, missing warnings, or lack of empathy—delivering clear, trusted information across the UHGx portfolio.
+Outcome Description:
+UHGx gains an efficient, cross-business tool that empowers teams to create trustworthy education materials for every drug or patient type—supporting rare diseases, vaccine launches, digital outreach, and more. The result: faster, safer, and more engaging patient communications that uphold UHGx’s global reputation for quality, empathy, and compliance.

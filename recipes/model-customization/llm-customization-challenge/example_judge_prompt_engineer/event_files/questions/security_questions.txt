@@ -1,0 +1,51 @@
+1.	During the early morning shift, the CCTV shows a person lingering near the staff entrance for several minutes, repeatedly looking at their phone and glancing around, without approaching the reception desk. What should security do next?
+2.	A motion sensor in the server room triggers three times within five minutes, but when officers arrive, no person is visible and no door alarms have gone off. How should this be investigated?
+3.	During visitor hours, a medium-sized backpack is left unattended near the lobby seating area; a staff member says they didn’t notice anyone leaving it behind. What action should be taken?
+4.	The loading dock door alarm went off for 45 seconds, yet the door appears fully closed, and the delivery truck that arrived has already left. How should security proceed?
+5.	Two visitors follow an employee through the main gate without scanning their badges; one visitor claims they are “accompanying a friend,” while the other remains silent. What steps should be taken?
+6.	Security receives repeated noise reports from the perimeter fence during a thunderstorm; officers observe movement in shadows, but visibility is poor due to rain. What should be done?
+7.	An unmarked vehicle parks near the back gate, engine off, lights off, and the driver remains inside for over ten minutes without interacting with staff. How should security respond?
+8.	A drone is seen hovering above the employee carpark during shift change; one security guard attempted to signal it away but could not confirm its operator. What is the recommended action?
+9.	A cleaning staff member reports seeing someone exit the fire escape in the cafeteria wing, but the access log shows no badge entry at that door during the same period. How should this be handled?
+10.	Two staff are observed transferring boxes in a zone marked “No Access”; one claims these are replacements for office supplies, while the other does not respond when questioned. What action should be taken?
+11.	The access control system records five consecutive failed badge swipes from the same user ID between 11:30 PM and 11:45 PM, then a successful entry occurs immediately afterward. How should this be addressed?
+12.	A visitor badge is scanned after hours, triggering an alert; the visitor insists they were told they could enter for a late delivery, but no prior approval is logged. How should security verify access?
+13.	A contractor arrives claiming they were verbally authorized to enter the electrical room, but the daily work schedule does not list their name. What steps should be taken to confirm authorization?
+14.	A person wearing a uniform approaches the control room without displaying a valid ID; they claim they are performing routine maintenance but cannot produce work orders. How should security respond?
+15.	Security receives a call regarding a suspicious bag left in the main lobby; officers check and find a small backpack, but it contains only harmless personal items. What action should be taken?
+16.	The main entrance door was left open for approximately three minutes, triggering a system alert; officers arrive to find it fully closed but the sensor shows repeated “open” events. What should security do next?
+17.	Smoke is reported near the staff kitchen; upon arrival, no fire is visible, and CCTV shows a staff member cooking food that caused smoke to trigger the alarm. How should this be managed?
+18.	An employee denies being near the server room despite access logs showing multiple entries; the employee claims a colleague borrowed their badge. How should security handle this discrepancy?
+19.	A maintenance worker is carrying large equipment in the warehouse but is not listed on the current work order; they say they were asked verbally to assist another team. What should be done?
+20.	A security officer reports potential tampering with a camera in the north parking lot, but inspection reveals condensation on the lens rather than physical interference. How should this be documented?
+21.	A guard confronts an intruder near the perimeter fence, and the individual flees before identification; the guard notes unusual clothing and erratic behavior. What should security do next?
+22.	During a scheduled evacuation drill, an alarm is triggered in a stairwell; officers respond, and soon afterward, a real medical emergency occurs in the same area. How should these situations be handled?
+23.	An officer restrains an aggressive visitor at the lobby entrance until police arrive; the visitor was attempting to access a staff-only area. What is the correct procedure for reporting this incident?
+24.	Security responds to a spill near the cafeteria entrance that has caused several slips; one minor injury is reported, and cleaning is delayed due to high traffic. What steps should be taken to manage the hazard?
+25.	A fire alarm is triggered in the main hall; officers wait before activating sprinklers to ensure it is not a false alarm, delaying response by several minutes. How should this alarm be handled?
+26.	Unauthorized filming is detected in the lobby by a person with a handheld camera; they claim it is for personal social media content. What actions should security take?
+27.	A staff member faints in the restricted server room due to heat and dehydration; first aid is administered, and emergency medical services are called. What steps should be taken afterward?
+28.	A delivery vehicle enters the loading dock without completing proper inspection due to congestion during rush hour, causing a brief safety concern. How should this be addressed?
+29.	An officer leaves their post for five minutes during patrol, and during that time, a door to the storage area is found ajar. What should security do to correct this?
+30.	A routine patrol discovers a section of the perimeter fence is broken, but there are no footprints or indications that anyone has entered. What immediate action should be taken?
+31.	During a lockdown exercise, the radio system fails intermittently, causing confusion about officer positions and responsibilities. How should this be resolved?
+32.	The control room is not informed when an officer leaves their assigned position to assist a colleague, leading to a gap in coverage. What should be done to improve communication?
+33.	Conflicting instructions are given to officers responding to a minor medical emergency; one team proceeds to the lobby while another goes to the stairwell. How should security handle the situation?
+34.	Reception fails to alert security of a VIP visitor who arrives early, resulting in officers having to scramble to secure the route. What should be done to prevent this in the future?
+35.	An incident escalation email reaches management two hours after the event, delaying follow-up actions. How should communication be improved?
+36.	Shift handover does not mention a broken sensor that was noted during the previous shift, resulting in missed detection during a patrol. How should handovers be improved?
+37.	A public address announcement is made during an evacuation, but wording causes confusion among staff and visitors. How should announcements be corrected or standardized?
+38.	Two security teams respond to the same motion sensor alert simultaneously due to miscommunication over radio channels. How should coordination be improved?
+39.	An officer misunderstands an instruction to secure Gate 2, instead closing Gate 3, leaving the intended area unprotected. What should be done to prevent similar mistakes?
+40.	The supervisor is not updated after officers resolve a minor altercation between visitors, causing a lack of documentation. How should reporting be improved?
+41.	A routine patrol misses a small defect in the storage room door, which later causes a minor safety hazard. What should be done to address this oversight?
+42.	An officer fails to activate their body camera during an incident involving a visitor, creating a gap in documentation. What action should be taken?
+43.	The team responds well to an alarm but forgets to document the actions taken and the observations made. What should security do to properly record the event?
+44.	Officers hesitate to act during an unexpected incident because of unclear chain-of-command authority. How should this be addressed?
+45.	A drill reveals that several officers are unfamiliar with the new alarm codes installed last week. How should training be improved?
+46.	A recent security system software update causes confusion about which alerts require immediate response versus monitoring. What should security do to clarify the process?
+47.	Officers exhibit excellent teamwork during a multi-location alarm, and supervisors want to recognize their performance. How should the situation be handled?
+48.	A minor procedural error prevents proper escalation of an incident, highlighting the need for refresher training. How should security correct this?
+49.	Visitor registration processes cause delays at the front desk during peak hours, prompting consideration of improved signage and procedures. What steps should be taken to improve efficiency?
+50.	An incident is successfully contained, but there is uncertainty about next steps for verification and closure. What should security do to properly finalize the event?
+

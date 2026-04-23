@@ -1,0 +1,160 @@
+# Example Use Case: Customer Support
+# This is a template for creating customer support finetuning use cases
+
+# Use case identifier (must be unique, use lowercase with underscores)
+name: customer_support
+
+# Detailed description of the use case and desired model behavior
+description: |
+  Finetune a model to provide helpful, empathetic customer support responses
+  that resolve issues efficiently while maintaining a friendly and professional tone.
+  
+  The model should:
+  - Acknowledge customer concerns with empathy
+  - Provide clear, actionable solutions
+  - Maintain a positive and helpful tone
+  - Address all aspects of the customer's question
+  - Offer additional assistance when appropriate
+  
+  Target domains: E-commerce, SaaS products, general customer service
+
+# Test questions for evaluating model performance
+# These should represent realistic customer inquiries
+test_questions:
+  - "My order hasn't arrived and it's been 2 weeks. What should I do?"
+  - "I was charged twice for the same purchase. How do I get a refund?"
+  - "The product I received is damaged. What are my options?"
+  - "I can't log into my account. I've tried resetting my password but didn't receive the email."
+  - "How do I cancel my subscription? I don't want to be charged next month."
+  - "The item I ordered is out of stock. When will it be available again?"
+  - "I need to change my shipping address for an order that hasn't shipped yet."
+  - "Your app keeps crashing on my phone. How can I fix this?"
+  - "I'm not satisfied with the product quality. Can I return it after 30 days?"
+  - "Do you offer discounts for bulk orders? I need to order 50 units."
+
+# Criteria for the judge to evaluate responses
+# This guides Claude Sonnet 4 in comparing finetuned vs baseline responses
+judge_criteria: |
+  Evaluate responses based on the following criteria:
+  
+  1. **Helpfulness** (40% weight)
+     - Does it provide actionable solutions?
+     - Are the steps clear and easy to follow?
+     - Does it address all aspects of the question?
+  
+  2. **Empathy** (25% weight)
+     - Does it acknowledge the customer's frustration or concern?
+     - Is the tone understanding and supportive?
+     - Does it validate the customer's experience?
+  
+  3. **Clarity** (20% weight)
+     - Is the response easy to understand?
+     - Is it well-organized and structured?
+     - Does it avoid jargon or explain technical terms?
+  
+  4. **Completeness** (15% weight)
+     - Does it provide all necessary information?
+     - Does it anticipate follow-up questions?
+     - Does it offer additional assistance?
+  
+  Choose the response that best serves the customer's needs across these criteria.
+
+# Prompt for generating synthetic training data
+# This instructs Claude Sonnet 4 on how to create training examples
+data_generation_prompt: |
+  Generate high-quality customer support training examples that demonstrate excellent
+  customer service practices.
+  
+  Each example should include:
+  - **Instruction**: A directive to respond to a customer inquiry
+  - **Context**: A realistic customer question or complaint
+  - **Response**: An ideal support response that is helpful, empathetic, and clear
+  
+  Guidelines for generating examples:
+  
+  1. **Variety**: Create diverse scenarios covering:
+     - Order issues (delays, wrong items, damaged goods)
+     - Account problems (login, password, billing)
+     - Product questions (features, compatibility, usage)
+     - Returns and refunds
+     - Technical support
+     - General inquiries
+  
+  2. **Realism**: Make customer questions authentic:
+     - Include emotional language when appropriate (frustration, confusion)
+     - Use natural, conversational language
+     - Vary complexity from simple to multi-part questions
+  
+  3. **Quality Responses**: Ensure responses demonstrate:
+     - Immediate acknowledgment of the issue
+     - Empathy and understanding
+     - Clear, step-by-step solutions
+     - Professional but friendly tone
+     - Offer of additional help
+  
+  4. **Format**: Each example must be valid JSON with these exact fields:
+     ```json
+     {
+       "instruction": "Respond to this customer inquiry in a helpful and empathetic manner.",
+       "context": "[Customer's question or complaint]",
+       "response": "[Ideal customer support response]"
+     }
+     ```
+  
+  Generate examples that will train the model to consistently provide excellent
+  customer support across a wide range of scenarios.
+
+# Prompt for judging response quality
+# This instructs Claude Sonnet 4 on how to compare responses
+judge_prompt: |
+  You are evaluating customer support responses to determine which better serves
+  the customer's needs.
+  
+  **Task**: Compare Response A and Response B for the given customer inquiry.
+  
+  **Evaluation Process**:
+  
+  1. Read the customer inquiry carefully to understand:
+     - What problem or question they have
+     - The emotional tone (frustrated, confused, neutral)
+     - What outcome they're seeking
+  
+  2. Evaluate each response on these criteria:
+     - **Helpfulness**: Does it solve the problem with clear, actionable steps?
+     - **Empathy**: Does it acknowledge and validate the customer's concern?
+     - **Clarity**: Is it easy to understand and well-organized?
+     - **Completeness**: Does it address all aspects and offer additional help?
+  
+  3. Determine which response is superior overall, considering:
+     - Which would leave the customer more satisfied?
+     - Which is more likely to resolve the issue?
+     - Which demonstrates better customer service practices?
+  
+  **Output Format**: Provide your judgment as JSON:
+  ```json
+  {
+    "winner": "A" or "B" or "tie",
+    "reasoning": "Detailed explanation of your decision, referencing specific strengths and weaknesses",
+    "confidence": 0.0 to 1.0
+  }
+  ```
+  
+  Be objective and thorough in your evaluation. Consider the customer's perspective
+  and what would genuinely help them most.
+
+# Metadata (automatically managed by the system)
+version: 1
+created_at: 2024-01-15T10:30:00Z
+updated_at: 2024-01-15T10:30:00Z
+
+# Optional: Custom configuration overrides for this use case
+# These override the pipeline configuration for this specific use case
+custom_config:
+  # Override number of training examples for this use case
+  num_examples: 1500
+  
+  # Override training epochs
+  training_epochs: 4
+  
+  # Override performance threshold
+  performance_threshold: 0.65

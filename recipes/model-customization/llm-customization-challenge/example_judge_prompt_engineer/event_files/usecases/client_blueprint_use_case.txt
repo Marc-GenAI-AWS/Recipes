@@ -1,0 +1,6 @@
+Challenge Description:
+IBM Consulting regularly helps clients navigate complex strategy, technology, and operational challenges by distilling vast business context into clear, actionable solution architecture recommendations. Teams must synthesize customer constraints, business goals, current software stacks, and market dynamics into the archetypal “first slide”—a concise but high-value summary featuring value proposition, recommended solution overview, and pragmatic delivery estimate.
+Solution Description:
+Host an AI League event to develop a “Consulting Architecture & Value Proposition Slide Assistant”—a fine-tuned model that, given well-crafted background and requirements, generates client-specific first slides. These synthesize solution architecture, business value, constraints management, optimal delivery approach, and next-step actions—all adapted for the industry, technical/systems context, and consultative voice.
+Outcome Description:
+IBM Consulting teams and their clients gain instant access to tailored, insight-rich, and presentation-ready slide content—even in complex, multi-stack or regulated environments. The assistant amplifies IBM’s promise to help clients achieve their goals quickly, rigorously, and with measurable impact.

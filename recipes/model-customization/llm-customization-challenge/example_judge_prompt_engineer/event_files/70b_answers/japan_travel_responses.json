@@ -1,0 +1,302 @@
+[
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 東京スカイツリーの営業時間を教えてください。  Please provide your response in 500 tokens or less.",
+    "output": "東京スカイツリーの営業時間は、下記の通りです。  * 4月1日～9月30日：午前8時～午後10時 * 10月1日～3月31日：午前8時～午後8時  ただし、営業時間はイベントや天候などの理由で変更になる場合があります。ご来館前に、公式ウェブサイトで営業時間をご確認ください。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: What's the best time to see cherry blossoms in Kyoto?  Please provide your response in 500 tokens or less.",
+    "output": "The best time to see cherry blossoms (sakura) in Kyoto! It's a popular question, and the answer can vary from year to year, depending on weather conditions. However, based on historical data and forecasts, here are some general guidelines:  **Typical Bloom Period:** Late March to Early April  In Kyoto, the cherry blossom season usually starts around March 20th and lasts for about two weeks. The peak bloom period, known as \"mankai,\" typically occurs around March 25th to April 1st.  **Best Time to Visit:** Late March (around 20th-25th)  To maximize your chances of seeing the cherry blossoms in full bloom, plan your visit to Kyoto around the last week of March. This allows you to catch the blossoms at their peak, before the petals start to fall.  **Popular Spots:**  1. Maruyama Park: Famous for its weeping cherry blossom trees. 2. Philosopher's Path: A scenic walking path lined with hundreds of cherry blossom trees. 3. Kinkaku-ji Temple (Golden Pavilion): A stunning temple surrounded by beautiful gardens and cherry blossom trees. 4. Arashiyama Bamboo Grove: A serene and picturesque area with cherry blossom trees.  **Tips:**  1. Check forecasts: Before your trip, check the latest forecasts to ensure you're visiting during the peak bloom period. 2. Be prepared for crowds: Popular spots can get very crowded during peak season. 3. Consider visiting early in the morning or later in the evening to avoid the crowds.  By following these guidelines, you'll be able to experience the breathtaking beauty of Kyoto's cherry blossoms during their peak bloom period.",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 请问如何从成田机场到东京市区？  Please provide your response in 500 tokens or less.",
+    "output": "从成田机场到东京市区有多种交通方式，包括：  1.  成田特快（N'EX）：这是一种快速铁路服务，从成田机场到东京市区的主要车站，如东京站、品川站和涩谷站。行程约为60分钟。 2.  京成电铁：这是一种普通铁路服务，从成田机场到东京市区的主要车站，如上野站和日暮里站。行程约为90分钟。 3.  巴士：从成田机场到东京市区的主要车站和酒店也有巴士服务。行程约为60-90分钟，视乎交通情况。 4.  出租车：出租车也是从成田机场到东京市区的一种选择，但费用较高。行程约为60-90分钟，视乎交通情况。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 富士山の登山シーズンはいつですか？  Please provide your response in 500 tokens or less.",
+    "output": "富士山の登山シーズンは、毎年7月1日から9月14日までです。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: How do I use the Japan Rail Pass?  Please provide your response in 500 tokens or less.",
+    "output": "The Japan Rail Pass! A fantastic way to explore Japan's extensive rail network. Here's a step-by-step guide on how to use it:  **Before You Start**  1. **Purchase the pass**: Buy the Japan Rail Pass online or through an authorized travel agent before arriving in Japan. You can choose from a 7-day, 14-day, or 21-day pass. 2. **Exchange your voucher**: Once in Japan, exchange your voucher for the actual pass at a JR train station, such as Narita or Haneda airport stations.  **Using the Pass**  1. **Show your pass**: Present your pass to the station staff at the ticket gates when entering or exiting a JR train station. 2. **Reserve seats**: Make seat reservations for free on most JR trains, including bullet trains (Shinkansen). Some trains may require a reservation fee. 3. **Travel on JR trains**: Use the pass on JR trains, buses, and ferries, including: \t* Shinkansen (bullet trains) \t* Limited Express trains \t* Rapid trains \t* Local trains \t* JR buses \t* JR ferries 4. **Travel on non-JR trains**: The pass is not valid on non-JR trains, such as subways, private railways, or buses not operated by JR.  **Additional Tips**  1. **Valid dates**: The pass is valid for consecutive days, so plan your itinerary accordingly. 2. **Travel restrictions**: Some trains, like the Nozomi and Mizuho Shinkansen, are not covered by the pass. 3. **Lost or stolen pass**: Report a lost or stolen pass to JR staff immediately. You may be able to get a replacement pass.  By following these steps, you'll be able to enjoy unlimited travel on Japan's JR network and make the most of your Japan Rail Pass!",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 大阪の有名な食べ物を教えてください。  Please provide your response in 500 tokens or less.",
+    "output": "大阪の有名な食べ物はたくさんありますが、以下にいくつか紹介します。  1.  たこ焼き：小麦粉、水、卵で作った生地にタコを入れて焼いた食べ物で、たい焼きと並んで大阪の代表的な食べ物です。一般的には醤油ベースのタレで味付けされていますが、醤油ベースのタレに加え、みそベースのタレで味付けされている店もあります。 2.  お好み焼き：小麦粉、水、卵で作った生地に野菜や肉などを入れて焼いた食べ物です。一般的には醤油ベースのタレで味付けされていますが、醤油ベースのタレに加え、みそベースのタレで味付けされている店もあります。 3.  串カツ：豚肉や鶏肉、野菜などを串に刺し、パン粉をまぶして油で揚げた食べ物です。串カツ専門店では、豚の内臓も串に刺して提供されることもあります。 4.  Kushikatsu：野菜や海鮮、豚肉や鶏肉を串に刺し、パン粉をまぶして油で揚げた食べ物です。一般的には醤油ベースのタレで味付けされていますが、醤油ベースのタレに加え、みそベースのタレで味付けされている店もあります。  これらの食べ物は、すべて大阪の代表的な食べ物として知られています。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 在京都哪里可以体验茶道？  Please provide your response in 500 tokens or less.",
+    "output": "在京都有很多地方可以体验茶道，以下是一些推荐：  1.  **金阁寺**：金阁寺不仅是京都的标志性景点，也是体验茶道的好去处。寺内的茶室“复兴亭”是一座典型的日本风格建筑，提供传统的茶道体验。 2.  **龙安寺**：龙安寺是京都著名的禅寺，也是日本茶道的发源地之一。寺内有多个茶室，游客可以参加茶道仪式，感受日本传统文化。 3.  **二条城**：二条城是日本著名的城堡，内有多个茶室，包括“二条城茶室”和“城主茶室”。游客可以在这里体验传统的茶道文化。 4.  **京都御所**：京都御所是日本皇室的旧居，内有多个茶室，包括“紫宸殿茶室”和“新御殿茶室”。游客可以在这里体验传统的茶道文化。 5.  **南禅寺**：南禅寺是京都著名的禅寺，也是日本茶道的发源地之一。寺内有多个茶室，游客可以参加茶道仪式，感受日本传统文化。  这些地方都提供了独特的茶道体验，游客可以在这里学习和感受日本传统文化。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: What are the opening hours of the Tsukiji Outer Market?  Please provide your response in 500 tokens or less.",
+    "output": "The Tsukiji Outer Market, located in Tokyo, Japan, is open from 5:00 AM to 2:00 PM, Monday through Saturday. Some shops and restaurants may have extended hours, but generally, the market is busiest in the early morning hours. It's closed on Sundays and national holidays.  Here's a breakdown of the typical hours:  * 5:00 AM - 2:00 PM (Monday to Saturday) * Closed on Sundays and national holidays  Please note that these hours are subject to change, and it's always a good idea to check with individual shops and restaurants for their specific hours before visiting.",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 箱根温泉のおすすめの旅館を教えてください。  Please provide your response in 500 tokens or less.",
+    "output": "箱根温泉には多くの素敵な旅館がありますが、以下の3軒がおすすめです。  1.  **箱根強羅ホテル**：箱根の中心部に位置し、温泉や食事、サービスが素晴らしいです。温泉は、源泉を使用した大浴場や露天風呂があり、景色も素晴らしいです。食事は、箱根の名物である「黒玉子」や「はまなみかん」を楽しむことができます。 2.  **箱根小涌園ユサワ**：箱根の山奥に位置し、静かな雰囲気を楽しむことができます。温泉は、源泉を使用した大浴場や露天風呂があり、星空を眺めながら温泉を楽しむことができます。食事は、箱根の名物である「黒玉子」や「はまなみかん」を楽しむことができます。 3.  **箱根観光ホテル小涌園**：箱根の中心部に位置し、温泉や食事、サービスが素晴らしいです。温泉は、源泉を使用した大浴場や露天風呂があり、景色も素晴らしいです。食事は、箱根の名物である「黒玉子」や「はまなみかん」を楽しむことができます。  これらの旅館は、箱根温泉の魅力を存分に楽しむことができるおすすめの旅館です。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 想去日本购物，哪些地方比较好？  Please provide your response in 500 tokens or less.",
+    "output": "日本是一个购物天堂，各地都有特色。以下是一些著名的购物目的地：  1.  东京：银座、涩谷、原宿和秋叶原等地汇集了众多高端品牌和特色小店。 2.  大阪：道顿堀和心斋桥是购物和美食的集中地。 3.  京都：祇园和河原町是传统和时尚的结合点。 4.  名古屋：栄和名古屋站周边是购物的热门地。  另外，各地的 Outlet Mall 和百货公司也值得一逛。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 観光シーズン（桜や紅葉）のピーク時には、観光客はオフピーク時と比べて宿泊料金をどれくらい高く見積もるべきでしょうか？  Please provide your response in 500 tokens or less.",
+    "output": "観光シーズン（桜や紅葉）のピーク時には、観光客はオフピーク時と比べて宿泊料金を高く見積もるべきです。一般的には、ピーク時は料金が1.5倍から2倍程度高くなることが多いです。ただし、人気の宿泊施設や期間によってはさらに高くなる可能性もあります。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: How much should tourists budget for daily food expenses in Japan, considering a mix of casual restaurants, convenience store meals, and one higher-end dining experience?  Please provide your response in 500 tokens or less.",
+    "output": "When traveling to Japan, budgeting for daily food expenses can vary greatly depending on personal preferences and dining choices. Here's a rough guide to help tourists estimate their daily food expenses:  **Casual Restaurants (, Izakayas, and Cafes)**  * Set meals (e.g., ramen, udon, or tempura): ¥800-¥1,200 (≈ $7-11 USD) per meal * Snacks and light meals: ¥500-¥800 (≈ $4-7 USD) per item  **Convenience Store Meals (, Konbini)**  * Bento boxes (pre-cooked meals): ¥500-¥800 (≈ $4-7 USD) per meal * Sandwiches, salads, and snacks: ¥200-¥500 (≈ $2-4 USD) per item  **Higher-End Dining Experience (, Kaiseki or Sushi)**  * Multi-course meal: ¥5,000-¥10,000 (≈ $45-90 USD) per person  **Daily Food Budget Recommendations**  * Budget-conscious traveler: ¥2,000-¥3,000 (≈ $18-28 USD) per day * Mid-range traveler: ¥3,000-¥5,000 (≈ $28-45 USD) per day * Luxury traveler: ¥5,000-¥10,000 (≈ $45-90 USD) per day  **Tips and Additional Expenses**  * Beverages (soda, juice, or beer): ¥200-¥500 (≈ $2-4 USD) per drink * Snacks and treats: ¥500-¥1,000 (≈ $4-9 USD) per day * Tipping is not expected in Japan, but some high-end restaurants may include a service charge.  To summarize, a daily food budget of ¥2,500-¥4,000 (≈ $23-36 USD) should cover a mix of casual restaurants, convenience store meals, and one higher-end dining experience. However, this amount can vary depending on individual preferences and eating habits.",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 对于住在浅草地区的游客来说，前往明治座最便捷的公共交通路线是什么？  Please provide your response in 500 tokens or less.",
+    "output": "对于住在浅草地区的游客来说，前往明治座最便捷的公共交通路线是：  1.  从浅草地区步行到浅草站（约10分钟） 2.  从浅草站乘坐JR山手线，直达有乐町站（约20分钟） 3.  在有乐町站下车，步行到明治座（约5分钟）",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 2人の演者（漫才師）が矢継ぎ早の言葉遊びとドタバタ喜劇を繰り広げる、日本の人気コメディの形式はどれですか？また、観光客がこの芸術形式の現代版を体験できる場所はどこでしょうか？  Please provide your response in 500 tokens or less.",
+    "output": "その日本の人気コメディの形式は「漫才」です。漫才は、2人の漫才師が交互に言葉遊びやボケとツッコミを繰り広げるコメディ形式です。近年は、漫才をベースにした様々なバラエティ番組や舞台が人気を博しています。  観光客がこの芸術形式の現代版を体験できる場所としては、以下のような場所があります。  *   浅草演芸ホール（東京） *   京橋花月（大阪） *   よしもと漫才劇場（東京、名古屋、大阪など） *   ルミネtheよしもと（東京） *   よしもと祇園花月（京都） *   よしもと沖縄花月（沖縄） *   よしもと福岡 輝（福岡） *   よしもと札幌 花月（札幌） *   よしもと広島 花月（広島） *   よしもとンとや（仙台）  これらの場所では、毎日様々な漫才師が登場し、観客を笑わせています。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: Which two Tokyo-based teams currently compete in Nippon Professional Baseball's Central League, and in which stadiums do they play their home games?  Please provide your response in 500 tokens or less.",
+    "output": "The two Tokyo-based teams that currently compete in Nippon Professional Baseball's Central League are:  1. Yomiuri Giants - They play their home games at the Tokyo Dome, which is located in Bunkyo, Tokyo. 2. Yakult Swallows - They play their home games at Meiji Jingu Stadium, which is located in Shinjuku, Tokyo.  Both teams have a strong following in Tokyo and have a long history of competition in the Central League.",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 3日間の北海道旅行を計画する際、どのような必需品を持参すべきでしょうか？また、この期間に現実的に組み込める人気の冬のアクティビティはどれでしょうか？  Please provide your response in 500 tokens or less.",
+    "output": "3日間の北海道旅行を計画する際、必需品として以下のものを持参することをお勧めします：  1.  温度が低いため、防寒用具（コート、手袋、帽子、スカーフなど）を用意しましょう。 2.  スノーシュー、スキーやスノーボードなどのウィンタースポーツの装備を用意します。 3.  カメラやバッテリー、メモリーカードなどの撮影機材を用意し、美しい風景を撮影することができます。 4.  防寒用の化粧品や保湿剤を用意します。 5.  地元の食事やお土産などを楽しむための日本円を用意しましょう。  この期間に現実的に組み込める人気の冬のアクティビティは以下の通りです：  1.  スキー、スノーボード、スノーシュー、アイススケートなどのウィンタースポーツを楽しむことができます。 2.  北海道の冬の風景を楽しむため、スキー場やスノーシューのコース、氷瀑などを訪問することができます。 3.  地元の食事やお土産を楽しむため、札幌市中央卸売市場、すすきの、札幌時計台、札幌ビール園などを訪問することができます。 4.  オホーツク海の流氷ツアーを楽しむことができます。 5.  北海道の温泉を楽しむため、登別温泉、洞爺湖温泉、湯沸の滝温泉などを訪問することができます。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 在金泽三日游中，比较一下入住传统日式旅馆和现代酒店的优缺点。  Please provide your response in 500 tokens or less.",
+    "output": "在金泽三日游中，入住传统日式旅馆和现代酒店各有其优缺点。传统日式旅馆提供独特的文化体验，可以感受到日本传统的风格和服务。然而，房间可能较小，设施较为简陋。现代酒店则提供更好的设施和舒适度，但可能缺乏传统的文化氛围。因此，选择入住哪种类型的酒店取决于个人偏好和旅游目的。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: Name and describe two popular night markets (yatai) districts in Japan and their signature food offerings.  Please provide your response in 500 tokens or less.",
+    "output": "Here are two popular night market (yatai) districts in Japan and their signature food offerings:  **1. Fukuoka's Nakasu District (Nakasu Yatai)**  Located on the island of Kyushu, Fukuoka's Nakasu District is one of Japan's most famous yatai districts. The area is lined with over 100 food stalls, each offering a variety of local specialties. Signature dishes include:  * Tonkotsu Ramen: a rich, creamy noodle soup made with pork bone broth * Hakata Gyoza: pan-fried dumplings filled with pork and vegetables * Mentaiko: spicy pollock roe served with rice and miso soup  **2. Osaka's Dotonbori District (Dotonbori Yatai)**  Osaka's Dotonbori District is a popular nightlife destination known for its vibrant atmosphere and delicious street food. The area is home to numerous yatai stalls, offering a range of local specialties, including:  * Takoyaki: crispy, fluffy balls filled with octopus, green onion, and tempura bits * Okonomiyaki: a savory pancake made with batter, cabbage, and various fillings (such as pork, seafood, or vegetables) * Kushikatsu: deep-fried skewers of meat, seafood, or vegetables, typically served with a side of tangy sauce.  Both districts offer a unique and lively atmosphere, with a wide range of food options to suit every taste and budget.",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 日本の主要な祭り（お祭り）や国民の祝日の時期に観光客が旅程を計画する際に、主にどのような点に留意すべきでしょうか？また、どの時期に旅行を避けるべきでしょうか？  Please provide your response in 500 tokens or less.",
+    "output": "日本の主要な祭りや国民の祝日は、観光客にとって素晴らしい体験の機会となりますが、観光客の増加や交通渋滞、宿泊施設の混雑などを招く可能性もあります。以下に、旅行計画の際に留意すべき点と旅行を避けるべき時期を示します。  1.  **祭りや祝日の時期の混雑**：日本の主要な祭りや祝日は、特に人気の観光地や主要都市では非常に混雑します。交通機関は混雑し、観光スポットの周辺は人で溢れ、宿泊施設の予約も困難になる可能性があります。 2.  **事前の計画**：旅行を計画する際には、事前に調べることが重要です。祭りや祝日のスケジュール、交通手段、宿泊施設の予約状況などを確認し、計画を立てることが大切です。 3.  **混雑を避けるための戦略**：混雑を避けるためには、早めの計画が必要です。祭りや祝日の時期に人気の観光地を訪れるのではなく、地方の都市や、より静かな場所を訪れることを検討することも有効です。 4.  **祭りや祝日の体験**：祭りや祝日は日本の文化を体験する絶好の機会です。地元の行事や食事、伝統的な衣装などを楽しむことができます。  旅行を避けるべき時期：  *   **お盆（8月中旬）**：お盆は日本の主要な祝日の一つで、多くの人が故郷に帰省するため、交通機関は非常に混雑し、宿泊施設も混雑する傾向があります。 *   **年末年始（12月下旬から1月上旬）**：年末年始は日本の最も重要な祝日の一つで、多くの人が家族や友人と過ごすため、交通機関は混雑し、宿泊施設も混雑する傾向があります。 *   **ゴールデンウィーク（4月下旬から5月上旬）**：ゴールデンウィークは日本の連続する祝日の一つで、多くの人が旅行を計画するため、交通機関は混雑し、宿泊施設も混雑する傾向があります。  以上の点を考慮して、旅行計画を立てることで、混雑を避けながら日本の祭りや祝日の魅力を楽しむことができます。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 京都から奈良へ日帰り旅行に行くのに、最適な交通手段は何ですか？  Please provide your response in 500 tokens or less.",
+    "output": "京都から奈良への日帰り旅行の場合、最適な交通手段は電車です。特に、JR奈良線や京阪奈良線を利用するのが便利です。京都駅から奈良駅まで約1時間から1時間30分程度で到着し、奈良市内や周辺の名所へのアクセスも良いためです。また、電車はバスに比べて遅延のリスクが少なく、スムーズな移動が可能です。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: Where do you recommend for delicious ramen that is open late at night in Tokyo?  Please provide your response in 500 tokens or less.",
+    "output": "Tokyo, the ramen lover's paradise! For a delicious and late-night ramen fix, I highly recommend the following spots:  1. **Ichiran Shibuya**: This famous ramen chain is open 24/7 and has a unique, rich tonkotsu (pork bone) broth. Try their signature Ichiran Ramen, and customize it to your taste with their special ordering system. 2. **Totto Ramen Meguro**: This popular ramen shop is open until 4:00 AM on weekends and has a light, chicken-based broth. Their signature Paitan Ramen is a must-try, with a rich, savory flavor. 3. **Afuri Harajuku**: This trendy ramen shop is open until 2:00 AM on weekends and serves a unique, citrus-infused chicken broth. Try their Yuzu Ramen for a refreshing twist on traditional ramen. 4. **Tsukemen Gyoza Ichi**: This small, unassuming shop in Shibuya is open until 2:00 AM and specializes in tsukemen (dipping ramen). Their rich, savory broth and springy noodles make for a perfect late-night snack.  These spots are all within walking distance of major train stations, making them easily accessible even in the wee hours. Enjoy your delicious and satisfying late-night ramen adventure in Tokyo!",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 在京都，哪里可以找到清晨安静氛围好的隐秘寺庙或神社？  Please provide your response in 500 tokens or less.",
+    "output": "在京都，有许多寺庙和神社早晨可以找到安静的氛围。以下是一些推荐：  1.  **伏见稻荷大社**：虽然白天会很热闹，但清晨的伏见稻荷大社非常安静，漫步在无数的朱红鸟居下，非常壮观。 2.  **清水寺**：这个著名的寺庙在早晨也会很安静，尤其是清晨的时分，可以享受清晨的宁静和美丽的自然环境。 3.  **平安神宫**：这个神社位于京都市中心，但在早晨却非常安静，参拜者可以享受宁静的环境和美丽的自然风景。 4.  **东福寺**：这个寺庙位于京都的东部，早晨的时分非常安静，参拜者可以享受宁静的环境和美丽的自然风景。 5.  **高山寺**：这个寺庙位于京都的北部，早晨的时分非常安静，参拜者可以享受宁静的环境和美丽的自然风景。  这些寺庙和神社在早晨都能找到安静的氛围，适合那些寻求宁静和祥和的参拜者。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 新幹線で最も快適に過ごせる座席の選び方はありますか？  Please provide your response in 500 tokens or less.",
+    "output": "新幹線で最も快適に過ごせる座席を選ぶには、以下のポイントを考慮すると良いでしょう。  1.  **グリーン車とノーマル車の違い**：新幹線にはグリーン車とノーマル車があります。グリーン車は座席が広く快適ですが、料金が高くなります。ノーマル車は料金が安いですが、座席が狭くなります。 2.  **窓側か通路側か**：窓側の座席は景色を眺めることができ、通路側の座席は出入りがしやすくなります。どちらが好みかによって選びましょう。 3.  **前後どちらがいいか**：前の方の座席は、新幹線が発車するときに揺れが少なく、後ろの方の座席は新幹線が停車するときに揺れが少ないと言われています。どちらが好みかによって選びましょう。 4.  **電源やUSBポートの有無**：新幹線には電源やUSBポートが付いている座席もあります。電子機器を使う場合はこれらの座席を選ぶと良いでしょう。 5.  **座席の向き**：新幹線には前向きの座席と後向きの座席があります。前向きの座席は景色を眺めることができ、後向きの座席は静かに過ごすことができます。どちらが好みかによって選びましょう。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: Where do locals recommend going for Izakaya in Sapporo, other than the Beer Garden?  Please provide your response in 500 tokens or less.",
+    "output": "Sapporo's vibrant food scene! When it comes to Izakaya recommendations from locals, here are a few hidden gems to explore:  1. **Han no Daidokoro Bettei**: A high-end Izakaya in the heart of Sapporo, offering a wide selection of premium sake and creative dishes made with local ingredients. 2. **Toraya**: A local favorite in the Susukino district, known for its delicious Hokkaido-style small plates and extensive sake list. 3. **Bungalow**: A cozy, rustic Izakaya in the Tanuki Koji shopping street, serving up tasty pub grub and a wide variety of Japanese craft beers. 4. **Tengu**: A lively, no-frills Izakaya in the Susukino district, famous for its mouth-watering yakitori (grilled chicken skewers) and lively atmosphere. 5. **Sapporo Kita no Aji**: A local institution in the Kita ward, offering a wide range of Hokkaido specialties, including fresh seafood and Genghis Khan (grilled lamb).  These recommendations are sure to provide an authentic Izakaya experience in Sapporo, beyond the popular Beer Garden. Enjoy exploring the local food scene!",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 日本のアニメや漫画に関するイベントやスポットはどこにありますか？  Please provide your response in 500 tokens or less.",
+    "output": "日本のアニメや漫画に関するイベントやスポットは、以下の場所にあります。  1.  東京国際アニメフェア（東京ビッグサイト）：日本最大のアニメイベントで、毎年春に開催されます。 2.  コミックマーケット（東京ビッグサイト）：世界最大の同人誌即売会で、毎年夏と冬に開催されます。 3.  アニメジャパン（東京ビッグサイト）：アニメ関連の展示やイベントが行われる会場です。 4.  まんだらけ（秋葉原）：アニメや漫画のグッズを販売する店舗で、秋葉原の中心にある複合施設です。 5.  アニメイト（秋葉原）：アニメや漫画のグッズを販売する店舗で、秋葉原に複数店舗があります。 6.  ポケモンセンター（東京駅）：ポケットモンスターのグッズを販売する店舗です。 7.  ゲームセンターCX（秋葉原）：テレビ番組「ゲームセンターCX」の舞台となったゲームセンターです。 8.  セガ秋葉原2号店（秋葉原）：ゲームセンターで、最新のゲームが遊べます。  これらの場所は、東京にありますが、他の都市にもアニメや漫画に関するイベントやスポットがあります。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 富士山登山季以外，在周围有哪些欣赏景色和美景的方法？  Please provide your response in 500 tokens or less.",
+    "output": "在富士山登山季以外，也有很多方法可以欣赏富士山周围的美景：  1.  **富士山五湖**：富士山周围有五个美丽的湖泊，包括本栖湖、山中湖、精进湖、河口湖和西湖。这些湖泊提供了不同的观景点，可以欣赏富士山的美景。 2.  **富士山观光地铁**：富士山观光地铁是一条连接富士山五湖和富士山顶的观光地铁，可以从地铁车厢内欣赏富士山的美景。 3.  **富士山观光巴士**：富士山观光巴士是一种观光巴士，可以带您游览富士山周围的景点，包括富士山五湖、富士山顶等。 4.  **富士山周围的公园**：富士山周围有很多公园，例如富士山公园、富士山绿地公园等。这些公园提供了很多观景点，可以欣赏富士山的美景。 5.  **富士山周围的温泉**：富士山周围有很多温泉，例如富士山温泉、河口湖温泉等。这些温泉不仅可以放松身心，还可以欣赏富士山的美景。 6.  **富士山周围的博物馆**：富士山周围有很多博物馆，例如富士山博物馆、富士山美术馆等。这些博物馆可以让您更深入地了解富士山的历史和文化。 7.  **富士山周围的寺庙和神社**：富士山周围有很多寺庙和神社，例如富士山寺、富士山神社等。这些寺庙和神社不仅可以参拜，还可以欣赏富士山的美景。  这些方法可以让您在富士山登山季以外，仍然能够欣赏富士山周围的美景。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: In Tokyo, what time slots should I choose to avoid the rush hour on the trains?  Please provide your response in 500 tokens or less.",
+    "output": "The infamous Tokyo rush hour! To avoid the chaos, it's best to plan your train travel during the following time slots:  **Best times to avoid rush hour:**  * 9:30 AM - 11:00 AM (after the morning rush) * 2:00 PM - 4:00 PM (between the lunch and evening rushes) * 8:00 PM - 10:00 PM (after the evening rush)  **Rush hour periods to avoid:**  * Monday to Friday: \t+ Morning rush: 7:00 AM - 9:30 AM \t+ Evening rush: 5:00 PM - 8:00 PM * Weekends and holidays: \t+ Peak hours: 10:00 AM - 6:00 PM (more crowded than weekdays, but less predictable)  Keep in mind that these are general guidelines and may vary depending on the specific train line, station, and time of year. Some lines, like the Shinjuku and Shibuya lines, are notorious for being crowded during rush hour.  By planning your train travel during the recommended time slots, you'll have a more comfortable and less stressful experience navigating Tokyo's busy train network.",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 大阪で、若者向けのライブハウスや劇場が集まっているエリアはどこですか？  Please provide your response in 500 tokens or less.",
+    "output": "大阪で若者向けのライブハウスや劇場が集まっているエリアは、梅田（うめだ）や心斎橋（しんさいばし）です。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 在日本的旅馆住宿时，预订带室内露天浴池的房间有什么好处？  Please provide your response in 500 tokens or less.",
+    "output": "在日本的旅馆住宿时，预订带室内露天浴池的房间有几个好处：  1.  私密性：室内露天浴池提供了私密的空间，您可以在室内享受露天浴池的舒适感，而不必担心被他人看到。 2.  灵活性：室内露天浴池可以在任何时候使用，而不受天气的限制。 3.  宽敞的空间：室内露天浴池通常比普通的浴室更宽敞，可以让您享受更大的空间。 4.  美景：许多带室内露天浴池的房间都可以看到美丽的景色，比如山景、海景或花园景色。 5.  放松身心：室内露天浴池可以让您放松身心，享受温暖的水和舒适的环境。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 日本の都市部で、夜間に女性一人で歩くのは安全ですか？  Please provide your response in 500 tokens or less.",
+    "output": "日本の都市部は一般的に夜間でも安全で、女性一人で歩くのは問題ありません。日本は犯罪率が低い国であり、都市部でも夜間の治安は比較的良好です。  しかし、夜間一人で歩く際には、以下の点に注意することが大切です。  1.  道路状況や周囲の環境に気を付ける：道路状況や周囲の環境に気を付けて歩くことで、事故や危険な状況を避けることができます。 2.  人通りの多い場所を選ぶ：人通りの多い場所を選ぶことで、安全性を高めることができます。 3.  自分の身辺を守る：自分の身辺を守るために、携帯電話や財布を安全な場所に保管することが大切です。 4.  夜間の公共交通機関を利用する：夜間の公共交通機関を利用することで、安全に移動することができます。  以上の点に注意することで、日本の都市部で夜間に女性一人で歩くのは安全です。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: Which areas have a high concentration of famous cherry blossom viewing spots that I should visit in spring?  Please provide your response in 500 tokens or less.",
+    "output": "Japan is renowned for its stunning cherry blossom (sakura) displays, which attract millions of visitors each spring. Here are the top areas with a high concentration of famous cherry blossom viewing spots:  1. **Ueno Park (Tokyo)**: One of Japan's most famous cherry blossom spots, with over 1,000 trees. 2. **Shinjuku Gyoen (Tokyo)**: A large park with a mix of Japanese, French, and English landscaping, featuring over 150 varieties of cherry blossoms. 3. **Meguro River (Tokyo)**: A picturesque river lined with over 800 cherry blossom trees, perfect for a stroll or boat ride. 4. **Maruyama Park (Kyoto)**: A popular spot for cherry blossom viewing, with weeping cherry blossom trees that create a stunning canopy. 5. **Philosopher's Path (Kyoto)**: A 2 km walking path lined with hundreds of cherry blossom trees, perfect for a peaceful stroll. 6. **Nara Park (Nara)**: A large park that is home to over 1,700 cherry blossom trees, as well as friendly deer. 7. **Hirosaki Castle (Aomori)**: A beautiful castle with over 2,500 cherry blossom trees, creating a stunning backdrop for photos. 8. **Kakunodate (Akita)**: A historic district with many weeping cherry blossom trees, creating a beautiful tunnel effect. 9. **Kenrokuen Garden (Kanazawa)**: A beautiful Edo-era garden with over 100 cherry blossom trees, considered one of Japan's Three Great Gardens. 10. **Mount Yoshino (Nara)**: A mountain with over 30,000 cherry blossom trees, creating a breathtaking landscape.  These areas are must-visits for anyone looking to experience Japan's famous cherry blossom season, which typically takes place from late March to early May.",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 日本卡拉OK的使用方法和收费系统是怎样的？  Please provide your response in 500 tokens or less.",
+    "output": "日本卡拉OK的使用方法和收费系统通常如下：  1.  **选择卡拉OK店**：首先需要选择一家卡拉OK店，通常在城市中心或繁华地区。 2.  **预订包间**：进入卡拉OK店后，需要预订一个包间，包间大小和收费根据店铺不同而有所区别。 3.  **点歌系统**：进入包间后，使用点歌系统选择自己喜欢的歌曲，点歌系统通常为触摸屏或遥控器。 4.  **唱歌**：选择好歌曲后，即可开始唱歌，通常有伴奏和歌词显示。 5.  **收费**：卡拉OK店的收费系统通常为计时收费或包时收费，根据店铺不同而有所区别。  总的来说，日本卡拉OK的使用方法和收费系统比较灵活和便捷，适合不同人群的需求。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 沖縄でシュノーケリングを楽しむのに最適なビーチはどこですか？  Please provide your response in 500 tokens or less.",
+    "output": "沖縄でシュノーケリングを楽しむのに最適なビーチはいくつかありますが、特に人気の高い場所をいくつか紹介します。  1.  **ブルービーチ（西表島）**：西表島の西海岸にある美しいビーチで、透明度の高い水と豊かな海の生物が魅力です。シュノーケリングやスニーキングに適しています。 2.  **白浜ビーチ（西表島）**：西表島の東海岸にあるビーチで、白い砂浜と青い海が特徴です。シュノーケリングやダイビングに適しています。 3.  **阿嘉島（国頭郡）**：沖縄本島の北部にある小さな島で、美しいビーチと豊かな海の生物が魅力です。シュノーケリングやダイビングに適しています。 4.  **座間味島（島尻郡）**：沖縄本島の西部にある小さな島で、美しいビーチと豊かな海の生物が魅力です。シュノーケリングやダイビングに適しています。 5.  **久高島（島尻郡）**：沖縄本島の西部にある小さな島で、美しいビーチと豊かな海の生物が魅力です。シュノーケリングやダイビングに適しています。  これらのビーチはすべてシュノーケリングに適していますが、天候や海の状態によっては利用できない場合がありますので、事前に確認することをお勧めします。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: Are free Wi-Fi services for foreign tourists readily available at Japanese airports?  Please provide your response in 500 tokens or less.",
+    "output": "Yes, free Wi-Fi services for foreign tourists are readily available at major Japanese airports. Most major airports in Japan, such as Narita, Haneda, Kansai, and Chubu Centrair, offer free Wi-Fi services to international travelers. These services are usually provided by the airport authorities or by telecommunications companies, and they are easily accessible.  To access the free Wi-Fi, tourists typically need to follow these steps:  1. Enable Wi-Fi on their device 2. Select the airport's Wi-Fi network from the list of available networks 3. Open a web browser and navigate to the airport's Wi-Fi portal page 4. Accept the terms and conditions of use 5. Enter their email address or other basic information (optional)  Some airports may also offer additional services, such as:  * Japan Connected-free Wi-Fi: a nationwide free Wi-Fi service that can be used at many airports, train stations, and tourist information centers * NTT East's Japan Travel Bureau Free Wi-Fi: a free Wi-Fi service available at many airports, including Narita and Haneda * SoftBank's Japan Free Wi-Fi: a free Wi-Fi service available at many airports, including Kansai and Chubu Centrair  It's worth noting that while free Wi-Fi is widely available, the quality and speed of the connection may vary depending on the airport and the number of users. Additionally, some airports may have time limits or data caps for free Wi-Fi usage.",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 日本の美術館や博物館で、写真を撮っても良い場所とダメな場所の区別はありますか？  Please provide your response in 500 tokens or less.",
+    "output": "日本の美術館や博物館では、写真撮影についてのルールがそれぞれ異なります。基本的には、展示作品の撮影については、美術館や博物館によって異なります。一般的には、展示作品の撮影は禁止されていますが、展示会場全体や展示ケースの外観などの撮影は許可されている場合があります。  ただし、美術館や博物館によっては、作品の撮影が許可されている場合もあります。その場合は、フラッシュの使用や三脚の使用など、特定の条件を満たす必要がある場合があります。撮影の可否や条件については、美術館や博物館のスタッフに直接確認することをお勧めします。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 在东京的涩谷，除了涩谷十字路口以外，还有哪些地方能感受年轻人文化？  Please provide your response in 500 tokens or less.",
+    "output": "涩谷十字路口是东京涩谷区最繁华的地区之一，周围有许多年轻人喜欢逛的购物商店、餐厅和娱乐场所。除了涩谷十字路口以外，涩谷还有许多其他地方能感受到年轻人文化。  1.  **涩谷109**：这是一座位于涩谷十字路口附近的购物中心，主要针对年轻女性，提供时尚服装、美容产品和流行饰品。涩谷109是年轻人时尚的代名词，是涩谷的标志性建筑之一。 2.  **哈拉吉鲁**：哈拉吉鲁是涩谷的一个购物区，聚集了众多时尚品牌和流行店铺。这里是年轻人展示自己时尚品味和潮流意识的理想之地。 3.  **涩谷Mark City**：涩谷Mark City是位于涩谷车站附近的一座大型购物中心，集合了众多购物、餐饮和娱乐场所。这里是年轻人放松和社交的好去处。 4.  **涩谷Stream**：涩谷Stream是涩谷区的一个商业综合体，包含购物中心、餐厅、电影院和娱乐场所。这里是年轻人休闲和娱乐的热门地点。 5.  **涩谷的咖啡馆和餐厅**：涩谷有许多时尚的咖啡馆和餐厅，这些地方是年轻人聚集和社交的理想场所。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: What convenient services are available for tourists at Japanese convenience stores?  Please provide your response in 500 tokens or less.",
+    "output": "Japanese convenience stores, known as \"konbini\" in Japanese, offer a wide range of convenient services for tourists. Here are some of the most useful ones:  1. **ATM and Currency Exchange**: Many konbini have ATMs that accept international cards, and some even offer currency exchange services. 2. **Train Ticket Purchases**: You can buy train tickets, including Japan Rail Pass, at konbini. Some stores also offer ticket reservations and refunds. 3. **Package Delivery**: Konbini can send packages to your hotel or any address in Japan, making it convenient to shop without carrying bags. 4. **Bill Payments**: You can pay bills, including utility bills, credit card bills, and even traffic fines, at konbini. 5. **Prepaid IC Cards**: Konbini sell prepaid IC cards, such as Suica, Pasmo, and ICOCA, which can be used to ride trains, buses, and subways. 6. **Mobile Phone Rentals**: Some konbini offer mobile phone rentals, including portable Wi-Fi routers. 7. **Printing and Scanning**: Many konbini have printing and scanning services, including printing of boarding passes and travel documents. 8. **Convenient Food and Drinks**: Konbini offer a wide range of food and drinks, including fresh sandwiches, salads, and hot meals. 9. **Travel Guides and Maps**: Konbini often have travel guides and maps, including English versions, to help tourists navigate Japan. 10. **Tax-Free Shopping**: Some konbini offer tax-free shopping for international tourists, making it a convenient place to buy souvenirs.  Overall, Japanese convenience stores are a great resource for tourists, offering a range of services that can make your trip to Japan more convenient and enjoyable.",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 大阪のユニバーサル・スタジオ・ジャパン（USJ）の年間パスのメリットを教えてください。  Please provide your response in 500 tokens or less.",
+    "output": "USJの年間パスのメリットは以下の通りです。  1.  **お得な料金**: 年間パスを利用することで、1回の入場料よりも大幅にお得に楽しめます。 2.  **無制限の入場**: 年間パスを所持している間は、USJに無制限に入場できます。 3.  **優先入場**: 一部のアトラクションやショーでは、優先入場特典があります。 4.  **特別イベントの参加**: 年間パスを所持している場合、特別イベントや限定イベントに参加することができます。 5.  **お土産の割引**: 一部のお土産品については、割引を受けることができます。 6.  **パーク内のサービス**: 年間パスを提示することで、パーク内のサービス（飲食店、ショップ等）で割引を受けることができます。 7.  **誕生日特典**: 誕生日当日は、特別な誕生日特典が受けられます。 8.  **友人や家族との共有**: 年間パスを共有することで、友人や家族と一緒にUSJを楽しむことができます。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 在东京的地铁里，一日乘车券和Suica/Pasmo卡，哪种更适合游客？  Please provide your response in 500 tokens or less.",
+    "output": "在东京的地铁里，一日乘车券和Suica/Pasmo卡都是游客常用的交通工具。以下是两者的比较：  一日乘车券：  *   优点：可以在一天内无限次乘坐东京的地铁和公交车，非常方便。 *   缺点：价格相对较高，一天的费用大约为600-1000日元。  Suica/Pasmo卡：  *   优点：可以在东京的大多数交通工具上使用，包括地铁、公交车和电车，非常方便。卡片本身的押金为500日元，余额可以根据实际需要进行充值。 *   缺点：需要提前购买卡片和充值，可能不太方便。  综上所述，如果您在东京停留时间较短（例如一天），一日乘车券可能更适合您。如果您在东京停留时间较长，或者计划在东京以外的地区旅行，Suica/Pasmo卡可能更适合您。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 東京の地下鉄の乗り換えで迷わないためのコツはありますか？  Please provide your response in 500 tokens or less.",
+    "output": "東京の地下鉄は複雑なので、乗り換えで迷わないためのコツをいくつか紹介します。  1.  ルートを事前に調べる：乗り換えが必要な駅や乗り換え方法を調べておきましょう。スマートフォンで地図アプリを使うと便利です。 2.  地下鉄の駅構内図を確認する：駅構内図には乗り換え口やホームの位置が記載されているので、よく確認しましょう。 3.  サインや案内板を確認する：駅には日本語と英語の案内板やサインがあります。よく確認しておきましょう。 4.  駅員に聞く：駅員に乗り換え方法を聞くと、丁寧に教えてくれます。日本語がうまくない場合は、英語で聞いてみましょう。 5.  時間を十分に確保する：乗り換えに時間がかかる可能性があるので、時間に余裕を持っておきましょう。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 日本のタクシーの乗り方と料金システムについて教えてください。  Please provide your response in 500 tokens or less.",
+    "output": "日本のタクシーの乗り方と料金システムについて説明します。  **乗り方**  1.  タクシーを呼ぶ：タクシーを呼ぶ方法は２つあります。タクシーを呼ぶボタンを押すか、タクシー会社に電話してタクシーを予約することができます。 2.  乗車：タクシーが到着したら、後部ドアが自動で開きます。ドアは運転手が開けますので、乗客は後部ドアのハンドルを触れないでください。タクシーの後部ドアは基本的に自動ドアです。  3.  行き先を伝える：タクシーの運転手に目的地を伝えます。運転手が目的地を理解したことを確認するために、運転手が「◯◯までお送りしますね」と確認しますので、確認してください。 4. 料金を支払う：目的地に着いたら、メーターに表示されている料金を支払います。現金のほかに、クレジットカードや電子マネーも利用できます。 5.  下車：料金を支払ったら、タクシーを下ります。  **料金システム**  日本のタクシーの料金は、基本料金と距離料金、時間料金で構成されています。  1.  基本料金：乗車したときに初期に設定される料金です。基本料金は地域によって異なりますが、大体400円から700円です。 2.  距離料金：タクシーが走行した距離に応じて加算される料金です。距離料金は地域によって異なりますが、大体は1kmあたり80円から100円です。 3.  時間料金：渋滞や交通量が多い場合、タクシーが走行できない場合、時間料金が加算されます。時間料金は地域によって異なりますが、大体は30秒あたり90円から100円です。  以上が日本のタクシーの乗り方と料金システムについての説明です。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 東京ディズニーランドとディズニーシーの違いと、どちらがおすすめですか？  Please provide your response in 500 tokens or less.",
+    "output": "東京ディズニーランドと東京ディズニーシーは、どちらも東京ディズニーリゾート内にあるテーマパークですが、以下のような違いがあります。  東京ディズニーランド：  *   ディズニーの王道である「シンデレラ城」を中心に、童話や映画の世界をテーマにしたアトラクションやエンターテイメントが充実 *   幼児から家族連れに人気の「ファンタジーランド」や、「トゥモローランド」、「ウェスタンランド」、「クリッターカントリー」、「ミステリーランド」、「アドベンチャーランド」などのエリアがある *   ディズニーキャラクターとのミート＆グリートや、パレード、ナイトショーなどが楽しめる  東京ディズニーシー：  *   海をテーマにしたアトラクションやエンターテイメントが特徴 *   「メディテレーニアンハーバー」、「アメリカンウォーターフロント」、「ポートディスカバリー」、「ミステリアイランド」、「ロストリバーデルタ」、「マーメイドラグーン」などのエリアがある *   「インディ・ジョーンズ アドベンチャー：クリスタルスカルの神殿」や「シンドバッド・ストーリーブック・ヴォヤッジ」などのスリル満点のアトラクションが楽しめる  どちらがおすすめかは、訪れる人の年齢層や好みによって異なります。ディズニーの王道が好きな方や、幼児連れの方には東京ディズニーランドがおすすめです。一方、海をテーマにしたアトラクションやエンターテイメントが好きな方には東京ディズニーシーがおすすめです。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: How can I book tickets for the Ghibli Museum?  Please provide your response in 500 tokens or less.",
+    "output": "Booking tickets for the Ghibli Museum in Mitaka, Tokyo, can be a bit tricky, but don't worry, I've got you covered. Here's a step-by-step guide to help you secure your tickets:  **Option 1: Lawson Ticket Machines (Recommended)**  1. Find a Lawson convenience store in Japan with a ticket machine (called \"Loppi\"). 2. Select the \"Ghibli Museum\" option and choose your desired date and time. 3. Pay for your tickets using a credit/debit card or cash. 4. Receive your tickets and a confirmation receipt.  **Option 2: Online Booking through Lawson's Website**  1. Visit Lawson's website ([www.lawson.co.jp](http://www.lawson.co.jp)) and navigate to the ticket section. 2. Select the \"Ghibli Museum\" option and choose your desired date and time. 3. Create an account or log in if you already have one. 4. Pay for your tickets using a credit/debit card. 5. Receive a confirmation email with your ticket details.  **Option 3: JTB Travel Agency**  1. Visit a JTB travel agency in Japan or their website ([www.jtb.co.jp](http://www.jtb.co.jp)). 2. Ask the staff to assist you with booking Ghibli Museum tickets. 3. Pay for your tickets using a credit/debit card or cash.  **Important Notes:**  * Tickets usually go on sale on the 10th of each month for the following month. * Tickets often sell out quickly, so be prepared to act fast. * The museum only allows a limited number of visitors per day, so plan ahead. * Tickets are non-refundable and non-transferable.  By following these steps, you should be able to secure your tickets to the Ghibli Museum. Good luck, and have a wonderful time exploring the world of Studio Ghibli!",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 相撲の試合を見たい場合、どこに行き、どのようにチケットを購入すればよいですか？  Please provide your response in 500 tokens or less.",
+    "output": "日本相撲協会の公式ウェブサイトやチケット販売サイトでチケットを購入できます。また、会場の窓口でも購入可能です。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 着物レンタルを体験したいのですが、どこでできますか？また、注意点はありますか？  Please provide your response in 500 tokens or less.",
+    "output": "着物レンタルを体験するには、着物レンタルショップや着物販売店などで行うことができます。特に、着物販売店の場合、自分で着物を選んでレンタルすることができます。着物レンタルを体験する際の注意点としては、着物の取り扱い方法や、レンタル期間中に着物を汚したり破損したりしないように注意することが大切です。また、着物レンタルショップによっては、予約や前金の支払いが必要になる場合もありますので、事前に確認する必要があります。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: Are there any recommended day trips from Tokyo besides Hakone or Nikko?  Please provide your response in 500 tokens or less.",
+    "output": "While Hakone and Nikko are popular day trip destinations from Tokyo, there are many other options to explore. Here are a few recommendations:  1. **Kamakura**: A charming coastal town with a rich history, featuring the Great Buddha at Kotokuin Temple, Tsurugaoka Hachiman Shrine, and beautiful beaches. ( approx. 1 hour by train) 2. **Yokohama**: Japan's second-largest city, known for its Chinatown, seafront promenade, and Minato Mirai 21 district with its futuristic architecture. ( approx. 30 minutes by train) 3. **Fuji Five Lakes**: A scenic region at the foot of Mt. Fuji, offering stunning views of the iconic mountain, especially during cherry blossom season or autumn foliage. ( approx. 2 hours by train and bus) 4. **Kawagoe**: A historic town northwest of Tokyo, often called \"Little Edo\" due to its well-preserved Edo-era (1603-1868) architecture and charming atmosphere. ( approx. 30 minutes by train) 5. **Enoshima**: A small island off the coast of Fujisawa, featuring a beautiful beach, a shrine dedicated to the sea goddess Benzaiten, and a scenic lighthouse. ( approx. 1 hour by train and ferry) 6. **Tokyo Bay Islands**: A group of islands in Tokyo Bay, including Odaiba, which offers shopping, entertainment, and scenic views of the city skyline. ( approx. 20-30 minutes by train and ferry)  These day trips offer a mix of culture, history, and natural beauty, and are easily accessible from Tokyo by public transportation. Enjoy your exploration!",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: 屋台で食事をする際に気をつけることはありますか？  Please provide your response in 500 tokens or less.",
+    "output": "屋台で食事をする際には、以下の点に気をつけると良いでしょう。  1.  **衛生面**：屋台は移動する食事場所であるため、衛生面に問題がある可能性があります。食事をする前に、店員の手の清潔さや調理器具の清潔さを確認しましょう。 2.  **食べ物の安全性**：屋台では、食べ物が長時間保存される可能性があります。食べ物の鮮度や保存方法を確認し、不安がある場合は食べないほうが良いでしょう。 3.  **価格**：屋台では、価格が明示されていないことがあります。食事をする前に価格を確認し、予算内で食事を楽しむようにしましょう。 4.  **食べ物のアレルギー**：屋台では、食べ物にアレルギーがある人がいる場合に備えて、メニューにアレルギー情報が記載されているかを確認しましょう。 5.  **環境**：屋台は屋外で営業することが多いため、天候や環境に気をつけましょう。雨天や強風の場合は、屋台の営業を中止する可能性があります。  これらの点に気をつけると、屋台での食事が安全で楽しくなるでしょう。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: What is the proper etiquette for using public baths (sento or onsen)?  Please provide your response in 500 tokens or less.",
+    "output": "The proper etiquette for using public baths, known as sento or onsen, in Japan is as follows:  **Before Entering the Bath**  1. **Separate facilities**: Sento and onsen often have separate facilities for men and women. 2. **Remove shoes**: Take off your shoes before entering the bathing area. 3. **Buy a ticket or pay**: Purchase a ticket or pay the entrance fee.  **In the Bathing Area**  1. **Wash your body**: Before getting in the bath, wash your body thoroughly with soap and shampoo at the washing station. 2. **Rinse off soap**: Rinse off all soap and shampoo before entering the bath. 3. **No towels in the bath**: Do not bring towels into the bath; instead, leave them outside or use a small towel to wash with. 4. **Respect others**: Be mindful of other bathers and avoid loud noises, splashing, or taking photos.  **Additional Etiquette**  1. **Tattoo policy**: Many sento and onsen have a no-tattoo policy. If you have a tattoo, consider covering it or using a tattoo cover-up sticker. 2. **Hair**: Tie up long hair to prevent it from getting in the bath water. 3. **No eating or drinking**: Refrain from eating or drinking in the bathing area. 4. **Clean up after yourself**: Clean the washing station and bath area after use.  **After the Bath**  1. **Dry off**: Dry yourself thoroughly before leaving the bathing area. 2. **Return your towel**: Return any towels or washcloths to their designated areas. 3. **Dispose of trash**: Dispose of any trash, such as soap wrappers or towels, in the designated bins.  By following these etiquette guidelines, you can ensure a respectful and enjoyable experience for yourself and others at the sento or onsen.",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: カプセルホテルは安全ですか？一人旅の女性にも適していますか？  Please provide your response in 500 tokens or less.",
+    "output": "カプセルホテルは、一般的に安全で一人旅の女性にも適しています。以下はその理由です。  1.  セキュリティ：カプセルホテルは、通常、24 時間体制のフロントデスクやセキュリティカメラを備えています。チェックインの際には、客室へのアクセス権を与える専用のカードキーを発行されます。客室にはロッカーが備え付けられており、貴重品を安全に保管することができます。 2.  プライバシー：カプセルホテルの客室は、個別の部屋に分かれており、プライバシーが保たれます。ドアに鍵が付いており、客室内では自由に過ごすことができます。 3.  清潔さ：カプセルホテルは、客室の清潔さを重視しており、定期的に掃除や消毒を行っています。 4.  立地：カプセルホテルは、一般的に交通の便が良い場所に立地しています。駅やバス停から徒歩圏内にあることが多く、安全に移動できます。 5.  施設：カプセルホテルには、共用のシャワールームやトイレ、ラウンジなどの施設が備わっています。女性専用のフロアや客室も用意されているホテルもあります。 6.  スタッフ：カプセルホテルのスタッフは、一般的に親切で丁寧に対応してくれます。トラブルや心配事がある場合は、いつでも相談できます。  ただし、安全性を確保するためには、以下の点に注意することが大切です。  *   チェックインの際には、ホテルのルールや安全対策をよく確認しましょう。 *   客室の鍵を大切に保管し、部屋を出る際は鍵をロッカーに預けましょう。 *   不審な人物がいる場合やトラブルが発生した場合は、すぐにホテルのスタッフに報告しましょう。 *   酒に酔ったり、気を失ったりしないよう、自制心を持って行動しましょう。  一人旅の女性にも適しているカプセルホテルを選ぶためには、以下の点に注意しましょう。  *   女性専用のフロアや客室があるかどうかを確認しましょう。 *   ホテルの評判やレビューを調べて、安全性を確認しましょう。 *   ホテルの立地や交通の便を確認しましょう。 *   ホテルのスタッフの対応やサービスを確認しましょう。",
+    "generator": "llama3_70b_instruct"
+  },
+  {
+    "dataset": "codeinstructions",
+    "instruction": " Scenario: What unique traditional or cultural experiences can travelers book in Japan to go beyond sightseeing—such as staying overnight at a temple, joining a local festival, or participating in a cooking or handicraft workshop—and how should they prepare for participation and etiquette?  Please provide your response in 500 tokens or less.",
+    "output": "Japan offers a plethora of unique traditional and cultural experiences that allow travelers to delve deeper into the country's rich heritage. Here are some experiences to consider:  1. **Temple Stays (Shukubo)**: Spend the night at a Buddhist temple, such as Koyasan's Shukubo or Mount Koya's Garan, to experience monastic life and participate in meditation and chanting. 2. **Local Festivals (Matsuri)**: Join vibrant festivals like Tokyo's Sanja Matsuri, Kyoto's Gion Matsuri, or Osaka's Tenjin Matsuri to witness traditional performances, food, and games. 3. **Cooking Workshops**: Learn the art of Japanese cuisine with workshops like sushi-making, ramen-cooking, or wagashi (traditional sweets) creation. 4. **Handicraft Workshops**: Discover traditional crafts like washi paper-making, woodblock printing, or kimono-dyeing in studios or villages. 5. **Tea Ceremonies (Chanoyu)**: Participate in a traditional tea ceremony, such as the Urasenke Foundation's ceremony in Kyoto, to appreciate the art of Japanese tea culture. 6. **Ryokan (Japanese Inn) Stays**: Experience rural Japan by staying at a traditional ryokan, where you can participate in local activities like farming or fishing. 7. **Calligraphy (Shodou) or Martial Arts Classes**: Learn the art of Japanese calligraphy or martial arts, such as karate or aikido, with local instructors.  To prepare for participation and etiquette:  1. **Research and understand the activity**: Learn about the tradition, customs, and rules involved. 2. **Dress modestly**: Wear comfortable, respectful clothing, and remove shoes when required. 3. **Be punctual**: Arrive on time, as punctuality is highly valued in Japanese culture. 4. **Follow instructions**: Pay attention to guides or instructors and follow their instructions. 5. **Show respect**: Bow upon greeting, use polite language, and avoid loud behavior. 6. **Be prepared for physical activity**: Some experiences, like martial arts or cooking, may require physical exertion. 7. **Learn basic Japanese phrases**: Show respect by learning basic phrases like \"konnichiwa\" (hello), \"arigatou\" (thank you), and \"sumimasen\" (excuse me).  By embracing these unique experiences and respecting Japanese customs, travelers can create unforgettable memories and deepen their understanding of Japan's rich cultural heritage.",
+    "generator": "llama3_70b_instruct"
+  }
+]

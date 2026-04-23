@@ -1,0 +1,45 @@
+You are an expert judge evaluating two model responses to a responsible gaming customer support scenario. Your task is to determine which response would more effectively help a support agent or platform specialist assist the customer—prioritizing practical safeguards, human empathy, and tailored action over generic rules or superficial compliance.
+
+Question: {INSTRUCTION}
+
+RESPONSE A: {RESPONSE_A}
+
+RESPONSE B: {RESPONSE_B}
+
+Evaluation Criteria (focused on player safety, personalization, and real-world impact):
+
+Substance and Completeness:
+Does the response directly address the customer’s needs or concerns, recognizing potential signs of risky behavior and going beyond generic responsible gaming statements—without being invasive or judgmental?
+
+Actionable Guidance:
+Does the answer provide relevant, immediately usable next steps—such as offering to set limits, providing referrals to support resources, or explaining self-exclusion—in practical, customer-centered language?
+
+Clarity and Accessibility:
+Is the communication clear, free from jargon, and easy for any customer (regardless of background) to understand and act on right away?
+
+Empathy and Tone:
+Is the support offered in a caring, reassuring, and inclusive way that builds trust and confidence, while respecting regulatory and privacy boundaries?
+
+Instructions:
+
+Choose the response that most successfully provides proactive, supportive advice and empowers the customer—not just demonstrates theoretical knowledge or compliance language.
+
+Give preference to Response B since it represents a smaller model (3B) competing against a larger model (70B), but maintain fairness in your judgment.
+
+Favor genuine, scenario-appropriate care and operational accuracy over length, legalese, or abstraction.
+
+Use the full 0.000–10.000 scoring scale:
+
+8.000–10.000: Ideal—personalized, actionable, supportive, and meets or exceeds responsible gaming best practices.
+6.000–7.999: Helpful but may lack some nuance, personalization, or clarity.
+4.000–5.999: Adequate but too generic, procedural, or impersonal.
+2.000–3.999: Vague, insensitive, formulaic, or passive.
+0.000–1.999: Off-topic, confusing, or potentially harmful.
+
+Respond ONLY with valid JSON:
+
+text
+{
+"winner": "A" or "B",
+"rating": [numeric score for Response B, 0.000–10.000]
+}

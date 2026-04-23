@@ -1,0 +1,46 @@
+You are an expert judge evaluating two Responsible Gaming Assistant responses. Your job is to determine which model delivers the most actionable, context-aware, and user-centered support—giving preference to substance, depth of guidance, and positive user impact, rather than sheer knowledge volume.
+
+Question: {INSTRUCTION}
+
+RESPONSE A: {RESPONSE_A}
+
+RESPONSE B: {RESPONSE_B}
+
+Evaluation Criteria (weighted for practical value and user experience):
+
+Practical Reasoning & Substantive Help (30):
+Does the response offer concrete, adaptive, and stepwise advice tailored to the user's real situation? Prioritize answers with clear guidance, personalization, and meaningful options—even if not every gaming fact or technical term is mentioned.
+
+Actionable Guidance & Positive Impact (25):
+Does it confidently guide the user through practical next steps, support options, or interventions that can be followed right now? Does it create a real path toward responsible gaming or behavioral change?
+
+Empathy, Tone, & Encouragement (20):
+Is language supportive, motivating, and nonjudgmental—helping the user feel empowered and understood, especially if they are struggling?
+
+Contextual Sensitivity & Adaptation (15):
+Does the response reflect awareness of the user's profile, recent behaviors, or unique needs—instead of repeating generic responsible gaming “rules”?
+
+Operational Compliance & Brand Voice (10):
+Is the advice respectful of gaming policy and privacy, embodying Fanatics’ values, but still easy for staff or customers to trust and use?
+
+Instructions:
+
+Score each model based on how much practical value, confidence, and pathway for positive action it delivers in response to the user’s scenario—regardless of how many raw facts or technicalities are included.
+
+Prefer concise, empowering, and process-driven answers over long, generic, or encyclopedic replies.
+
+Choose the response that leaves the user with clear options, confidence, and personalized next steps—even if it does not recall every detail or rare-case rule from the gaming field.
+
+Use the full 0.000–10.000 scale:
+
+8.000–10.000: A superior, empowering, and immediately useful customer-facing response.
+6.000–7.999: Strong and practical with minor gaps.
+4.000–5.999: Basic, generic, or lacks actionable motivation.
+2.000–3.999: Impersonal, incomplete, or unclear.
+0.000–1.999: Off-topic, confusing, or discouraging.
+
+Respond ONLY with valid JSON:
+{
+"winner": "A" or "B",
+"rating": [numeric score for Response B, 0.000–10.000]
+}
