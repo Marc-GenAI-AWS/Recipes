@@ -1,0 +1,481 @@
+# Enhanced Synthetic Data Configuration
+# Domain: automotive maintenance
+# Display Name: Automotive Maintenance Management
+# Generated: 2025-06-20 12:32:09
+# Total Attributes: 87
+# Entities: 5
+# Primary Entity Attributes: 24
+# High-Cardinality Fields: 16
+# List Fields: 9
+# Temporal Fields: 8
+# Numeric Fields: 17
+# Template Placeholders: 63
+# Validation: PASSED
+
+domain_name: automotive_maintenance
+display_name: "Automotive Maintenance Management"
+description: Comprehensive synthetic data schema for automotive maintenance, repair, and service lifecycle management, supporting predictive analytics, workflow automation, and culturally diverse customer engagement.
+
+entities:
+  - name: Vehicle
+    description: Primary entity representing an individual automobile under maintenance management.
+    attributes:
+      - name: vehicle_id
+        type: id
+        description: Unique identifier for the vehicle.
+      - name: vin
+        type: text
+        max_length: 17
+        description: Vehicle Identification Number.
+      - name: license_plate
+        type: text
+        max_length: 10
+        description: License plate number.
+      - name: make
+        type: categorical
+        categories: [Toyota, Honda, Ford, Chevrolet, BMW, Mercedes-Benz, Volkswagen, Hyundai, Nissan, Kia, Subaru, Tesla, Audi, Jeep, Lexus]
+        description: Manufacturer of the vehicle.
+      - name: model
+        type: categorical
+        categories: [Corolla, Civic, F-150, Silverado, 3 Series, C-Class, Golf, Elantra, Altima, Sorento, Outback, Model 3, Q5, Wrangler, RX]
+        description: Model of the vehicle.
+      - name: year
+        type: integer
+        min: 1995
+        max: 2025
+        description: Model year of the vehicle.
+      - name: body_type
+        type: categorical
+        categories: [Sedan, SUV, Hatchback, Coupe, Convertible, Pickup, Wagon, Van, Minivan, Crossover, Roadster, Sports Car]
+        description: Body style of the vehicle.
+      - name: color
+        type: categorical
+        categories: [White, Black, Silver, Blue, Red, Gray, Green, Yellow, Orange, Brown, Gold, Purple, Beige, Maroon, Teal]
+        description: Exterior color of the vehicle.
+      - name: fuel_type
+        type: categorical
+        categories: [Gasoline, Diesel, Electric, Hybrid, Plug-in Hybrid, CNG, LPG, Hydrogen]
+        description: Fuel type used by the vehicle.
+      - name: transmission
+        type: categorical
+        categories: [Automatic, Manual, CVT, Dual-Clutch, Semi-Automatic]
+        description: Transmission type.
+      - name: drivetrain
+        type: categorical
+        categories: [FWD, RWD, AWD, 4WD]
+        description: Drivetrain configuration.
+      - name: odometer
+        type: integer
+        min: 0
+        max: 400000
+        description: Current odometer reading in kilometers.
+      - name: registration_country
+        type: categorical
+        categories: [USA, Canada, Mexico, UK, Germany, France, Italy, Spain, Japan, South Korea, Australia, Brazil, India, South Africa, UAE]
+        description: Country where the vehicle is registered.
+      - name: location
+        type: categorical
+        categories: [US-CA-Los Angeles, US-NY-New York, US-TX-Houston, CA-ON-Toronto, UK-London, DE-Berlin, JP-Tokyo, AU-Sydney, FR-Paris, IN-Mumbai, BR-São Paulo, ZA-Johannesburg, MX-Mexico City, KR-Seoul, AE-Dubai]
+        description: Current geographic location of the vehicle.
+      - name: owner_id
+        type: id
+        description: Reference to the current owner (Customer).
+      - name: warranty_status
+        type: categorical
+        categories: [Active, Expired, Voided, Pending, Transferred]
+        description: Current warranty status.
+      - name: last_service_date
+        type: datetime
+        min: "2020-01-01"
+        max: "now"
+        description: Date of the most recent service.
+      - name: next_service_due
+        type: datetime
+        min: "now"
+        max: "2026-12-31"
+        description: Scheduled date for next service.
+      - name: maintenance_status
+        type: categorical
+        categories: [No Issues, Scheduled, In Service, Awaiting Parts, Completed, Overdue, Escalated, Cancelled, Deferred, Under Review, Recalled, Inspection Required]
+        description: Current maintenance workflow state.
+      - name: risk_assessment
+        type: categorical
+        categories: [Very-Low, Low, Medium-Low, Medium, Medium-High, High, Very-High, Critical]
+        description: Maintenance risk level based on diagnostics.
+      - name: satisfaction_score
+        type: integer
+        min: 1
+        max: 10
+        description: Owner satisfaction score for recent maintenance.
+      - name: nps_score
+        type: integer
+        min: -100
+        max: 100
+        description: Net Promoter Score for service experience.
+      - name: completion_rate
+        type: float
+        min: 0.0
+        max: 1.0
+        description: Percentage of recommended maintenance completed.
+      - name: display_name
+        type: text
+        max_length: 64
+        description: Human-readable vehicle display name for UI.
+
+  - name: Customer
+    description: Entity representing the owner or primary user of a vehicle.
+    attributes:
+      - name: customer_id
+        type: id
+        description: Unique identifier for the customer.
+      - name: first_name
+        type: text
+        max_length: 32
+        description: Customer's first name.
+      - name: last_name
+        type: text
+        max_length: 32
+        description: Customer's last name.
+      - name: gender
+        type: categorical
+        categories: [Male, Female, Non-binary, Genderqueer, Agender, Prefer not to say, Other]
+        description: Gender identity.
+      - name: age
+        type: integer
+        min: 18
+        max: 90
+        description: Age of the customer.
+      - name: cultural_background
+        type: categorical
+        categories: [Hispanic-Mexican, Hispanic-Puerto Rican, Asian-Chinese, Asian-Indian, Asian-Filipino, Asian-Vietnamese, Asian-Korean, African-Nigerian, African-Ethiopian, European-German, European-Italian, Middle Eastern-Lebanese, South Asian-Pakistani, Pacific Islander-Hawaiian, Indigenous-Cherokee, Caribbean-Jamaican, Mixed-Heritage]
+        description: Cultural or ethnic background.
+      - name: education_level
+        type: categorical
+        categories: [High School, Some College, Associates, Bachelors, Masters, PhD, Professional Degree, Trade Certification, Self-taught, International Equivalent]
+        description: Highest education attained.
+      - name: socioeconomic_status
+        type: categorical
+        categories: [Lower-income, Lower-middle, Middle-class, Upper-middle, High-income, Ultra-high-net-worth]
+        description: Socioeconomic status.
+      - name: languages_spoken
+        type: list
+        min_length: 1
+        max_length: 6
+        description: Languages spoken by the customer.
+      - name: email
+        type: text
+        max_length: 64
+        description: Email address.
+      - name: phone
+        type: text
+        max_length: 20
+        description: Phone number.
+      - name: address
+        type: text
+        max_length: 128
+        description: Mailing address.
+      - name: location
+        type: categorical
+        categories: [US-CA-Los Angeles, US-NY-New York, US-TX-Houston, CA-ON-Toronto, UK-London, DE-Berlin, JP-Tokyo, AU-Sydney, FR-Paris, IN-Mumbai, BR-São Paulo, ZA-Johannesburg, MX-Mexico City, KR-Seoul, AE-Dubai]
+        description: Primary residence location.
+      - name: industry
+        type: categorical
+        categories: [Technology, Healthcare, Finance, Manufacturing, Retail, Education, Government, Non-profit, Energy, Transportation, Real Estate, Media, Telecommunications, Agriculture, Construction]
+        description: Industry of employment.
+      - name: employee_count
+        type: integer
+        min: 1
+        max: 500000
+        description: Number of employees at customer's company.
+      - name: revenue
+        type: integer
+        min: 10000
+        max: 50000000
+        description: Estimated annual household or business revenue.
+      - name: growth_rate
+        type: float
+        min: -0.5
+        max: 3.0
+        description: Estimated annual growth rate.
+      - name: skills
+        type: list
+        min_length: 2
+        max_length: 12
+        description: Automotive or technical skills possessed.
+      - name: certifications
+        type: list
+        min_length: 0
+        max_length: 8
+        description: Automotive or professional certifications held.
+      - name: availability
+        type: categorical
+        categories: [Full-time, Part-time, Contract, Seasonal, Weekend-only, Evening-shift, Night-shift, Remote, Hybrid, On-site]
+        description: Availability for vehicle drop-off or service.
+      - name: display_name
+        type: text
+        max_length: 64
+        description: Human-readable customer display name for UI.
+
+  - name: ServiceOrder
+    description: Entity representing a maintenance, repair, or inspection order for a vehicle.
+    attributes:
+      - name: service_order_id
+        type: id
+        description: Unique identifier for the service order.
+      - name: vehicle_id
+        type: id
+        description: Reference to the serviced vehicle.
+      - name: customer_id
+        type: id
+        description: Reference to the customer requesting service.
+      - name: service_type
+        type: categorical
+        categories: [Routine Maintenance, Oil Change, Tire Rotation, Brake Service, Engine Repair, Transmission Service, Electrical Diagnostics, Battery Replacement, Air Conditioning, Suspension, Exhaust, Detailing, Recall, Inspection, Custom Upgrade]
+        description: Type of service performed.
+      - name: status
+        type: categorical
+        categories: [Draft, Submitted, Under-Review, Pending-Approval, Approved, In-Progress, On-Hold, Escalated, Completed, Archived, Cancelled, Rejected, Requires-Revision]
+        description: Workflow status of the service order.
+      - name: priority_level
+        type: categorical
+        categories: [Critical-P0, High-P1, Medium-P2, Low-P3, Deferred-P4, Nice-to-Have-P5]
+        description: Priority assigned to the service order.
+      - name: created_date
+        type: datetime
+        min: "2020-01-01"
+        max: "2024-12-31"
+        description: Date the service order was created.
+      - name: scheduled_date
+        type: datetime
+        min: "2020-01-01"
+        max: "2026-12-31"
+        description: Scheduled date for service.
+      - name: completed_date
+        type: datetime
+        min: "2020-01-01"
+        max: "2026-12-31"
+        description: Date service was completed.
+      - name: assigned_technician_id
+        type: id
+        description: Reference to the assigned technician.
+      - name: estimated_cost
+        type: float
+        min: 50.0
+        max: 20000.0
+        description: Estimated cost for the service.
+      - name: actual_cost
+        type: float
+        min: 0.0
+        max: 25000.0
+        description: Actual cost incurred.
+      - name: parts_used
+        type: list
+        min_length: 0
+        max_length: 12
+        description: List of part IDs used in the service.
+      - name: issues_reported
+        type: list
+        min_length: 0
+        max_length: 8
+        description: List of issues reported by the customer.
+      - name: satisfaction_score
+        type: integer
+        min: 1
+        max: 10
+        description: Customer satisfaction score for this service.
+      - name: nps_score
+        type: integer
+        min: -100
+        max: 100
+        description: Net Promoter Score for this service order.
+      - name: display_name
+        type: text
+        max_length: 64
+        description: Human-readable service order display name for UI.
+
+  - name: Technician
+    description: Entity representing a service technician or mechanic.
+    attributes:
+      - name: technician_id
+        type: id
+        description: Unique identifier for the technician.
+      - name: first_name
+        type: text
+        max_length: 32
+        description: Technician's first name.
+      - name: last_name
+        type: text
+        max_length: 32
+        description: Technician's last name.
+      - name: certifications
+        type: list
+        min_length: 0
+        max_length: 8
+        description: Professional certifications held.
+      - name: skills
+        type: list
+        min_length: 2
+        max_length: 12
+        description: Technical skills and specialties.
+      - name: years_experience
+        type: integer
+        min: 0
+        max: 45
+        description: Years of professional experience.
+      - name: languages_spoken
+        type: list
+        min_length: 1
+        max_length: 6
+        description: Languages spoken by the technician.
+      - name: shift_type
+        type: categorical
+        categories: [Day, Night, Swing, Weekend, On-call, Split, Rotating]
+        description: Assigned work shift.
+      - name: location
+        type: categorical
+        categories: [US-CA-Los Angeles, US-NY-New York, US-TX-Houston, CA-ON-Toronto, UK-London, DE-Berlin, JP-Tokyo, AU-Sydney, FR-Paris, IN-Mumbai, BR-São Paulo, ZA-Johannesburg, MX-Mexico City, KR-Seoul, AE-Dubai]
+        description: Primary work location.
+      - name: employment_status
+        type: categorical
+        categories: [Active, On Leave, Terminated, Retired, Contract, Probation, Suspended]
+        description: Current employment status.
+      - name: performance_rating
+        type: integer
+        min: 1
+        max: 10
+        description: Recent performance rating.
+      - name: last_training_date
+        type: datetime
+        min: "2018-01-01"
+        max: "now"
+        description: Date of last completed training.
+      - name: display_name
+        type: text
+        max_length: 64
+        description: Human-readable technician display name for UI.
+
+  - name: MaintenanceHistory
+    description: Historical record of maintenance, repairs, and inspections for a vehicle.
+    attributes:
+      - name: history_id
+        type: id
+        description: Unique identifier for the maintenance history record.
+      - name: vehicle_id
+        type: id
+        description: Reference to the vehicle.
+      - name: service_order_id
+        type: id
+        description: Reference to the related service order.
+      - name: event_type
+        type: categorical
+        categories: [Scheduled Maintenance, Unscheduled Repair, Inspection, Recall, Upgrade, Diagnostic, Warranty Claim, Accident Repair, Software Update, Emissions Test, Tire Change, Battery Replacement, Fluid Top-up, Detailing, Other]
+        description: Type of maintenance event.
+      - name: event_date
+        type: datetime
+        min: "2015-01-01"
+        max: "now"
+        description: Date of the maintenance event.
+      - name: technician_id
+        type: id
+        description: Reference to the technician who performed the work.
+      - name: parts_replaced
+        type: list
+        min_length: 0
+        max_length: 10
+        description: List of part IDs replaced during the event.
+      - name: labor_hours
+        type: float
+        min: 0.1
+        max: 40.0
+        description: Labor hours spent on the event.
+      - name: cost
+        type: float
+        min: 0.0
+        max: 25000.0
+        description: Total cost of the event.
+      - name: notes
+        type: text
+        max_length: 256
+        description: Additional notes or observations.
+      - name: created_date
+        type: datetime
+        min: "2015-01-01"
+        max: "now"
+        description: Record creation date.
+      - name: display_name
+        type: text
+        max_length: 64
+        description: Human-readable maintenance history display name for UI.
+
+relationships:
+  - from: Vehicle
+    to: Customer
+    type: many-to-one
+    description: Each vehicle is owned by a customer; customers may own multiple vehicles.
+  - from: ServiceOrder
+    to: Vehicle
+    type: many-to-one
+    description: Each service order is for a specific vehicle.
+  - from: ServiceOrder
+    to: Customer
+    type: many-to-one
+    description: Each service order is requested by a customer.
+  - from: ServiceOrder
+    to: Technician
+    type: many-to-one
+    description: Each service order is assigned to a technician.
+  - from: MaintenanceHistory
+    to: Vehicle
+    type: many-to-one
+    description: Each maintenance history record is linked to a vehicle.
+  - from: MaintenanceHistory
+    to: ServiceOrder
+    type: many-to-one
+    description: Each maintenance history record references a service order.
+  - from: MaintenanceHistory
+    to: Technician
+    type: many-to-one
+    description: Each maintenance event is performed by a technician.
+
+fine_tuning_task:
+  task_type: text_generation
+  system_prompt: "You are an expert automotive maintenance advisor. Provide detailed, actionable, and culturally sensitive recommendations for vehicle maintenance, repair, and customer engagement. Ensure your responses reflect industry best practices, regulatory compliance, and regional variations in automotive service. Use clear, professional language suitable for both technical and non-technical audiences."
+  user_template: |
+    CUSTOMER PROFILE:
+    Name: {first_name} {last_name}, Age: {age}, Gender: {gender}
+    Cultural Background: {cultural_background}
+    Education: {education_level}, Socioeconomic Status: {socioeconomic_status}
+    Location: {location}, Languages: {languages_spoken}
+    Industry: {industry}, Company Size: {employee_count}
+    Revenue: ${revenue}, Growth Rate: {growth_rate}
+    Skills: {skills}, Certifications: {certifications}
+    Availability: {availability}
+
+    VEHICLE DETAILS:
+    VIN: {vin}, License Plate: {license_plate}
+    Make: {make}, Model: {model}, Year: {year}, Body Type: {body_type}, Color: {color}
+    Fuel Type: {fuel_type}, Transmission: {transmission}, Drivetrain: {drivetrain}
+    Odometer: {odometer} km, Registration Country: {registration_country}
+    Warranty Status: {warranty_status}
+    Maintenance Status: {maintenance_status}, Risk Assessment: {risk_assessment}
+    Last Service: {last_service_date}, Next Service Due: {next_service_due}
+    Satisfaction Score: {satisfaction_score}/10, NPS: {nps_score}
+    Completion Rate: {completion_rate}
+
+    SERVICE ORDER:
+    Service Type: {service_type}, Status: {status}, Priority: {priority_level}
+    Created: {created_date}, Scheduled: {scheduled_date}, Completed: {completed_date}
+    Estimated Cost: ${estimated_cost}, Actual Cost: ${actual_cost}
+    Parts Used: {parts_used}, Issues Reported: {issues_reported}
+    Assigned Technician: {assigned_technician_id}
+
+    TECHNICIAN PROFILE:
+    Name: {technician_id}, Skills: {skills}, Certifications: {certifications}
+    Experience: {years_experience} years, Languages: {languages_spoken}
+    Shift: {shift_type}, Location: {location}, Status: {employment_status}
+    Performance Rating: {performance_rating}, Last Training: {last_training_date}
+
+    MAINTENANCE HISTORY:
+    Event Type: {event_type}, Event Date: {event_date}
+    Parts Replaced: {parts_replaced}, Labor Hours: {labor_hours}, Cost: ${cost}
+    Notes: {notes}

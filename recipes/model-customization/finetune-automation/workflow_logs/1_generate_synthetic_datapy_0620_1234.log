@@ -1,0 +1,5 @@
+usage: 1. generate_synthetic_data.py [-h] --config CONFIG
+                                     [--num-examples NUM_EXAMPLES]
+                                     [--output OUTPUT] [--preview]
+                                     [--validate-only]
+1. generate_synthetic_data.py: error: the following arguments are required: --config

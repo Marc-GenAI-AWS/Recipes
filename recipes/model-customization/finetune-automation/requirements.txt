@@ -1,0 +1,16 @@
+streamlit
+requests
+boto3
+ruamel.yaml
+pyyaml
+sagemaker
+perplexity
+json
+os
+time
+sys
+tarfile
+io
+json
+argparse
+datetime

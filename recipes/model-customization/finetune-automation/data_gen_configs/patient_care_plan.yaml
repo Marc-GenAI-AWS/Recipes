@@ -1,0 +1,147 @@
+domain_name: patient_care_plan
+description: Healthcare patient care plan generation for fine-tuning LLMs
+
+entities:
+  - name: Patient
+    description: Patient receiving healthcare
+    attributes:
+      - name: id
+        type: id
+        description: Unique patient identifier
+      - name: first_name
+        type: first_name
+        description: Patient's first name
+      - name: last_name
+        type: last_name
+        description: Patient's last name
+      - name: age
+        type: integer
+        min: 18
+        max: 90
+        description: Patient's age
+      - name: gender
+        type: categorical
+        categories:
+          - Male
+          - Female
+          - Non-binary
+          - Other
+        description: Patient's gender
+      - name: cultural_background
+        type: categorical
+        categories:
+          - Hispanic/Latino
+          - Asian
+          - African
+          - European
+          - Middle Eastern
+          - South Asian
+          - Pacific Islander
+          - Indigenous
+          - Caribbean
+        description: Patient's cultural background
+      - name: religious_preference
+        type: categorical
+        categories:
+          - Christianity
+          - Islam
+          - Judaism
+          - Hinduism
+          - Buddhism
+          - Sikhism
+          - Atheism
+          - Agnosticism
+          - Spiritual but not religious
+        description: Patient's religious preference
+      - name: insurance
+        type: categorical
+        categories:
+          - Medicare
+          - Medicaid
+          - Private
+          - None
+        description: Patient's insurance type
+
+  - name: MedicalRecord
+    description: Medical record with patient's conditions and medications
+    attributes:
+      - name: id
+        type: id
+        description: Unique record identifier
+      - name: conditions
+        type: list
+        min_length: 1
+        max_length: 4
+        description: List of medical conditions
+      - name: medications
+        type: list
+        min_length: 0
+        max_length: 5
+        description: List of current medications
+      - name: allergies
+        type: list
+        min_length: 0
+        max_length: 3
+        description: List of allergies
+      - name: primary_physician
+        type: full_name
+        description: Patient's primary care physician
+      - name: last_visit
+        type: datetime
+        min: "2024-01-01"
+        max: "now"
+        description: Date of last visit
+
+  - name: CarePlan
+    description: Comprehensive care plan for patient
+    attributes:
+      - name: id
+        type: id
+        description: Unique care plan identifier
+      - name: creation_date
+        type: datetime
+        min: "2025-01-01" 
+        max: "now"
+        description: Date care plan was created
+      - name: created_by
+        type: full_name
+        description: Provider who created the plan
+      - name: content
+        type: text
+        max_length: 2000
+        description: Full care plan content
+      - name: followup_date
+        type: datetime
+        min: "now"
+        max: "2025-12-31"
+        description: Recommended followup date
+
+relationships:
+  - from: Patient
+    to: MedicalRecord
+    type: one_to_one
+    description: Each patient has one medical record
+
+  - from: Patient
+    to: CarePlan
+    type: one_to_one
+    description: Each patient has one care plan
+
+  - from: MedicalRecord
+    to: CarePlan
+    type: one_to_one
+    description: Each medical record is associated with one care plan
+
+fine_tuning_task:
+  task_type: text_generation
+  system_prompt: "You are a medical assistant that creates comprehensive care plans for patients. Your responses should be concise, professional, and address all medical conditions and cultural considerations."
+  user_template: "Create comprehensive care plan for {age}yo {gender} patient with: Medical Conditions: {conditions}. Cultural Consideration: {cultural_background}, {religious_preference}."
+  primary_entity: Patient
+  output_format: llama_chat
+  metadata_fields:
+    - patient_id
+    - care_plan_id
+
+output:
+  format: jsonl
+  directory: usecase_data/patient_care_plan

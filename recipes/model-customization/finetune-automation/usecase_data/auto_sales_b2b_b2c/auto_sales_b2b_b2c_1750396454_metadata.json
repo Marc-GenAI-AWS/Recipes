@@ -1,0 +1,21 @@
+{
+  "domain_name": "auto_sales_b2b_b2c",
+  "config_path": "enhanced_configs\\auto_sales_b2b_b2c.yaml",
+  "generation_timestamp": "2025-06-19T22:14:14.772390",
+  "total_examples": 100,
+  "entities_generated": {
+    "Vehicle": 50,
+    "Customer": 50,
+    "Transaction": 50,
+    "Dealer": 50,
+    "VehicleHistory": 50
+  },
+  "generation_time_seconds": 0.08373355865478516,
+  "validation_errors": [],
+  "config_summary": {
+    "total_entities": 5,
+    "total_attributes": 91,
+    "relationships": 7,
+    "metadata_fields": []
+  }
+}

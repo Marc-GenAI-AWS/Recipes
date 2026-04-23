@@ -1,0 +1,21 @@
+{
+  "domain_name": "airline_logistics_shipping",
+  "config_path": "data_gen_configs\\airline_logistics_shipping.yaml",
+  "generation_timestamp": "2025-06-20T14:04:36.908771",
+  "total_examples": 100,
+  "entities_generated": {
+    "AirCargoShipment": 50,
+    "Shipper": 50,
+    "Consignee": 50,
+    "FlightManifest": 50,
+    "ShipmentEventHistory": 50
+  },
+  "generation_time_seconds": 0.08844327926635742,
+  "validation_errors": [],
+  "config_summary": {
+    "total_entities": 5,
+    "total_attributes": 88,
+    "relationships": 5,
+    "metadata_fields": []
+  }
+}

@@ -1,0 +1,496 @@
+# Enhanced Synthetic Data Configuration
+# Domain: luxury shoes
+# Display Name: Luxury Shoes Domain
+# Generated: 2025-06-19 23:00:07
+# Total Attributes: 91
+# Entities: 5
+# Primary Entity Attributes: 26
+# High-Cardinality Fields: 22
+# List Fields: 10
+# Temporal Fields: 13
+# Numeric Fields: 18
+# Template Placeholders: 71
+# Validation: PASSED
+
+domain_name: luxury_shoes
+display_name: "Luxury Shoes Domain"
+description: Synthetic data configuration for the luxury shoes industry, modeling product catalogs, customer profiles, purchase workflows, brand hierarchies, and historical audit trails for global luxury footwear brands.
+
+entities:
+  - name: ShoeProduct
+    description: Primary entity representing a luxury shoe product in the catalog.
+    attributes:
+      - name: product_id
+        type: id
+        description: Unique identifier for the shoe product.
+      - name: display_name
+        type: text
+        max_length: 80
+        description: Human-readable product name for web UI.
+      - name: brand
+        type: categorical
+        categories: [Prada, Miu Miu, Gucci, Louis Vuitton, Christian Louboutin, Jimmy Choo, Manolo Blahnik, Balenciaga, Saint Laurent, Chanel, Dior, Fendi, Givenchy, Bottega Veneta, Alexander McQueen]
+        description: Brand of the luxury shoe.
+      - name: collection
+        type: categorical
+        categories: [Spring/Summer, Fall/Winter, Resort, Cruise, Capsule, Limited Edition, Collaboration, Classic, Anniversary, Couture, Bridal, Urban, Sport, Heritage, Eco]
+        description: Collection or season for the shoe.
+      - name: style
+        type: categorical
+        categories: [Pump, Loafer, Sneaker, Sandal, Boot, Mule, Oxford, Derby, Espadrille, Ballet Flat, Platform, Wedge, Slide, Brogue, Monk Strap]
+        description: Shoe style classification.
+      - name: gender
+        type: categorical
+        categories: [Women, Men, Unisex, Kids, Non-binary]
+        description: Intended gender for the shoe.
+      - name: size_range
+        type: list
+        min_length: 1
+        max_length: 12
+        description: Available sizes for the product (EU/US/UK).
+      - name: colorways
+        type: list
+        min_length: 1
+        max_length: 8
+        description: List of available colorways.
+      - name: materials
+        type: list
+        min_length: 1
+        max_length: 6
+        description: Materials used (e.g., calfskin, suede, patent leather, satin).
+      - name: heel_height_mm
+        type: float
+        min: 0.0
+        max: 160.0
+        description: Heel height in millimeters.
+      - name: embellishments
+        type: list
+        min_length: 0
+        max_length: 5
+        description: Decorative elements (e.g., crystals, studs, embroidery).
+      - name: country_of_origin
+        type: categorical
+        categories: [Italy, France, Spain, UK, Germany, Portugal, USA, Switzerland, Japan, China, Brazil, India, Turkey, Vietnam, Indonesia]
+        description: Country where the shoe is manufactured.
+      - name: sustainability_certifications
+        type: list
+        min_length: 0
+        max_length: 4
+        description: Sustainability or ethical certifications.
+      - name: retail_price_usd
+        type: float
+        min: 350.0
+        max: 12000.0
+        description: Retail price in USD.
+      - name: sku
+        type: text
+        max_length: 24
+        description: Stock keeping unit code.
+      - name: launch_date
+        type: datetime
+        min: "2018-01-01"
+        max: "2025-12-31"
+        description: Official launch date of the product.
+      - name: status
+        type: categorical
+        categories: [Draft, In-Design, Pre-Production, Production, In-Store, Online, Sold-Out, Discontinued, Archived, Reissued, Pre-Order, Backorder, Limited-Release, Awaiting-Approval, Cancelled]
+        description: Product lifecycle status.
+      - name: exclusivity_level
+        type: categorical
+        categories: [General Release, Boutique Exclusive, Online Exclusive, VIP Exclusive, Limited Edition, Collaboration, Custom Order, Made-to-Measure, Pop-Up Exclusive, Anniversary Edition]
+        description: Distribution exclusivity.
+      - name: craftsmanship_score
+        type: integer
+        min: 1
+        max: 10
+        description: Internal rating for craftsmanship quality.
+      - name: comfort_rating
+        type: integer
+        min: 1
+        max: 10
+        description: Internal comfort rating.
+      - name: popularity_index
+        type: integer
+        min: 1
+        max: 100
+        description: Popularity score based on sales and demand.
+      - name: review_count
+        type: integer
+        min: 0
+        max: 5000
+        description: Number of customer reviews.
+      - name: average_rating
+        type: float
+        min: 1.0
+        max: 5.0
+        description: Average customer rating.
+      - name: last_updated
+        type: datetime
+        min: "2024-01-01"
+        max: "now"
+        description: Last update timestamp for the product record.
+
+  - name: CustomerProfile
+    description: Entity representing a luxury shoe customer profile.
+    attributes:
+      - name: customer_id
+        type: id
+        description: Unique identifier for the customer.
+      - name: display_name
+        type: text
+        max_length: 60
+        description: Customer display name for web UI.
+      - name: first_name
+        type: text
+        max_length: 32
+        description: Customer's first name.
+      - name: last_name
+        type: text
+        max_length: 32
+        description: Customer's last name.
+      - name: gender
+        type: categorical
+        categories: [Female, Male, Non-binary, Genderqueer, Agender, Prefer not to say]
+        description: Gender identity.
+      - name: age
+        type: integer
+        min: 16
+        max: 85
+        description: Age of the customer.
+      - name: date_of_birth
+        type: datetime
+        min: "1940-01-01"
+        max: "2009-12-31"
+        description: Date of birth.
+      - name: cultural_background
+        type: categorical
+        categories: [Hispanic-Mexican, Hispanic-Puerto Rican, Asian-Chinese, Asian-Indian, Asian-Filipino, Asian-Vietnamese, Asian-Korean, African-Nigerian, African-Ethiopian, European-German, European-Italian, Middle Eastern-Lebanese, South Asian-Pakistani, Pacific Islander-Hawaiian, Indigenous-Cherokee, Caribbean-Jamaican, Mixed-Heritage]
+        description: Cultural or ethnic background.
+      - name: education_level
+        type: categorical
+        categories: [High School, Some College, Associates, Bachelors, Masters, PhD, Professional Degree, Trade Certification, Self-taught, International Equivalent]
+        description: Highest education level attained.
+      - name: socioeconomic_status
+        type: categorical
+        categories: [Lower-income, Lower-middle, Middle-class, Upper-middle, High-income, Ultra-high-net-worth]
+        description: Socioeconomic status.
+      - name: location
+        type: categorical
+        categories: [US-CA-Los Angeles, US-NY-New York, UK-London, FR-Paris, IT-Milan, JP-Tokyo, CN-Shanghai, AE-Dubai, SG-Singapore, DE-Berlin, AU-Sydney, BR-São Paulo, IN-Mumbai, RU-Moscow, ZA-Cape Town]
+        description: Primary city of residence.
+      - name: languages_spoken
+        type: list
+        min_length: 1
+        max_length: 6
+        description: Languages spoken by the customer.
+      - name: preferred_shoe_styles
+        type: list
+        min_length: 1
+        max_length: 5
+        description: Preferred shoe styles.
+      - name: shoe_size
+        type: float
+        min: 34.0
+        max: 48.0
+        description: Preferred shoe size (EU standard).
+      - name: purchase_frequency
+        type: categorical
+        categories: [Weekly, Biweekly, Monthly, Quarterly, Semi-Annually, Annually, Occasionally, First-Time, Collector, Gift-Purchaser, Seasonal, Event-Based]
+        description: Frequency of luxury shoe purchases.
+      - name: loyalty_tier
+        type: categorical
+        categories: [None, Silver, Gold, Platinum, Diamond, VIP, Elite, Ambassador, Influencer, Corporate, Family, Honorary]
+        description: Loyalty program tier.
+      - name: preferred_brands
+        type: list
+        min_length: 1
+        max_length: 6
+        description: List of favorite luxury shoe brands.
+      - name: wishlist
+        type: list
+        min_length: 0
+        max_length: 12
+        description: Product IDs on the customer's wishlist.
+      - name: last_purchase_date
+        type: datetime
+        min: "2020-01-01"
+        max: "now"
+        description: Date of last purchase.
+      - name: satisfaction_score
+        type: integer
+        min: 1
+        max: 10
+        description: Overall satisfaction score.
+      - name: nps_score
+        type: integer
+        min: -100
+        max: 100
+        description: Net Promoter Score.
+      - name: completion_rate
+        type: float
+        min: 0.0
+        max: 1.0
+        description: Profile completion rate.
+      - name: risk_assessment
+        type: categorical
+        categories: [Very-Low, Low, Medium-Low, Medium, Medium-High, High, Very-High, Critical]
+        description: Risk assessment for fraud or returns.
+      - name: status
+        type: categorical
+        categories: [Active, Inactive, VIP, Suspended, Blacklisted, Pending-Verification, Awaiting-Approval, Closed, Archived, Under-Review, Escalated, Guest, Anonymous]
+        description: Customer account status.
+      - name: created_date
+        type: datetime
+        min: "2018-01-01"
+        max: "2025-12-31"
+        description: Account creation date.
+      - name: last_updated
+        type: datetime
+        min: "2024-01-01"
+        max: "now"
+        description: Last profile update timestamp.
+
+  - name: PurchaseOrder
+    description: Entity representing a luxury shoe purchase transaction.
+    attributes:
+      - name: order_id
+        type: id
+        description: Unique identifier for the purchase order.
+      - name: display_name
+        type: text
+        max_length: 60
+        description: Human-readable order label for web UI.
+      - name: customer_id
+        type: id
+        description: Reference to the purchasing customer.
+      - name: product_ids
+        type: list
+        min_length: 1
+        max_length: 8
+        description: List of purchased product IDs.
+      - name: order_status
+        type: categorical
+        categories: [Draft, Submitted, Payment-Pending, Paid, Processing, Shipped, Delivered, Completed, Cancelled, Returned, Refunded, On-Hold, Awaiting-Approval, Escalated, Archived]
+        description: Workflow status of the order.
+      - name: payment_method
+        type: categorical
+        categories: [Credit Card, Debit Card, PayPal, Apple Pay, Google Pay, Wire Transfer, Cryptocurrency, Gift Card, Store Credit, Cash, Bank Draft, Alipay, Klarna, Affirm, Afterpay]
+        description: Payment method used.
+      - name: shipping_method
+        type: categorical
+        categories: [Standard, Express, Overnight, Same-Day, In-Store Pickup, International, White Glove, Courier, Locker, Drone, Eco, Scheduled, VIP, Event, Gift]
+        description: Shipping method selected.
+      - name: shipping_address
+        type: text
+        max_length: 120
+        description: Shipping address.
+      - name: billing_address
+        type: text
+        max_length: 120
+        description: Billing address.
+      - name: order_total_usd
+        type: float
+        min: 350.0
+        max: 96000.0
+        description: Total order value in USD.
+      - name: discount_code
+        type: text
+        max_length: 24
+        description: Applied discount or promo code.
+      - name: loyalty_points_earned
+        type: integer
+        min: 0
+        max: 5000
+        description: Loyalty points earned from the order.
+      - name: gift_wrapping
+        type: boolean
+        description: Whether gift wrapping was selected.
+      - name: special_instructions
+        type: text
+        max_length: 200
+        description: Special delivery or order instructions.
+      - name: placed_at
+        type: datetime
+        min: "2020-01-01"
+        max: "now"
+        description: Order placement timestamp.
+      - name: shipped_at
+        type: datetime
+        min: "2020-01-01"
+        max: "now"
+        description: Shipment timestamp.
+      - name: delivered_at
+        type: datetime
+        min: "2020-01-01"
+        max: "now"
+        description: Delivery timestamp.
+      - name: completion_rate
+        type: float
+        min: 0.0
+        max: 1.0
+        description: Order process completion rate.
+      - name: seasonal_activity
+        type: categorical
+        categories: [Spring-High, Summer-Peak, Fall-Moderate, Winter-Low, Year-round-Stable, Holiday-Focused, Academic-Calendar, Fiscal-Year-End]
+        description: Seasonal context of the order.
+      - name: last_updated
+        type: datetime
+        min: "2024-01-01"
+        max: "now"
+        description: Last update timestamp for the order.
+
+  - name: Brand
+    description: Reference entity for luxury shoe brands and their attributes.
+    attributes:
+      - name: brand_id
+        type: id
+        description: Unique identifier for the brand.
+      - name: display_name
+        type: text
+        max_length: 40
+        description: Brand display name for web UI.
+      - name: parent_company
+        type: categorical
+        categories: [Prada Group, LVMH, Kering, Richemont, Capri Holdings, Chanel, Hermès, PVH, Tapestry, Independent, Swatch Group, Onward Holdings, SMCP, Fast Retailing, Other]
+        description: Parent company or group.
+      - name: country_of_origin
+        type: categorical
+        categories: [Italy, France, UK, Spain, Germany, Switzerland, USA, Japan, China, Brazil, India, Turkey, Vietnam, Portugal, Belgium]
+        description: Country where the brand originated.
+      - name: year_founded
+        type: integer
+        min: 1850
+        max: 2025
+        description: Year the brand was founded.
+      - name: flagship_store_location
+        type: categorical
+        categories: [Paris, Milan, London, New York, Tokyo, Shanghai, Dubai, Hong Kong, Los Angeles, Berlin, Sydney, Singapore, São Paulo, Moscow, Geneva]
+        description: Location of the flagship store.
+      - name: annual_revenue_usd
+        type: integer
+        min: 10000000
+        max: 10000000000
+        description: Estimated annual revenue in USD.
+      - name: employee_count
+        type: integer
+        min: 50
+        max: 20000
+        description: Number of employees.
+      - name: sustainability_focus
+        type: categorical
+        categories: [None, Minimal, Moderate, High, Carbon Neutral, Circular, Vegan, Upcycled, Fair Trade, B Corp, Regenerative, Zero Waste, Water Positive, Social Impact, Local Sourcing]
+        description: Sustainability focus level.
+      - name: global_presence
+        type: categorical
+        categories: [Local, Regional, Continental, Global, Boutique-Only, Online-Only, Multi-Channel, Franchise, Department Store, Pop-Up, Travel Retail, Outlet, Wholesale, Direct-to-Consumer, Hybrid]
+        description: Brand's global presence type.
+      - name: last_updated
+        type: datetime
+        min: "2024-01-01"
+        max: "now"
+        description: Last update timestamp for the brand record.
+
+  - name: ProductAuditTrail
+    description: Historical entity tracking changes and events for luxury shoe products.
+    attributes:
+      - name: audit_id
+        type: id
+        description: Unique identifier for the audit record.
+      - name: product_id
+        type: id
+        description: Reference to the shoe product.
+      - name: event_type
+        type: categorical
+        categories: [Created, Updated, Status-Changed, Price-Changed, Restocked, Sold-Out, Discontinued, Reissued, Reviewed, Returned, Damaged, Repaired, Transferred, Archived, Flagged]
+        description: Type of event or change.
+      - name: event_timestamp
+        type: datetime
+        min: "2018-01-01"
+        max: "now"
+        description: Timestamp of the event.
+      - name: user_id
+        type: id
+        description: User or system responsible for the event.
+      - name: previous_value
+        type: text
+        max_length: 200
+        description: Previous value before the change.
+      - name: new_value
+        type: text
+        max_length: 200
+        description: New value after the change.
+      - name: notes
+        type: text
+        max_length: 300
+        description: Additional notes or context.
+      - name: status_after_event
+        type: categorical
+        categories: [Draft, In-Design, Pre-Production, Production, In-Store, Online, Sold-Out, Discontinued, Archived, Reissued, Pre-Order, Backorder, Limited-Release, Awaiting-Approval, Cancelled]
+        description: Product status after the event.
+      - name: last_updated
+        type: datetime
+        min: "2024-01-01"
+        max: "now"
+        description: Last update timestamp for the audit record.
+
+relationships:
+  - from: ShoeProduct
+    to: Brand
+    type: many-to-one
+    description: Each shoe product is associated with a single luxury brand.
+  - from: PurchaseOrder
+    to: CustomerProfile
+    type: many-to-one
+    description: Each purchase order is placed by a single customer.
+  - from: PurchaseOrder
+    to: ShoeProduct
+    type: many-to-many
+    description: Each purchase order can include multiple shoe products.
+  - from: ProductAuditTrail
+    to: ShoeProduct
+    type: many-to-one
+    description: Each audit record is linked to a single shoe product.
+  - from: CustomerProfile
+    to: ShoeProduct
+    type: many-to-many
+    description: Customers can have wishlists and purchase histories referencing multiple products.
+
+fine_tuning_task:
+  task_type: text_generation
+  system_prompt: "You are a luxury footwear domain expert providing detailed product, customer, and business insights. Your responses must be accurate, culturally sensitive, and reflect the nuances of the global luxury shoe market, including brand heritage, customer demographics, workflow status, and regulatory considerations."
+  user_template: |
+    CUSTOMER PROFILE:
+    Name: {first_name} {last_name} ({display_name}), Age: {age}, Gender: {gender}
+    Cultural Background: {cultural_background}, Education: {education_level}, Socioeconomic Status: {socioeconomic_status}
+    Location: {location}, Languages: {languages_spoken}
+    Loyalty Tier: {loyalty_tier}, Preferred Brands: {preferred_brands}, Preferred Styles: {preferred_shoe_styles}
+    Shoe Size: {shoe_size}, Purchase Frequency: {purchase_frequency}
+    Satisfaction Score: {satisfaction_score}/10, NPS: {nps_score}, Risk: {risk_assessment}
+    Account Status: {status}, Profile Completion: {completion_rate}, Last Updated: {last_updated}
+
+    PRODUCT DETAILS:
+    Product: {display_name}, Brand: {brand}, Collection: {collection}, Style: {style}
+    Gender: {gender}, Size Range: {size_range}, Colorways: {colorways}
+    Materials: {materials}, Heel Height: {heel_height_mm}mm, Embellishments: {embellishments}
+    Country of Origin: {country_of_origin}, Sustainability: {sustainability_certifications}
+    Retail Price: ${retail_price_usd}, Exclusivity: {exclusivity_level}
+    Craftsmanship: {craftsmanship_score}/10, Comfort: {comfort_rating}/10, Popularity: {popularity_index}
+    Status: {status}, Average Rating: {average_rating}, Review Count: {review_count}
+    Launch Date: {launch_date}, Last Updated: {last_updated}
+
+    PURCHASE ORDER:
+    Order ID: {order_id}, Status: {order_status}, Payment: {payment_method}, Shipping: {shipping_method}
+    Order Total: ${order_total_usd}, Loyalty Points: {loyalty_points_earned}, Gift Wrapping: {gift_wrapping}
+    Placed At: {placed_at}, Shipped At: {shipped_at}, Delivered At: {delivered_at}
+    Seasonal Activity: {seasonal_activity}, Completion Rate: {completion_rate}
+
+    BRAND INFO:
+    Brand: {brand}, Parent Company: {parent_company}, Country: {country_of_origin}
+    Year Founded: {year_founded}, Flagship Store: {flagship_store_location}
+    Annual Revenue: ${annual_revenue_usd}, Employees: {employee_count}
+    Sustainability Focus: {sustainability_focus}, Global Presence: {global_presence}
+
+    AUDIT TRAIL:
+    Last Event: {event_type} at {event_timestamp} by {user_id}
+    Previous Value: {previous_value}, New Value: {new_value}
+    Status After Event: {status_after_event}, Notes: {notes}
