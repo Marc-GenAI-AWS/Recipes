@@ -35,6 +35,15 @@ Recipes for running third-party frameworks and images on AWS.
 |---|---|
 | [`nvidia-bionemo-evo2/`](recipes/integrations/nvidia-bionemo-evo2/) | You need to load the NVIDIA BioNeMo image into a SageMaker AI Notebook for interactive work, or launch BioNeMo training as a SageMaker Training Job. |
 
+### `recipes/studio-demos/`
+
+End-to-end SageMaker Unified Studio demos — populated catalogs, governance, and
+workflows you can show a customer.
+
+| Recipe | Use this when |
+|---|---|
+| [`smus-catalog-hydration/`](recipes/studio-demos/smus-catalog-hydration/) | You need a SageMaker Unified Studio project pre-loaded with realistic catalog content — a retail dataset, Glue tables, a business glossary with term hierarchy, asset descriptions and governance tags, OpenLineage lineage, a published data product, and a deployable training-job model — to demo the catalog. |
+
 ## How to use a recipe
 
 1. Pick a recipe from the index above
