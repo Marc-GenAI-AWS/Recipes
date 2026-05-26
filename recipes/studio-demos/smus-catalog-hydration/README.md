@@ -28,12 +28,60 @@ order_items
 | SMUS | "Retail Analytics Mart" data product bundling all 4 assets |
 | SageMaker | A Training Job that produces a deployable sklearn linear-regression model |
 
+## Setup at a glance
+
+The full path from an empty AWS account to a hydrated catalog. Steps 0–3 are
+one-time setup per domain/project; step 4 is your local checkout; step 5 is the
+actual hydration — eight idempotent, re-runnable scripts.
+
+0. [Create the SMUS domain and project](#0-create-the-smus-domain-and-project)
+1. [Grant your CLI principal IAM permissions](#iam-permissions-for-your-cli-principal)
+2. [Make your principal a Lake Formation admin](#lake-formation-setup-one-time)
+3. [Authorize your principal in the SMUS portal](#smus-portal-authorization-one-time)
+4. [Clone, install, and fill in `.env`](#setup)
+5. [Run the eight hydration scripts](#run-the-demo)
+
+## 0. Create the SMUS domain and project
+
+If you already have an SMUS V2 domain and a project with the SageMaker project
+profile, skip to [Prerequisites](#prerequisites).
+
+### Create the domain
+
+An SMUS domain is an org-level resource with many moving parts — IAM Identity
+Center, an S3 bucket, IAM roles, a DataZone domain, optionally KMS + VPC. Use
+AWS's guided quick setup rather than scripting it:
+
+1. AWS console → **SageMaker Unified Studio → Create domain → Quick setup**.
+2. Pick a VPC (a default VPC is fine to start), name the domain, confirm.
+3. Wait ~10 minutes. Status **Available** means the DataZone domain, backing IAM
+   roles, the default project profile, and the JupyterLab/MLflow blueprints are
+   provisioned.
+4. Note the **domain ID** (format `dzd_xxxxxxxxxxxxx`) — this becomes your
+   `DZ_DOMAIN_ID`.
+
+Full guide:
+<https://docs.aws.amazon.com/sagemaker-unified-studio/latest/adminguide/setup-quickstart.html>
+
+### Create the project
+
+1. Open the SMUS portal (the domain's sign-in URL) → **Create project**.
+2. Choose the **SageMaker** project profile (the default). It provisions the
+   Tooling, **LakeHouseDatabase**, LakehouseCatalog, MLExperiments, and
+   EmrServerless environments this recipe depends on.
+3. Name it (e.g. `SMUS-Demo`) — this becomes your `DZ_PROJECT_NAME`.
+4. Wait until the environments finish provisioning (a few minutes).
+
+> The recipe reads `GLUE_DATABASE` and `PROJECT_BUCKET` from the project's
+> **LakeHouseDatabase** environment, which is what creates the project's Glue
+> database and managed S3 bucket. A profile without that environment won't work.
+> See [Where to find the values for `.env`](#where-to-find-the-values-for-env).
+
 ## Prerequisites
 
-1. **An SMUS V2 domain** with a project that has the standard SageMaker
-   project profile applied. The default profile provisions Tooling, LakeHouseDatabase,
-   LakehouseCatalog, MLExperiments, and EmrServerless environments. You'll
-   reference the project by name in `.env`.
+1. **An SMUS V2 domain and project** with the SageMaker project profile — see
+   [0. Create the SMUS domain and project](#0-create-the-smus-domain-and-project)
+   if you don't have one yet.
 2. **AWS credentials** configured locally (`aws configure`).
 3. **Python 3.10+**.
 
@@ -183,8 +231,11 @@ These can only be set in the SMUS portal — not via IAM.
 ## Setup
 
 ```bash
-git clone <this-repo> smus-catalog-demo
-cd smus-catalog-demo
+# sparse-checkout just this recipe from the Recipes monorepo
+git clone --filter=blob:none --sparse https://github.com/Marc-GenAI-AWS/Recipes.git
+cd Recipes
+git sparse-checkout set recipes/studio-demos/smus-catalog-hydration
+cd recipes/studio-demos/smus-catalog-hydration
 
 python -m venv .venv
 . .venv/bin/activate    # PowerShell: .venv\Scripts\Activate.ps1
