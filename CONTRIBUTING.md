@@ -29,7 +29,7 @@ A recipe should answer three questions in its README:
 ## When to create a new top-level category
 
 Current categories: `model-customization`, `training-infrastructure`,
-`integrations`.
+`integrations`, `studio-demos`.
 
 Default behavior: **put new recipes in the closest existing category**, even
 if the fit is imperfect. The cost of a too-broad category is low; the cost of

@@ -1,0 +1,9 @@
+customer_id,first_name,last_name,email,country,signup_date
+1001,Aiko,Tanaka,aiko.t@example.com,JP,2023-05-12
+1002,Marcus,Hernandez,m.hern@example.com,US,2023-06-04
+1003,Priya,Shah,priya.s@example.com,IN,2023-07-21
+1004,Lena,Mueller,lena.m@example.com,DE,2024-01-09
+1005,James,O'Connor,jamie.oc@example.com,IE,2024-03-15
+1006,Fatima,Khan,f.khan@example.com,AE,2024-08-30
+1007,Diego,Rossi,diego.r@example.com,IT,2024-09-12
+1008,Sara,Lindqvist,sara.l@example.com,SE,2024-11-05
