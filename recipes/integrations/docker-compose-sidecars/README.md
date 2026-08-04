@@ -125,7 +125,27 @@ docker-compose-sidecars/
 
 ## Run it
 
-From the Code Editor's integrated terminal, at the recipe root:
+### Get the recipe into your space
+
+From the Code Editor's integrated terminal. The repo is public, so the space needs
+no PAT, SSH key, or `gh` login — which matters, because a fresh space has none of
+your GitHub credentials.
+
+```bash
+git clone --filter=blob:none --sparse --depth 1 \
+  https://github.com/Marc-GenAI-AWS/Recipes.git
+cd Recipes
+git sparse-checkout set recipes/integrations/docker-compose-sidecars
+cd recipes/integrations/docker-compose-sidecars
+```
+
+That pulls ~88 KB — this recipe only, plus the repo's root `README.md` and
+`CONTRIBUTING.md`. Drop `--depth 1` if you want the recipe's commit history in the
+space.
+
+### Bootstrap the stack
+
+From the recipe root:
 
 ```bash
 bash scripts/bootstrap.sh
