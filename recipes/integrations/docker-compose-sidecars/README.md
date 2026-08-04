@@ -78,8 +78,12 @@ One-time, requires an IAM principal with `sagemaker:UpdateDomain` on the domain.
 Replace the domain ID and region with your own.
 
 ```bash
-export DOMAIN_ID=d-xxxxxxxxxxxx
-export AWS_REGION=us-west-2
+# ---- FILL IN -------------------------------------------------------------
+# Your SageMaker AI domain ID and its region. List your domains with:
+#   aws sagemaker list-domains --query 'Domains[].[DomainId,DomainName,Status]' --output table
+export DOMAIN_ID="d-xxxxxxxxxxxx"   # <-- replace with your domain ID
+export AWS_REGION="us-west-2"       # <-- replace with your region
+# --------------------------------------------------------------------------
 
 aws sagemaker update-domain \
   --domain-id "$DOMAIN_ID" \
