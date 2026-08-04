@@ -8,10 +8,8 @@ service reach each other with no port publishing at all.**
 
 - You want to author `Dockerfile`s and a `compose.yaml` **directly inside** a Code
   Editor space and build/run them from that same space's terminal.
-- You need **more than one** sidecar. This is the multi-container successor to the
-  single-sidecar `docker run -p 8888:8888` pattern in
-  [`../nvidia-bionemo-evo2/`](../nvidia-bionemo-evo2/); use that one if a single
-  container is genuinely all you need.
+- You need **more than one** sidecar, managed as a stack. A single one-off
+  `docker run` is simpler if one container is genuinely all you need.
 - You're isolating each agent or tool in its own container inside the space.
 - You've hit `The request for current resource is not allowed on SageMaker Studio.`
   or `'sagemaker' is the only user allowed network input` and need the compose
@@ -218,7 +216,7 @@ in.
   `image: <acct>.dkr.ecr.<region>.amazonaws.com/<repo>:<tag>` and add an
   `aws ecr get-login-password ... | docker login ...` step to `bootstrap.sh` before
   `docker compose up`.
-- **GPU workloads** (equivalent to the BioNeMo recipe's `--gpus all`). Add:
+- **GPU workloads** (the compose equivalent of `docker run --gpus all`). Add:
   ```yaml
   deploy:
     resources:
