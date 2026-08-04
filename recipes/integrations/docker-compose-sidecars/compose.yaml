@@ -1,0 +1,21 @@
+services:
+  svc-a:
+    build: ./services/svc-a
+    container_name: svc-a
+    networks:
+      - agents-net
+    restart: unless-stopped
+
+  svc-b:
+    build: ./services/svc-b
+    container_name: svc-b
+    networks:
+      - agents-net
+    depends_on:
+      - svc-a
+    restart: unless-stopped
+
+networks:
+  agents-net:
+    name: agents-net
+    driver: bridge
