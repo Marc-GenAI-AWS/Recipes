@@ -1,6 +1,9 @@
 import json
+import os
 import socket
 from http.server import BaseHTTPRequestHandler, HTTPServer
+
+PORT = int(os.environ.get("SVC_PORT", "8080"))
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -8,6 +11,7 @@ class Handler(BaseHTTPRequestHandler):
         payload = {
             "service": "svc-a",
             "hostname": socket.gethostname(),
+            "port": PORT,
             "hello": "world",
         }
         body = json.dumps(payload).encode()
@@ -22,4 +26,4 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    HTTPServer(("0.0.0.0", 8080), Handler).serve_forever()
+    HTTPServer(("0.0.0.0", PORT), Handler).serve_forever()

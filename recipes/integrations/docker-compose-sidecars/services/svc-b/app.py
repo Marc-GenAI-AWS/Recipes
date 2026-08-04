@@ -1,10 +1,12 @@
 import json
+import os
 import socket
 import urllib.error
 import urllib.request
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-PEER_URL = "http://svc-a:8080/"
+PORT = int(os.environ.get("SVC_PORT", "8081"))
+PEER_URL = os.environ.get("PEER_URL", "http://127.0.0.1:8080/")
 
 
 def fetch_peer():
@@ -20,6 +22,7 @@ class Handler(BaseHTTPRequestHandler):
         payload = {
             "service": "svc-b",
             "hostname": socket.gethostname(),
+            "port": PORT,
             "peer_url": PEER_URL,
             "peer_response": fetch_peer(),
         }
@@ -35,4 +38,4 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    HTTPServer(("0.0.0.0", 8080), Handler).serve_forever()
+    HTTPServer(("0.0.0.0", PORT), Handler).serve_forever()

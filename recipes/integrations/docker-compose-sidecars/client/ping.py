@@ -1,14 +1,15 @@
 """Ping the compose stack from the Code Editor.
 
-Run this after `bash scripts/bootstrap.sh`. It resolves svc-a and svc-b by
-their Docker network DNS names, which only works because the Code Editor
-container was joined to agents-net by scripts/attach-editor.sh.
+Run this after `bash scripts/bootstrap.sh`. Inside a SageMaker AI Studio
+space every container shares one network namespace with the editor, so
+services are addressed via 127.0.0.1 on distinct ports rather than by
+container DNS name.
 """
 import json
 import sys
 import urllib.request
 
-TARGETS = ["http://svc-a:8080/", "http://svc-b:8080/"]
+TARGETS = ["http://127.0.0.1:8080/", "http://127.0.0.1:8081/"]
 
 
 def get(url: str) -> None:

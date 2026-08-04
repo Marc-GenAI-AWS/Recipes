@@ -33,7 +33,7 @@ Recipes for running third-party frameworks and images on AWS.
 
 | Recipe | Use this when |
 |---|---|
-| [`docker-compose-sidecars/`](recipes/integrations/docker-compose-sidecars/) | You need more than one sidecar container running alongside a SageMaker AI Code Editor space — built from `Dockerfile`s you edit in that space, on one shared network where the editor and every service resolve each other by DNS name with no published ports. |
+| [`docker-compose-sidecars/`](recipes/integrations/docker-compose-sidecars/) | You need more than one sidecar container running alongside a SageMaker AI Code Editor space — built from `Dockerfile`s you edit in that space — and you've hit Studio's local-Docker guardrails (`'sagemaker' is the only user allowed network input`). Covers the `network_mode` spelling compose needs, the shared-namespace `127.0.0.1` addressing model, and enabling Docker on the domain. |
 | [`nvidia-bionemo-evo2/`](recipes/integrations/nvidia-bionemo-evo2/) | You need to load the NVIDIA BioNeMo image into a SageMaker AI Notebook for interactive work, or launch BioNeMo training as a SageMaker Training Job. |
 
 ### `recipes/studio-demos/`

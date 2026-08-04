@@ -1,21 +1,23 @@
 services:
   svc-a:
-    build: ./services/svc-a
+    build:
+      context: ./services/svc-a
+      network: sagemaker
     container_name: svc-a
-    networks:
-      - agents-net
+    network_mode: "sagemaker"
+    environment:
+      SVC_PORT: "8080"
     restart: unless-stopped
 
   svc-b:
-    build: ./services/svc-b
+    build:
+      context: ./services/svc-b
+      network: sagemaker
     container_name: svc-b
-    networks:
-      - agents-net
+    network_mode: "sagemaker"
+    environment:
+      SVC_PORT: "8081"
+      PEER_URL: "http://127.0.0.1:8080/"
     depends_on:
       - svc-a
     restart: unless-stopped
-
-networks:
-  agents-net:
-    name: agents-net
-    driver: bridge
