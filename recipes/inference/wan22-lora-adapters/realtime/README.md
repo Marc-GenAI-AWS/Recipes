@@ -23,6 +23,30 @@ runtime returns `ModelError` / `ReadTimeoutError` regardless of what the contain
 does -- the generation may still complete inside the worker, but the client has
 already given up. This is the ceiling that pushed the original project to async.
 
+### What exactly is capped -- the connection, not the compute
+
+The 60s limit applies to the **response connection**, not to the inference job.
+SageMaker's front end holds the caller's HTTPS connection open while the container
+works; at 60 seconds it severs that connection and returns HTTP 424 `ModelError`
+("Your invocation timed out while waiting for a response from container primary").
+The worker is not interrupted -- it keeps generating, and this handler still
+encodes and uploads the finished MP4 to S3.
+
+Verified empirically (2026-08): with the client's socket `read_timeout` raised to
+600s so the SDK could not be the one giving up, a 49-frame / 30-step request
+(~4 minutes of GPU work) was killed by the server at 60.2s -- and the worker
+completed the generation regardless.
+
+Two practical consequences:
+
+- **An overrun is the worst of both worlds.** The caller gets an error, yet the
+  instance still spends the full generation time -- and the single worker is
+  blocked for all of it. Requests that might overrun belong on the async
+  endpoint, whose S3-based result delivery has no such cap.
+- **The response is lost, not the artifact.** If a timeout slips through, the MP4
+  usually still lands at `generations/<request_id>.mp4` -- passing your own
+  `request_id` in the payload makes it findable after the fact.
+
 |  | Real-time (this project) | Async (sibling) |
 |---|---|---|
 | Invocation cap | **60 s** | 60 min |
@@ -347,6 +371,7 @@ Deploy either without touching the other; teardown one without affecting the oth
 ## Limits and knobs worth knowing
 
 - **Real-time invocation cap:** 60 s (hard-capped by SageMaker; not configurable).
+  Severs the response connection only -- the worker runs on; see the cap section above.
 - **Response body cap:** ~6 MB. Not a concern here -- the video is uploaded to S3
   and the response only carries its URI.
 - **Container-side timeout:** `TS_DEFAULT_RESPONSE_TIMEOUT=3600`. Kept generous so
