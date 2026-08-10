@@ -18,6 +18,14 @@ Fine-tuning, evaluation, and data generation for customizing LLMs.
 | [`finetune-automation/`](recipes/model-customization/finetune-automation/) | You want an end-to-end SageMaker fine-tuning workflow — synthetic data generation, S3 upload, training job, deployment, inference testing — driven from a Streamlit dashboard. |
 | [`llm-customization-challenge/`](recipes/model-customization/llm-customization-challenge/) | You're building use cases for the AWS AI Model Customization Challenge and need scaffolding for data gen, prompt-engineered judges, and evaluation. |
 
+### `recipes/inference/`
+
+Model serving patterns on SageMaker AI managed endpoints.
+
+| Recipe | Use this when |
+|---|---|
+| [`wan22-lora-adapters/`](recipes/inference/wan22-lora-adapters/) | You want the WAN 2.2 TI2V-5B text-to-video model behind a SageMaker endpoint with per-request LoRA swapping — no custom container, stock Diffusers on the AWS DLC. Ships two variants: `async/` (minutes-long generations, managed queue, scale to zero) and `realtime/` (inline responses inside the hard 60 s invocation cap). |
+
 ### `recipes/training-infrastructure/`
 
 Training-plane infrastructure patterns: storage, cross-AZ, hybrid cloud/on-prem.
