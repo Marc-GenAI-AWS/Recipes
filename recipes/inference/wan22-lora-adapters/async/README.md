@@ -162,13 +162,26 @@ quota for `ml.g6e.8xlarge` in the region.
 The endpoint reads everything from your bucket. Before the first deploy:
 
 ```bash
+pip install -U "huggingface_hub[cli]"
 hf download Wan-AI/Wan2.2-TI2V-5B-Diffusers --local-dir wan2.2-ti2v-5b-diffusers
 aws s3 sync wan2.2-ti2v-5b-diffusers s3://amzn-s3-demo-bucket/wan2.2-ti2v-5b-diffusers/
 ```
 
-Upload at least one LoRA under `loras/<name>/` — the two adapters in the
-[Validated adapters](#validated-adapters) table are public Hugging Face repos —
-or pass `--no-adapter` to `04_invoke.py`. The `generations/` and `async/` prefixes
+Then upload at least one LoRA under `loras/<name>/` — or pass `--no-adapter` to
+`04_invoke.py`. The two adapters in the [Validated adapters](#validated-adapters)
+table are public Hugging Face repos:
+
+```bash
+hf download AlekseyCalvin/HSToric_Color_Wan2.2_5B_LoRA_BySilverAgePoets --local-dir hstoric-color
+aws s3 cp hstoric-color/ s3://amzn-s3-demo-bucket/loras/hstoric-color/ \
+    --recursive --exclude "*" --include "*.safetensors"
+
+# optional second adapter (motion effect)
+hf download ostris/wan22_5b_i2v_crush_it_lora --local-dir crush-it
+aws s3 cp crush-it/ s3://amzn-s3-demo-bucket/loras/crush-it/ \
+    --recursive --exclude "*" --include "*.safetensors"
+```
+ The `generations/` and `async/` prefixes
 are created on first write. `preflight.py` validates the layout and every adapter's
 key format before you pay for a deploy.
 
