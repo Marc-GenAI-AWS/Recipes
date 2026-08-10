@@ -1,0 +1,28 @@
+# Fully pinned: the DLC pip-installs this at container start, so an unpinned range
+# means the endpoint can change behaviour between two deploys of identical code.
+#
+# Do NOT add torch / torchvision here. They ship in the DLC built against its CUDA
+# runtime; reinstalling from PyPI replaces them with a build that may not match.
+
+# 0.36.0 has WanPipeline `expand_timesteps` (required by TI2V-5B) and the built-in
+# non-diffusers Wan LoRA key converter, including lora_A/lora_B naming.
+diffusers==0.36.0
+
+# Held at the last 4.x. transformers 5.x is a major break, and an unpinned install
+# previously resolved to 5.14.1 inside this image. 4.57.6 has UMT5EncoderModel.
+transformers==4.57.6
+
+peft==0.19.1
+accelerate==1.14.0
+safetensors==0.8.0
+sentencepiece==0.2.2
+
+# Video encoding for export_to_video.
+imageio==2.37.4
+imageio-ffmpeg==0.6.0
+
+# Required, despite being an *optional* diffusers dependency. WanPipeline imports it
+# conditionally (`if is_ftfy_available(): import ftfy`) but then calls
+# `ftfy.fix_text()` unconditionally in basic_clean(), so a missing ftfy does not fail
+# at import -- it raises NameError on the first prompt encode.
+ftfy==6.3.1
