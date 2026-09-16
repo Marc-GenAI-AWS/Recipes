@@ -1,0 +1,11 @@
+# the pipeline itself (teacher, verifier, judge, dataset build, agentic loop)
+boto3>=1.35
+pillow>=10.0
+sagemaker>=2.230
+
+# local specialist inference (pipeline/loop/specialist.py --backend hf:...)
+# install these only on the machine that runs the fine-tuned models
+torch>=2.4
+transformers>=4.51
+peft>=0.15
+accelerate>=1.0

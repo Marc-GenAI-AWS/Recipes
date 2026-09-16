@@ -1,0 +1,8 @@
+transformers>=4.51,<5
+trl>=0.20,<0.22
+peft>=0.15
+datasets>=3.0
+accelerate>=1.4
+safetensors
+sentencepiece
+liger-kernel>=0.6.2

@@ -28,7 +28,7 @@ A recipe should answer three questions in its README:
 
 ## When to create a new top-level category
 
-Current categories: `model-customization`, `inference`,
+Current categories: `coding-agents`, `model-customization`, `inference`,
 `training-infrastructure`, `integrations`, `studio-demos`.
 
 Default behavior: **put new recipes in the closest existing category**, even

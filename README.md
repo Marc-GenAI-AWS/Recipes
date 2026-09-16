@@ -9,6 +9,14 @@ customer problem end-to-end. Clone a recipe, read its README, run it.
 
 ## Index
 
+### `recipes/coding-agents/`
+
+Agents that write code, and turning them into small models you own.
+
+| Recipe | Use this when |
+|---|---|
+| [`distillation-into-specialists/godot-video-game/`](recipes/coding-agents/distillation-into-specialists/godot-video-game/) | You want to replace one large model that writes everything with small fine-tuned models that each write one part. Works when the output can be rendered or executed and judged automatically — that verifier becomes the data filter, the eval metric, and the gate in the agentic loop. Worked example: five 3B/7B specialists write a playable Godot scene from one sentence, each beating the model that taught it. |
+
 ### `recipes/model-customization/`
 
 Fine-tuning, evaluation, and data generation for customizing LLMs.
