@@ -86,6 +86,22 @@ scalars vs. 3-component values, required `#define`s, and the world's scale in wo
 costs an extraction plus a paragraph of intent, and the description cannot drift from the source because
 it is generated from it.
 
+## A note on model licensing
+
+The results above were produced with `Qwen/Qwen3.8-27B`, which carries no additional
+use restrictions. During development we also evaluated `ukisai/Swift-Qwen3.8-27b`, a
+reasoning-efficiency finetune of the same base, and found it wrote better code on this
+task in a small sample.
+
+**That model's licence permits personal and research use only — commercial use requires a
+separate licence from its authors.** If you are evaluating this recipe for commercial work,
+use the base `Qwen/Qwen3.8-27B`, which is what every number in this README was measured on.
+The pipeline speaks OpenAI-compatible chat completions, so swapping the generator is a
+change of endpoint and model name, nothing more.
+
+Check the licence of any model you substitute in. The verifier does not care which model
+wrote a layer, which is the point — but your legal team will.
+
 ## Prerequisites
 
 - Python 3.11+, Node 18+
