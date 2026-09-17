@@ -1,0 +1,42 @@
+{
+  "name": "glacier",
+  "title": "Glacier — a high alpine basin under extreme brightness",
+  "contractVersion": "v1",
+  "dialect": "enumerated",
+  "seed": 11,
+  "shell": "shell.html",
+  "output": "experiment_1_standalones/glacier.cdn.html",
+
+  "states": ["blue-dawn", "white-noon", "whiteout", "alpenglow"],
+
+  "fields": ["G(core: vnz3/turb3/turb2 + aerial/aerialAtt + tonemap TAIL)", "crevasseMask(p)", "subsurface(p,n)", "upwash(p,n)", "snowGlint(p,n)", "moraineF(p,n)", "gustAt(p)"],
+  "groundH": { "fn": "iceH(x,z)", "domain": "|x| <= 112, |z| <= 160 (224x320 basin plane)", "range": "~-16 at the snout up to CREST=58 on the moraine and HEADW=74 on the headwall", "owner": "Icefield" },
+
+  "camera": { "kind": "glacier-traverse", "note": "walks up-basin beside the medial moraine tracking flowline(z), lifts a shallow ten degrees so the headwall crosses the middle of the frame and the near-black zenith caps it" },
+
+  "postfx": true,
+
+  "captureRecipe": {
+    "aether": { "states": ["white-noon", "blue-dawn", "whiteout"], "checks": ["greycard-luminance-in-range"] },
+    "icefield": { "states": ["white-noon"], "checks": ["iceH-mesh-agreement", "crevasse-not-black"] },
+    "ravens": { "states": ["white-noon", "alpenglow"], "checks": ["bank-matches-turn"] },
+    "camera": { "states": ["white-noon"], "checks": ["headwall-in-frame"] }
+  },
+
+  "build": {
+    "files": [
+      "../contract/runtime.js",
+      "field.js",
+      "prelude.glsl.js",
+      "materials.js",
+      "layers/icefield.js",
+      "layers/aether.js",
+      "layers/lichen.js",
+      "layers/ravens.js",
+      "layers/spindrift.js",
+      "camera.js",
+      "postfx.js",
+      "scene.js"
+    ]
+  }
+}

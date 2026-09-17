@@ -1,0 +1,53 @@
+{
+  "name": "highpark",
+  "title": "High Park — a prairie basin under the peaks",
+  "contractVersion": "v1",
+  "dialect": "enumerated",
+  "seed": 11,
+  "defaultState": "cloud-shadows",
+  "shell": "shell.html",
+  "output": "experiment_1_standalones/highpark.cdn.html",
+
+  "states": ["first-light", "cloud-shadows", "storm-break", "gold-dusk"],
+
+  "fields": ["G(core: noise3/fbm3/fbm2/fog/fogAtt + tonemap TAIL)", "windAt(xz,t)", "cloudShad(p)", "shaftMask(p)"],
+  "groundH": { "fn": "groundH(x,z)", "domain": "|x|<500, -480<z<130", "range": "≈ -8 hollows to ~+24 apron rim", "owner": "Prairie (Peaks supplies summits above the apron)" },
+
+  "camera": { "kind": "knoll-arc", "note": "slow arc along the south knoll, breathing height; frames herd -> basin -> saddle in thirds" },
+
+  "postfx": true,
+  "notes": "Rain + Lightning gate to storm-break (cur.rain>0.5). Lightning writes the shared uFlash channel; PostFX reads it for the flash boost.",
+
+  "captureRecipe": {
+    "atmosphere": { "states": ["cloud-shadows", "storm-break", "gold-dusk"], "checks": ["greycard-luminance-in-range"] },
+    "peaks": { "states": ["first-light", "cloud-shadows"], "checks": ["snow-line-not-speckled"] },
+    "grass": { "states": ["cloud-shadows", "gold-dusk"], "checks": ["sway-present-when-wind"] },
+    "herd": { "states": ["cloud-shadows", "storm-break"], "checks": ["feet-on-groundH", "heading-matches-velocity"] },
+    "effects": { "states": ["storm-break"], "checks": ["rain-inert-when-zero", "flash-gated-to-storm"] },
+    "camera": { "states": ["gold-dusk"], "checks": ["saddle-in-frame"] }
+  },
+
+  "build": {
+    "files": [
+      "../contract/runtime.js",
+      "field.js",
+      "prelude.glsl.js",
+      "materials.js",
+      "layers/atmosphere.js",
+      "layers/peaks.js",
+      "layers/prairie.js",
+      "layers/grass.js",
+      "layers/outcrops.js",
+      "layers/mist.js",
+      "layers/shafts.js",
+      "layers/herd.js",
+      "layers/airlife.js",
+      "layers/fluff.js",
+      "layers/rain.js",
+      "layers/lightning.js",
+      "camera.js",
+      "postfx.js",
+      "scene.js"
+    ]
+  }
+}

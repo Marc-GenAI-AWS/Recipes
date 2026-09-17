@@ -1,0 +1,42 @@
+{
+  "name": "canyon",
+  "title": "Canyon — a slot canyon under hard desert light",
+  "contractVersion": "v1",
+  "dialect": "enumerated",
+  "seed": 7,
+  "shell": "shell.html",
+  "output": "experiment_1_standalones/canyon.cdn.html",
+
+  "states": ["dawn-rim", "high-noon", "dust-storm", "night-cold"],
+
+  "fields": ["G(core: noise3/fbm3/fbm2 + haze/hazeAtt + tonemap TAIL)", "strata(p)", "slotLight(p)", "bounce(p,n)", "windAt(p)"],
+  "groundH": { "fn": "canyonH(x,z)", "domain": "|x| <= 46, |z| <= 130 (92x260 corridor plane)", "range": "~0 on the floor up to RIM=34 at the rim", "owner": "Walls" },
+
+  "camera": { "kind": "corridor-walk", "note": "walks down the floor tracking meander(z), looks slightly up so the sky ribbon stays in frame" },
+
+  "postfx": true,
+
+  "captureRecipe": {
+    "firmament": { "states": ["high-noon", "night-cold", "dust-storm"], "checks": ["greycard-luminance-in-range"] },
+    "walls": { "states": ["high-noon"], "checks": ["canyonH-mesh-agreement"] },
+    "raptors": { "states": ["high-noon", "dawn-rim"], "checks": ["bank-matches-turn"] },
+    "camera": { "states": ["high-noon"], "checks": ["sky-ribbon-in-frame"] }
+  },
+
+  "build": {
+    "files": [
+      "../contract/runtime.js",
+      "field.js",
+      "prelude.glsl.js",
+      "materials.js",
+      "layers/walls.js",
+      "layers/firmament.js",
+      "layers/scrub.js",
+      "layers/raptors.js",
+      "layers/dust.js",
+      "camera.js",
+      "postfx.js",
+      "scene.js"
+    ]
+  }
+}

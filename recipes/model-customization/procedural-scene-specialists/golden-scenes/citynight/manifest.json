@@ -1,0 +1,43 @@
+{
+  "name": "citynight",
+  "title": "Citynight — a rain-wet street under its own lights",
+  "contractVersion": "v1",
+  "dialect": "enumerated",
+  "seed": 7,
+  "shell": "shell.html",
+  "output": "experiment_1_standalones/citynight.cdn.html",
+
+  "states": ["dry-dusk", "neon-rain", "after-midnight", "fog-halo"],
+
+  "fields": ["G(core: noise3/fbm3/fbm2 + murk/murkAtt + uEmi[NLAMP] emitter array + tonemap TAIL)", "puddleMask(p)", "slickN(p,n)", "dropRings(q)", "neonGlow(p,n)", "wetSpec(p,n)", "skyBounce(n)", "gustAt(p)"],
+  "groundH": { "fn": "streetH(x,z)", "domain": "|x| <= 16, |z| <= 120 (32x240 street plane)", "range": "0 in the gutter up to KERB_Y+0.06 at the frontages", "owner": "Blacktop" },
+  "lighting": { "kind": "many-point", "note": "no uSunDir: NLAMP=10 point emitters (uEmiP/uEmiC/uEmiI) republished every frame by Downpour from the nearest street fixtures plus two headlights" },
+
+  "camera": { "kind": "carriageway-walk", "note": "walks down the crown of the road tipped slightly DOWN, so the reflective surface fills the lower half of frame" },
+
+  "postfx": true,
+
+  "captureRecipe": {
+    "overcast": { "states": ["dry-dusk", "after-midnight", "fog-halo"], "checks": ["greycard-luminance-in-range"] },
+    "blacktop": { "states": ["neon-rain"], "checks": ["streetH-mesh-agreement", "reflection-below-each-emitter"] },
+    "passersby": { "states": ["neon-rain", "after-midnight"], "checks": ["figure-silhouette-not-rectangular"] },
+    "camera": { "states": ["neon-rain"], "checks": ["wet-road-in-lower-half"] }
+  },
+
+  "build": {
+    "files": [
+      "../contract/runtime.js",
+      "field.js",
+      "prelude.glsl.js",
+      "materials.js",
+      "layers/blacktop.js",
+      "layers/overcast.js",
+      "layers/kerbside.js",
+      "layers/passersby.js",
+      "layers/downpour.js",
+      "camera.js",
+      "postfx.js",
+      "scene.js"
+    ]
+  }
+}

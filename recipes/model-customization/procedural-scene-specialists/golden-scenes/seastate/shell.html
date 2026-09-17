@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sea State — ocean simulator</title>
+<!-- machine-readable state list: harnesses drive the sim via location.hash -->
+<meta name="states" content="__STATES__" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --ink: #ecf3f6;
+    --ink-dim: rgba(236, 243, 246, 0.45);
+    --ink-mid: rgba(236, 243, 246, 0.75);
+    --hairline: rgba(236, 243, 246, 0.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; background: #000; }
+  canvas#scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+  #ui {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column; justify-content: space-between;
+    pointer-events: none;
+    color: var(--ink);
+    font-family: "IBM Plex Mono", monospace;
+    transition: opacity 0.5s ease;
+  }
+  #ui.hidden { opacity: 0; }
+  #ui.hidden * { pointer-events: none !important; }
+
+  /* legibility scrims — no cards, just breath at the edges */
+  #ui::before, #ui::after {
+    content: ""; position: absolute; left: 0; right: 0; pointer-events: none;
+  }
+  #ui::before { top: 0; height: 160px; background: linear-gradient(rgba(2, 6, 10, 0.28), transparent); }
+  #ui::after { bottom: 0; height: 240px; background: linear-gradient(transparent, rgba(2, 6, 10, 0.5)); z-index: -1; }
+
+  header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 22px 28px;
+  }
+  .mark {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.34em;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+  }
+  .mark small { letter-spacing: 0.2em; font-weight: 400; color: var(--ink-dim); margin-left: 1.2em; font-size: 10px; }
+  .hint { font-size: 10px; letter-spacing: 0.12em; color: var(--ink-dim); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5); }
+
+  footer { padding: 0 28px 26px; max-width: 720px; }
+
+  #forecast {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(21px, 3vw, 31px);
+    line-height: 1.3;
+    max-width: 24ch;
+    margin-bottom: 22px;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+    transition: opacity 0.45s ease;
+  }
+  #forecast.fading { opacity: 0; }
+
+  .row {
+    display: flex; align-items: baseline; gap: 4px;
+    padding: 9px 0;
+    border-top: 1px solid var(--hairline);
+    pointer-events: auto;
+  }
+  .row .label {
+    font-size: 10px; letter-spacing: 0.22em; color: var(--ink-dim);
+    width: 88px; flex: none;
+  }
+  .row button {
+    appearance: none; background: none; border: none; cursor: pointer;
+    font: 500 11px/1 "IBM Plex Mono", monospace;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-dim);
+    padding: 6px 10px;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+    transition: color 0.25s ease;
+    border-radius: 2px;
+  }
+  .row button:hover { color: var(--ink-mid); }
+  .row button[aria-pressed="true"] {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 1px;
+  }
+  .row button:focus-visible { outline: 1px solid var(--ink-mid); outline-offset: 2px; }
+
+  @media (max-width: 640px) {
+    header, footer { padding-left: 16px; padding-right: 16px; }
+    .hint { display: none; }
+    .row { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+
+<div id="ui">
+  <header>
+    <span class="mark">SEA STATE<small>ocean simulator</small></span>
+    <span class="hint">1–4 time · Q–T weather · H hide</span>
+  </header>
+  <footer>
+    <p id="forecast" aria-live="polite"></p>
+    <div class="row" role="group" aria-label="Time of day">
+      <span class="label">TIME</span>
+      <button data-time="dawn">Dawn</button>
+      <button data-time="midday">Midday</button>
+      <button data-time="dusk">Dusk</button>
+      <button data-time="night">Night</button>
+    </div>
+    <div class="row" role="group" aria-label="Weather">
+      <span class="label">WEATHER</span>
+      <button data-weather="clear">Clear</button>
+      <button data-weather="cloudy">Cloudy</button>
+      <button data-weather="fog">Fog</button>
+      <button data-weather="rain">Rain</button>
+      <button data-weather="storm">Storm</button>
+    </div>
+  </footer>
+</div>
+
+<script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js" } }
+</script>
+<script type="module">
+/*__BUNDLE__*/
+</script>
+</body>
+</html>
