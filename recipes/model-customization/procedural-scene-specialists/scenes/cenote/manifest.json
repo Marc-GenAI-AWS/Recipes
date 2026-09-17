@@ -1,0 +1,45 @@
+{
+  "name": "cenote",
+  "title": "Cenote — a shaft of light in a flooded sinkhole",
+  "contractVersion": "v1",
+  "dialect": "enumerated",
+  "seed": 7,
+  "shell": "shell.html",
+  "output": "experiment_1_standalones/cenote.cdn.html",
+
+  "states": ["morning-beam", "noon-pillar", "storm-runoff", "night-torch"],
+
+  "fields": ["G(core: noise3/fbm3/fbm2/fog/fogAtt + tonemap TAIL)", "caustic(p)", "beamMask(p)", "torch(p,n)", "torchAt(p)", "haloY(p)", "cells(p,t)"],
+  "groundH": { "fn": "floorH(x,z)", "domain": "hypot(x,z) <= 35 (70x70 seabed plane)", "range": "-16 (centre) up the rim wall", "owner": "Cavern" },
+
+  "camera": { "kind": "level-orbit", "note": "slow orbit at mid-depth looking horizontally at the pillar; carries the diver torch (uTorchPos/uTorchDir)" },
+
+  "postfx": true,
+
+  "captureRecipe": {
+    "skylight": { "states": ["noon-pillar", "night-torch", "storm-runoff"], "checks": ["greycard-luminance-in-range"] },
+    "cavern": { "states": ["noon-pillar"], "checks": ["floorH-mesh-agreement"] },
+    "fish": { "states": ["noon-pillar", "night-torch"], "checks": ["heading-matches-velocity"] },
+    "camera": { "states": ["noon-pillar"], "checks": ["pillar-in-frame"] }
+  },
+
+  "build": {
+    "files": [
+      "../contract/runtime.js",
+      "field.js",
+      "prelude.glsl.js",
+      "materials.js",
+      "layers/cavern.js",
+      "layers/skylight.js",
+      "layers/surface.js",
+      "layers/halocline.js",
+      "layers/reef.js",
+      "layers/fish.js",
+      "layers/bubbles.js",
+      "layers/motes.js",
+      "camera.js",
+      "postfx.js",
+      "scene.js"
+    ]
+  }
+}

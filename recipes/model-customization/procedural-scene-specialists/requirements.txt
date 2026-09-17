@@ -1,0 +1,17 @@
+# Rendering + verification (the harness) — this is the part you cannot skip.
+playwright>=1.40          # headless Chromium; run `playwright install chromium` after pip
+Pillow>=10.0              # frame statistics for the per-segment checks
+numpy>=1.26
+
+# Generation: an OpenAI-compatible client covers both a self-hosted vLLM server
+# and most hosted APIs. boto3 is only needed if your teacher is on Bedrock.
+openai>=1.30
+boto3>=1.34
+
+# Training (not needed to generate or verify)
+torch>=2.2
+transformers>=4.44
+peft>=0.11
+trl>=0.9
+datasets>=2.20
+accelerate>=0.33

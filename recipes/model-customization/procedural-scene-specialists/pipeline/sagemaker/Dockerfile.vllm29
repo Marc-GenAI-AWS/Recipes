@@ -1,0 +1,12 @@
+# Eval/CaR serving image for qwen3_5 bases (Qwen3.8-27B): same trainer image + a NEWER vLLM in its own venv.
+# Dockerfile.vllm (vllm 0.11.0) predates the qwen3_5 architecture. vLLM 0.29.0 needs torch 2.13 / CUDA 13; SageMaker GPU
+# hosts run CUDA 13 (JumpStart serves this model with sglang:0.5.12-…-cu130), and the venv keeps that torch away from the
+# trainer stack in the image's main python.
+FROM ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO}:latest
+
+RUN python -m venv /opt/vllm \
+    && /opt/vllm/bin/pip install --no-cache-dir "vllm==0.29.0" \
+    && /opt/vllm/bin/python -c "import vllm, transformers; print('vllm', vllm.__version__, 'transformers', transformers.__version__); \
+from vllm.model_executor.models.registry import ModelRegistry; \
+assert 'Qwen3_5ForConditionalGeneration' in ModelRegistry.get_supported_archs(), 'vllm lacks qwen3_5'"
+# (import check, not `vllm --version`: the CLI infers the device at startup and CodeBuild has no GPU)

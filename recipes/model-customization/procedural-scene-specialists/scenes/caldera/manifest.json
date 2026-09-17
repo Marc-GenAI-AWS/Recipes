@@ -1,0 +1,42 @@
+{
+  "name": "caldera",
+  "title": "Caldera — an active volcanic caldera, lit from the ground up",
+  "contractVersion": "v1",
+  "dialect": "enumerated",
+  "seed": 11,
+  "shell": "shell.html",
+  "output": "experiment_1_standalones/caldera.cdn.html",
+
+  "states": ["dawn-ash", "fissure-open", "ashfall", "night-glow"],
+
+  "fields": ["G(core: vnz3/turb3/turb2 + ashVeil/ashAtt + tonemap TAIL)", "riftPhi(q)", "crackAmt(q)", "crackGlow(q)", "fireLight(p,n)", "vaultLight(n)", "sulphur(p)", "heatWarp(p)", "emberAt(p)", "gustAt(p)"],
+  "groundH": { "fn": "crustH(x,z)", "domain": "|x| <= 150, |z| <= 150 (300x300 pan)", "range": "~-1 in the seams, ~0 on the pan, up to RIM=62 on the wall", "owner": "Crust" },
+
+  "camera": { "kind": "pan-traverse", "note": "arcs across the caldera floor a little over 3 units up, tilted slightly down so the seam network fills the lower frame while the wall and the ash vault stay above it" },
+
+  "postfx": true,
+
+  "captureRecipe": {
+    "vault": { "states": ["night-glow", "ashfall", "fissure-open"], "checks": ["greycard-luminance-in-range"] },
+    "crust": { "states": ["fissure-open"], "checks": ["crustH-mesh-agreement", "seam-emission-present"] },
+    "skein": { "states": ["night-glow", "dawn-ash"], "checks": ["underside-brighter-than-back"] },
+    "camera": { "states": ["dawn-ash"], "checks": ["wall-and-pan-both-in-frame"] }
+  },
+
+  "build": {
+    "files": [
+      "../contract/runtime.js",
+      "field.js",
+      "prelude.glsl.js",
+      "materials.js",
+      "layers/crust.js",
+      "layers/vault.js",
+      "layers/scorch.js",
+      "layers/skein.js",
+      "layers/plumes.js",
+      "camera.js",
+      "postfx.js",
+      "scene.js"
+    ]
+  }
+}

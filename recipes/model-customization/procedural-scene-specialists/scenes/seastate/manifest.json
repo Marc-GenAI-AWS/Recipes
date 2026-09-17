@@ -1,0 +1,46 @@
+{
+  "name": "seastate",
+  "title": "Sea State — an open ocean seen from a ship's bow",
+  "contractVersion": "v1",
+  "dialect": "factored",
+  "seed": 7,
+  "shell": "shell.html",
+  "output": "experiment_1_standalones/seastate.cdn.html",
+
+  "manifestAxes": {
+    "time": ["dawn", "midday", "dusk", "night"],
+    "weather": ["clear", "cloudy", "fog", "rain", "storm"]
+  },
+  "states": [
+    "dawn-clear", "midday-clear", "dusk-clear", "night-clear",
+    "dawn-cloudy", "midday-cloudy", "dusk-cloudy", "night-cloudy",
+    "dawn-fog", "midday-fog", "dusk-fog", "night-fog",
+    "dawn-rain", "midday-rain", "dusk-rain", "night-rain",
+    "dawn-storm", "midday-storm", "dusk-storm", "night-storm"
+  ],
+
+  "fields": ["skyRadiance(dir)", "cloudLayer(dir)", "starField(dir)", "acesTonemap(x)", "vnoise(p)", "fbm(p)"],
+  "groundH": null,
+
+  "camera": { "kind": "fixed-bow", "height": 13, "pitch": -0.15, "note": "no groundH; camera holds at deck height with swell + parallax" },
+
+  "captureRecipe": {
+    "sky": { "states": ["midday-clear", "night-clear", "midday-storm"], "checks": ["greycard-luminance-in-range"] },
+    "ocean": { "states": ["dusk-clear", "midday-storm"], "checks": ["water-covers-view"] },
+    "rain": { "states": ["midday-storm"], "checks": ["inert-when-rain-zero"] },
+    "camera": { "states": ["dusk-clear"], "checks": ["horizon-in-upper-third"] }
+  },
+
+  "build": {
+    "files": [
+      "../contract/runtime.js",
+      "prelude.glsl.js",
+      "presets.js",
+      "layers/sky.js",
+      "layers/ocean.js",
+      "layers/rain.js",
+      "camera.js",
+      "scene.js"
+    ]
+  }
+}

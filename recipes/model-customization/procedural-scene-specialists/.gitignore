@@ -1,0 +1,6 @@
+.env
+vendor/
+data/
+adapters/
+__pycache__/
+*.pyc

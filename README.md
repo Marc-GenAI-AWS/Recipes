@@ -17,6 +17,7 @@ Fine-tuning, evaluation, and data generation for customizing LLMs.
 |---|---|
 | [`finetune-automation/`](recipes/model-customization/finetune-automation/) | You want an end-to-end SageMaker fine-tuning workflow — synthetic data generation, S3 upload, training job, deployment, inference testing — driven from a Streamlit dashboard. |
 | [`llm-customization-challenge/`](recipes/model-customization/llm-customization-challenge/) | You're building use cases for the AWS AI Model Customization Challenge and need scaffolding for data gen, prompt-engineered judges, and evaluation. |
+| [`procedural-scene-specialists/`](recipes/model-customization/procedural-scene-specialists/) | You want small fine-tuned models to generate executable/renderable output — code, shaders, scene graphs — and a programmatic verifier, not an LLM judge, to decide what is good enough to train on and to ship. |
 
 ### `recipes/inference/`
 
