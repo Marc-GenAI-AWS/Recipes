@@ -119,8 +119,10 @@ The verifier is four stages, cheapest first, so most failures cost nothing:
 - IAM: a SageMaker execution role with read/write on your bucket; Bedrock `InvokeModel`
 - A **GPU machine with a display** for the captures (the verifier renders the real
   application; headless-without-GPU will not work)
-- [Godot 4.7+](https://godotengine.org/download) and the example game:
-  `git clone https://github.com/Marc-GenAI-AWS/godot-game`
+- [Godot 4.7+](https://godotengine.org/download) and the example game, pinned to the
+  tag this recipe was written against:
+  `git clone --branch recipe-v1 https://github.com/Marc-GenAI-AWS/godot-game`
+  (its `guide/` explains how to run, grow and retrain it; `main` moves on independently)
 - Python 3.11+
 
 ## Environment variables
