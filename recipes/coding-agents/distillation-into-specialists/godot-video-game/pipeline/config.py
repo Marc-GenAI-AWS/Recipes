@@ -16,7 +16,7 @@ SAGEMAKER_ROLE = os.environ.get("SAGEMAKER_ROLE", "REPLACE-ME-sagemaker-executio
 S3_PREFIX = os.environ.get("S3_PREFIX", "specialist-pipeline")
 
 # --- the game the models write layers for ----------------------------------
-# Clone https://github.com/mlobree/godot-game next to this recipe, or point GAME_DIR at it.
+# Clone https://github.com/Marc-GenAI-AWS/godot-game next to this recipe, or point GAME_DIR at it.
 GAME = Path(os.environ.get("GAME_DIR", Path(__file__).resolve().parents[1] / "godot-game" / "game"))
 # Godot 4.7+ binary. A headless machine still needs a GPU and an X display for the captures.
 GODOT = Path(os.environ.get("GODOT_BIN", "godot"))

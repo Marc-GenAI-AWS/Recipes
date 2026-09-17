@@ -12,7 +12,7 @@ specialist writes its own code, and the verifier decides what ships. The worked 
 a Godot 4 game: five specialists write the sky, terrain, water, planting and street
 furniture of a playable scene from a single sentence.
 
-**Live output:** [mlobree.github.io/godot-game/specialist-scenes](https://mlobree.github.io/godot-game/specialist-scenes/)
+**Live output:** [marc-genai-aws.github.io/godot-game/specialist-scenes](https://marc-genai-aws.github.io/godot-game/specialist-scenes/)
 — playable scenes with the code written by 3B and 7B models.
 
 ## Use this when
@@ -120,7 +120,7 @@ The verifier is four stages, cheapest first, so most failures cost nothing:
 - A **GPU machine with a display** for the captures (the verifier renders the real
   application; headless-without-GPU will not work)
 - [Godot 4.7+](https://godotengine.org/download) and the example game:
-  `git clone https://github.com/mlobree/godot-game`
+  `git clone https://github.com/Marc-GenAI-AWS/godot-game`
 - Python 3.11+
 
 ## Environment variables
