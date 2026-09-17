@@ -24,7 +24,7 @@ data/<segment>_<tag>/                        generated layers + log.jsonl       
 Adding a **whole new host scene** adds one more directory:
 
 ```
-scenes/<host>/
+golden-scenes/<host>/
 ├── manifest.json        name, title, states, build file list
 ├── scene.js             the state machine and per-state values published on ctx.cur
 ├── prelude.glsl.js      shared GLSL helpers your layers may call

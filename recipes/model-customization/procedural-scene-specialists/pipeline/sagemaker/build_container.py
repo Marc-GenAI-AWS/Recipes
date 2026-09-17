@@ -31,7 +31,7 @@ def stage_context(dockerfile: str = "Dockerfile") -> Path:
     ctx = Path(tempfile.mkdtemp(prefix="trainer-ctx-"))
     shutil.copy(HERE / dockerfile, ctx / "Dockerfile")
     shutil.copy(HERE / "buildspec.yml", ctx / "buildspec.yml")
-    shutil.copytree(REPO / "scenes", ctx / "scenes",
+    shutil.copytree(REPO / "golden-scenes", ctx / "golden-scenes",
                     ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
     shutil.copytree(REPO / "vendor", ctx / "vendor")
     (ctx / "pipeline" / "harness").mkdir(parents=True)

@@ -14,14 +14,14 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-sys.path.insert(0, str(REPO / "scenes"))
+sys.path.insert(0, str(REPO / "golden-scenes"))
 from layer_harness import render_robust  # noqa: E402
 
 OUT = Path("/tmp/skyview")
 
 
 def build_skyview(candidate: str | None, out: Path) -> None:
-    cmd = ["node", str(REPO / "scenes" / "assemble.cjs"), "highpark",
+    cmd = ["node", str(REPO / "golden-scenes" / "assemble.cjs"), "highpark",
            "--set", f"camera.js={HERE / 'skyview_camera.js'}",
            "--set", f"layers/mist.js={HERE / 'noop_mist.js'}",
            "--set", f"layers/rain.js={HERE / 'noop_rain.js'}"]

@@ -64,7 +64,7 @@ def stage_code(job: str, script: str) -> str:
     d = Path(tempfile.mkdtemp(prefix="job-code-")) / "code"
     d.mkdir(parents=True)
     (d / "run.sh").write_text("#!/bin/bash\n" + script + "\n")
-    shutil.copytree(REPO / "scenes", d / "scenes", ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+    shutil.copytree(REPO / "golden-scenes", d / "golden-scenes", ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
     shutil.copytree(REPO / "vendor", d / "vendor")
     rf = d / "pipeline" / "harness"
     rf.mkdir(parents=True)

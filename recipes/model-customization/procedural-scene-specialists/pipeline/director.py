@@ -133,7 +133,7 @@ def run_segment(seg_name: str, brief: str, endpoint: str, model: str, attempts: 
 
 def compose(scene_dir: Path, accepted: list[str]) -> Path:
     out = scene_dir / "scene.cdn.html"
-    cmd = ["node", str(REPO / "scenes" / "assemble.cjs"), "highpark"]
+    cmd = ["node", str(REPO / "golden-scenes" / "assemble.cjs"), "highpark"]
     for seg_name in accepted:
         cmd += ["--set", f"{SEGMENTS[seg_name]['layer']}={(scene_dir / f'{seg_name}.js').resolve()}"]
     cmd += ["--out", str(out)]

@@ -34,10 +34,10 @@ ENV PLAYWRIGHT_BROWSERS_PATH=/opt/ms-playwright
 RUN playwright install chromium
 
 # Repo layout mirrored under /opt/ml/code so REPO-relative paths in the scripts resolve:
-#   pipeline/training/*.py, scenes/ (contract, assembler, phase1 runners), vendor/ (offline three),
+#   pipeline/training/*.py, golden-scenes/ (contract, assembler, phase1 runners), vendor/ (offline three),
 #   pipeline/harness/ (harness, judge)
 WORKDIR /opt/ml/code
-COPY scenes/ /opt/ml/code/scenes/
+COPY golden-scenes/ /opt/ml/code/golden-scenes/
 COPY vendor/ /opt/ml/code/vendor/
 COPY pipeline/harness/harness.py pipeline/harness/judge.py \
      /opt/ml/code/pipeline/harness/
@@ -53,5 +53,5 @@ ENV HARNESS_THREE_LOCAL=/opt/ml/code/vendor/three.module.min.js \
 ENV SAGEMAKER_PROGRAM=pipeline/training/train_sky_rl.py
 
 # smoke: the harness + assembler must import and node must run
-RUN cd /opt/ml/code && node scenes/assemble.cjs seastate --out /tmp/smoke.cdn.html \
-    && python -c "import sys; sys.path[:0]=['pipeline/harness','scenes']; import harness, layer_harness; print('harness+layer_harness OK')"
+RUN cd /opt/ml/code && node golden-scenes/assemble.cjs seastate --out /tmp/smoke.cdn.html \
+    && python -c "import sys; sys.path[:0]=['pipeline/harness','golden-scenes']; import harness, layer_harness; print('harness+layer_harness OK')"

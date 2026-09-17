@@ -63,7 +63,7 @@ BASE_MODEL_LARGE = os.environ.get("BASE_MODEL_LARGE", "Qwen/Qwen3.8-27B")
 # ── local paths ────────────────────────────────────────────────────────────────────────────────
 DATA = Path(os.environ.get("DATA_DIR", ROOT / "data"))
 ADAPTERS = Path(os.environ.get("ADAPTER_DIR", ROOT / "adapters"))
-SCENES = ROOT / "scenes"
+SCENES = ROOT / "golden-scenes"
 
 # ── evaluation protocol (change these and your numbers stop being comparable) ───────────────────
 EVAL_SEED = 1          # held-out brief seed — never generate training data with it

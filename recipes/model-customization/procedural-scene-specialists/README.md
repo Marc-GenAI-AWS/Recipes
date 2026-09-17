@@ -47,7 +47,7 @@ render at gate 1.0 with no harness changes.
 ## What is actually in here
 
 ```
-scenes/              seven complete host scenes + the shared runtime contract
+golden-scenes/       seven complete host scenes + the shared runtime contract
   <host>/
     manifest.json      states, build file list, the ground-height field contract
     scene.js           state machine; publishes per-state values on ctx.cur

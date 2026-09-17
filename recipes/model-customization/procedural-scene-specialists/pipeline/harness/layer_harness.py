@@ -209,9 +209,9 @@ PRESENCE_CACHE = Path(os.environ.get("PRESENCE_CACHE", Path.home() / ".cache" / 
 def _host_hash(scene: str, layer: str) -> str:
     import hashlib
     h = hashlib.sha1()
-    for base in (ROOT / "scenes" / scene, ROOT / "scenes" / "contract"):
+    for base in (ROOT / "golden-scenes" / scene, ROOT / "golden-scenes" / "contract"):
         for p in sorted(base.rglob("*.js")) + sorted(base.rglob("*.html")):
-            if p != ROOT / "scenes" / scene / layer:
+            if p != ROOT / "golden-scenes" / scene / layer:
                 h.update(str(p.relative_to(ROOT)).encode()); h.update(p.read_bytes())
     return h.hexdigest()[:12]
 
@@ -230,7 +230,7 @@ def layer_absent_reference(scene: str, layer: str) -> dict:
     with open(d / "lock", "w") as lf:
         fcntl.flock(lf, fcntl.LOCK_EX)
         if not (d / "done").exists():
-            cls = re.search(r"export class (\w+)", (ROOT / "scenes" / scene / layer).read_text()).group(1)
+            cls = re.search(r"export class (\w+)", (ROOT / "golden-scenes" / scene / layer).read_text()).group(1)
             (d / "noop.js").write_text(f"export class {cls} {{ constructor(ctx) {{}} update() {{}} }}")
             assemble(scene, layer, str(d / "noop.js"), str(d / "build.cdn.html"))
             res = render_robust((d / "build.cdn.html").read_text())
@@ -328,7 +328,7 @@ CHECKS = {"greycard": check_greycard, "horizon": check_horizon,
 # ---------------------------------------------------------------------------- run
 
 def assemble(scene: str, layer: str | None, candidate: str | None, out: str) -> None:
-    cmd = ["node", str(ROOT / "scenes" / "assemble.cjs"), scene]
+    cmd = ["node", str(ROOT / "golden-scenes" / "assemble.cjs"), scene]
     if layer and candidate:
         cmd += ["--set", f"{layer}={os.path.abspath(candidate)}"]
     cmd += ["--out", out]

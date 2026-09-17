@@ -20,7 +20,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SCENES = ROOT / "scenes"   # working-repo layout
+SCENES = ROOT / "golden-scenes"   # working-repo layout
 
 GLSL_SIG = re.compile(r"^\s*(float|int|bool|vec[234]|mat[234])\s+(\w+)\s*\(([^)]*)\)", re.M)
 GLSL_UNIFORM = re.compile(r"uniform\s+(\w+)\s+(u\w+)")
@@ -143,7 +143,7 @@ def descriptor(scene: str) -> HostDescriptor:
     for name in re.findall(r"U\.u\w+\.value\s*=\s*cur\.(\w+)", scene_src):
         h.cur_types.setdefault(name, "number")
 
-    rt = _read(ROOT / "scenes" / "contract" / "runtime.js")
+    rt = _read(ROOT / "golden-scenes" / "contract" / "runtime.js")
     if re.search(r"\brnd\s*=\s*\(\s*\)\s*=>", rt):
         h.rng.append("rnd()      -> a deterministic pseudo-random number in [0,1). It is a plain function: it has no "
                      "methods, so rnd.anything() throws.")

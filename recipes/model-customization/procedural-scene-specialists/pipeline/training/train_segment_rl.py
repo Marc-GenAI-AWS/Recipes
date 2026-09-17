@@ -26,8 +26,8 @@ from pathlib import Path
 HERE = Path(__file__).parent
 REPO = HERE.parent
 sys.path.insert(0, str(REPO / "pipeline" / "harness"))
-sys.path.insert(0, str(REPO / "scenes"))
-sys.path.insert(0, str(REPO / "scenes" / "phase1"))
+sys.path.insert(0, str(REPO / "golden-scenes"))
+sys.path.insert(0, str(REPO / "golden-scenes" / "phase1"))
 
 os.environ.setdefault("HARNESS_THREE_LOCAL", str(REPO / "vendor" / "three.module.min.js"))
 os.environ.setdefault("HARNESS_THREE_ADDONS", str(REPO / "vendor" / "three-addons"))
